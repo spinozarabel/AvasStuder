@@ -37,7 +37,7 @@ function studer_menu()
 {
   $studer_api = new studer_api();
   // top line displayed on page
-  esc_html_e('My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>");
+  echo nl2br('My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>/n");
 
 
   $studer_api->paramId              = 1107;
@@ -46,5 +46,5 @@ function studer_menu()
 
   $param_1107       = $studer_api->get_parameter_value();
 
-  esc_html_e( 'AC input current maximum value: ' . $param_1107);
+  echo nl2br( 'AC input current maximum value: ' . $param_1107 . "/n");
 }
