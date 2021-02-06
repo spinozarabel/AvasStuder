@@ -35,9 +35,14 @@ class studer_api
 		  $this->baseurl	        = $baseurl;
 
       // get installation ID. Assumes 1st installation ID at index 0
-      $installation_id        = $this->get_installation_id();
+      $curlResponse           = $this->get_installation_id();
+      $installation_id        = $curlResponse[0]->id;
+      $name                   = $curlResponse[0]->name;
+      $guid                   = $curlResponse[0]->guid;
 
       $this->installation_id  = $installation_id;
+      $this->name             = $name;
+      $this->guid             = $guid;
     }       // end construct function
 
   	/**
@@ -76,11 +81,8 @@ class studer_api
           return;
       }
 
-      $this->installation_id    = $curlResponse[0]->id;
-      $this->name               = $curlResponse[0]->name;
-      $this->guid               = $curlResponse[0]->guid;
 
-      return;
+      return $curlResponse;
     }
 
     /**
