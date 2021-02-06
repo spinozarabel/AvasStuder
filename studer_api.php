@@ -27,25 +27,25 @@ class studer_api
 			// we are in wordpress environment, don't care about $site_name since get_option is site dependendent
             // ensure key and sercret set correctly no check is made wether set or not
             // Make sure these work for Virtual Account API
-			$api_phash		= md5($this->getoption("studer_settings", "studer_password"));
-			$api_uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
-      error_log( "This is the uhash . $api_uhash");
-      error_log( "This is the phash . $api_phash");
+			$phash		= md5($this->getoption("studer_settings", "studer_password"));
+			$uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
+      error_log( "This is the uhash . $uhash");
+      error_log( "This is the phash . $phash");
 
-		  $api_baseUrl          = $this->getoption("studer_settings", "studer_api_baseurl");
-      error_log( "This is the Base URL . $api_baseUrl");
+		  $baseUrl = $this->getoption("studer_settings", "studer_api_baseurl");
+      error_log( "This is the Base URL . $baseUrl");
       //$api_installation_id  = 6076;
 
       // add these as properties of object
-      $this->api_uhash		        = $api_uhash;
-		  $this->api_phash	          = $api_phash;
-		  $this->api_baseUrl	        = $api_baseUrl;
+      $this->uhash		        = $uhash;
+		  $this->phash	          = $phash;
+		  $this->baseUrl	        = $baseUrl;
 
 
-      $api_installation_id  = $this->get_installation_id();
-      error_log( "This is the installation ID extracted . $api_installation_id");
+      $installation_id  = $this->get_installation_id();
+      error_log( "This is the installation ID extracted . $installation_id");
 
-      $this->installation_id      = $api_installation_id;
+      $this->installation_id      = $installation_id;
     }       // end construct function
 
   	/**
@@ -60,9 +60,9 @@ class studer_api
 
     public function get_installation_id()
     {
-      $uhash    = $this->api_uhash;
-      $phash    = $this->api_phash;
-      $baseurl  = $this->api_baseUrl;
+      $uhash    = $this->uhash;
+      $phash    = $this->phash;
+      $baseurl  = $this->baseUrl;
 
       $headers =
       [
@@ -96,9 +96,9 @@ class studer_api
     */
     public function get_parameter_value()
     {
-      $uhash    = $this->api_uhash;
-      $phash    = $this->api_phash;
-      $baseurl  = $this->api_baseUrl;
+      $uhash    = $this->uhash;
+      $phash    = $this->phash;
+      $baseurl  = $this->baseUrl;
       $paramId  = $this->paramId;
       $device           = $this->device;
       $paramPart        = $this->paramPart;
