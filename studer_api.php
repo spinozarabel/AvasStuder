@@ -33,11 +33,11 @@ class studer_api
       error_log( "This is the phash . $api_phash");
 
 		  $api_baseUrl          = $this->getoption("studer_settings", "studer_api_baseurl");
-      error_log( "This is the Base URL . $api_baseUrl";
+      error_log( "This is the Base URL . $api_baseUrl");
       //$api_installation_id  = 6076;
 
       $api_installation_id  = $this->get_installation_id();
-      error_log( "This is the installation ID extracted . $api_installation_id";
+      error_log( "This is the installation ID extracted . $api_installation_id");
 
 
       // add these as properties of object
