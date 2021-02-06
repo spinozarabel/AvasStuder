@@ -49,7 +49,7 @@ class avas_studer_settings
 
 		?>
 		<div class="wrap">
-            <h1>SriToni cashfree Settings</h1>
+            <h1>Studer API Settings</h1>
             <form method="post" action="options.php">
             <?php
                 // https://codex.wordpress.org/Settings_API
