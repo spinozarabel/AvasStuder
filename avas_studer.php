@@ -120,7 +120,7 @@ function studer_menu()
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery undervoltage level without load";
+  $param_desc                       = "Battery undervoltage level without load - Coslight recommends 47.8 for 80% DOD. Boiler plate says 42V!";
   $param_units                      = "Vdc";
   $factory_default                  = 46.3;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
@@ -129,7 +129,7 @@ function studer_menu()
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery undervoltage Duration before cut-off - Coslight recommends 47.8 for 80% DOD. Boiler plate says 42V!";
+  $param_desc                       = "Battery undervoltage Duration before cut-off";
   $param_units                      = "mins";
   $factory_default                  = 3;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);

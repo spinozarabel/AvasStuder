@@ -186,7 +186,7 @@ class studer_api
        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1); // verifies the authenticity of the peer's certificate
        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // verify the certificate's name against host
        $returnData = curl_exec($ch);
-       error_log( "This is the curl response " . print_r($returnData, true) );
+       // error_log( "This is the curl response " . print_r($returnData, true) );
        curl_close($ch);
        if ($returnData != "")
        {
