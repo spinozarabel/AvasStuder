@@ -32,14 +32,14 @@ class studer_api
       error_log( "This is the uhash . $uhash");
       error_log( "This is the phash . $phash");
 
-		  $baseUrl = $this->getoption("studer_settings", "studer_api_baseurl");
-      error_log( "This is the Base URL . $baseUrl");
+		  $baseurl = $this->getoption("studer_settings", "studer_api_baseurl");
+      error_log( "This is the Base URL . $baseurl");
       //$api_installation_id  = 6076;
 
       // add these as properties of object
       $this->uhash		        = $uhash;
 		  $this->phash	          = $phash;
-		  $this->baseUrl	        = $baseUrl;
+		  $this->baseurl	        = $baseurl;
 
 
       $installation_id  = $this->get_installation_id();
@@ -62,7 +62,7 @@ class studer_api
     {
       $uhash    = $this->uhash;
       $phash    = $this->phash;
-      $baseurl  = $this->baseUrl;
+      $baseurl  = $this->baseurl;
 
       $headers =
       [
@@ -70,7 +70,7 @@ class studer_api
        "PHASH: $phash"
       ];
 
-      $endpoint = $baseUrl . "/api/v1/installation/installations";
+      $endpoint = $baseurl . "/api/v1/installation/installations";
 
       error_log( "These are the values for uhash, phash, and endpoint URL in getCurl function  $uhash $phash $endpoint" );
 
@@ -100,7 +100,7 @@ class studer_api
     {
       $uhash    = $this->uhash;
       $phash    = $this->phash;
-      $baseurl  = $this->baseUrl;
+      $baseurl  = $this->baseurl;
       $paramId  = $this->paramId;
       $device           = $this->device;
       $paramPart        = $this->paramPart;
@@ -119,7 +119,7 @@ class studer_api
                               "paramPart" => $paramPart,
                           );
 
-      $endpoint = $baseUrl . "/api/v1/installation/parameter/" . $installation_id;
+      $endpoint = $baseurl . "/api/v1/installation/parameter/" . $installation_id;
 
       $curlResponse   = $this->getCurl($endpoint, $headers, $params);
       error_log( "This is the response while querying for your Studer parameter" . print_r($curlResponse, true) );
