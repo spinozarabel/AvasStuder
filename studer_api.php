@@ -70,7 +70,7 @@ class studer_api
        "PHASH: $phash"
       ];
 
-      $endpoint = $this->baseUrl . "/api/v1/installation/installations";
+      $endpoint = $baseUrl . "/api/v1/installation/installations";
 
       $curlResponse   = $this->getCurl($endpoint, $headers);
 
