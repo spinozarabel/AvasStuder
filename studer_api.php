@@ -72,7 +72,7 @@ class studer_api
 
       $endpoint = $this->baseUrl . "/api/v1/installation/installations";
 
-      $curlResponse   = $this->getCurl ($endpoint, $headers);
+      $curlResponse   = $this->getCurl($endpoint, $headers);
 
       error_log( "This is the response while querying for your Studer installations" . print_r($curlResponse, true) );
 
@@ -119,7 +119,7 @@ class studer_api
 
       $endpoint = $this->baseUrl . "/api/v1/installation/parameter/" . $installation_id;
 
-      $curlResponse   = $this->getCurl ($endpoint, $headers, $params);
+      $curlResponse   = $this->getCurl($endpoint, $headers, $params);
       error_log( "This is the response while querying for your Studer parameter" . print_r($curlResponse, true) );
 
       if ($curlResponse->status == "OK")
@@ -188,6 +188,7 @@ class studer_api
        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1); // verifies the authenticity of the peer's certificate
        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // verify the certificate's name against host
        $returnData = curl_exec($ch);
+       error_log( "This is the curl response " . print_r($returnData, true) );
        curl_close($ch);
        if ($returnData != "")
        {
