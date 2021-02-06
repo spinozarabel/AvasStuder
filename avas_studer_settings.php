@@ -33,7 +33,7 @@ class avas_studer_settings
 	{
         // add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )
 		add_submenu_page(
-            'settings', 'Studer Settings', 'Studer Settings', 'manage_options', 'studer_settings', array($this, 'avas_studer_settings_page')
+            'studer', 'Studer Settings', 'Studer Settings', 'manage_options', 'studer_settings', array($this, 'avas_studer_settings_page')
         );
     }
 

@@ -19,7 +19,7 @@ class studer_api
 {
     const VERBOSE          = true;
 
-    public function __construct($paramId, $device, $paramPart)
+    public function __construct()
     {
         $this->verbose      = self::VERBOSE;
 
