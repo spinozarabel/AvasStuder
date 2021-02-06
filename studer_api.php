@@ -76,7 +76,7 @@ class studer_api
           return;
       }
 
-      $this->installtion_id     = $curlResponse[0]->id;
+      $this->installation_id    = $curlResponse[0]->id;
       $this->name               = $curlResponse[0]->name;
       $this->guid               = $curlResponse[0]->guid;
 
