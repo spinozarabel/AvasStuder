@@ -88,6 +88,15 @@ function studer_menu()
   $factory_default                  = 60;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
+  $studer_api->paramId              = 1126;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Smart Boost Allowed?";
+  $param_units                      = "1/0";
+  $factory_default                  = "Yes";
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
   $studer_api->paramId              = 1187;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
@@ -104,6 +113,15 @@ function studer_menu()
   $param_desc                       = "Temperature compensation";
   $param_units                      = "mV/degC/cell";
   $factory_default                  = -3;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1108;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery undervoltage level without load";
+  $param_units                      = "Vdc";
+  $factory_default                  = 46.3;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
