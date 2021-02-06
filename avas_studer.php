@@ -28,7 +28,7 @@ if ( is_admin() )
 function add_studer_menu()
 {
   // add_menu_page( $page_title, $menu_title, $capability,      $menu_slug, $function,      $icon_url, $position )
-     add_menu_page( 'Studer',    'Studer',    'manage_options', 'Studer',   'studer_menu' );
+     add_menu_page( 'Studer',    'Studer',    'manage_options', 'studer',   'studer_menu' );
 
   return;
 }
