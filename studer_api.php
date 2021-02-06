@@ -31,7 +31,7 @@ class studer_api
 			$api_phash		= hash('sha256', $this->getoption("studer_settings", "studer_password"));
 
 		  $api_baseUrl          = $this->getoption("studer_settings", "studer_api_baseurl");
-      $api_installation_id  = $this->getoption("studer_settings", "studer_api_installation_id");
+      //$api_installation_id  = 6076;
 
       $api_installation_id  = $this->get_installation_id();
 
@@ -43,6 +43,7 @@ class studer_api
       $this->paramId              = $paramId;
       $this->device               = $device;
       $this->paramPart            = $paramPart;
+      $this->installation_id      = $api_installation_id;
     }       // end construct function
 
   	/**
