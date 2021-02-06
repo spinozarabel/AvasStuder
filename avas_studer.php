@@ -67,8 +67,8 @@ function studer_menu()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "AC output Voltage";
   $param_units                      = "Vac";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units);
-
+  $factory_default                  = 230;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
   $studer_api->paramId              = 1107;
   $studer_api->device               = 'XT1';
@@ -76,18 +76,47 @@ function studer_menu()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Maximum current of AC source (Input limit)";
   $param_units                      = "Aac";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units);
+  $factory_default                  = 32;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1138;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery Charge Current";
+  $param_units                      = "Adc";
+  $factory_default                  = 60;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1187;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Standby Level";
+  $param_units                      = "%";
+  $factory_default                  = 10;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1139;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Temperature compensation";
+  $param_units                      = "mV/degC/cell";
+  $factory_default                  = -3;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
 
-function print_row_table($paramId, $param_value, $param_desc, $param_units)
+function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default)
 {
   ?>
   <tr>
-    <td><?php echo htmlspecialchars($paramId);  ?></td>
-    <td><?php echo htmlspecialchars($param_desc);   ?></td>
-    <td><?php echo htmlspecialchars($param_value);  ?></td>
-    <td><?php echo htmlspecialchars($param_units);  ?></td>
+    <td><?php echo htmlspecialchars($paramId);          ?></td>
+    <td><?php echo htmlspecialchars($param_desc);       ?></td>
+    <td><?php echo htmlspecialchars($param_value);      ?></td>
+    <td><?php echo htmlspecialchars($param_units);      ?></td>
+    <td><?php echo htmlspecialchars($factory_default);  ?></td>
   </tr>
   <?php
   return;
