@@ -38,7 +38,7 @@ function studer_menu()
   $studer_api = new studer_api();
 
   // top line displayed on page
-  echo nl2br('My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+  echo nl2br('Studer Main Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
 
   ?>
   <style>
@@ -150,6 +150,15 @@ function studer_menu()
   $param_desc                       = "Battery overvoltage level";
   $param_units                      = "Vdc";
   $factory_default                  = 68.2;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1140;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery Floating Voltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 54.4;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
