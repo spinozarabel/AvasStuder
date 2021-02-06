@@ -67,24 +67,26 @@ function studer_menu()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "AC output Voltage";
   $param_units                      = "Vac";
-  print_row_table($param_value, $param_desc, $param_units);
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units);
 
 
   $studer_api->paramId              = 1107;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
-
   $param_value                      = $studer_api->get_parameter_value();
-  print_row_table($param_value, $param_desc, $param_units);
+  $param_desc                       = "Maximum current of AC source (Input limit)";
+  $param_units                      = "Aac";
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units);
 
 }
 
-function print_row_table($param_value, $param_desc, $param_units)
+function print_row_table($paramId, $param_value, $param_desc, $param_units)
 {
   ?>
   <tr>
-    <td><?php echo htmlspecialchars($param_value);  ?></td>
+    <td><?php echo htmlspecialchars($paramId);  ?></td>
     <td><?php echo htmlspecialchars($param_desc);   ?></td>
+    <td><?php echo htmlspecialchars($param_value);  ?></td>
     <td><?php echo htmlspecialchars($param_units);  ?></td>
   </tr>
   <?php
