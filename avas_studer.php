@@ -22,7 +22,7 @@ if ( is_admin() )
   add_action('admin_menu', 'add_studer_menu');
 
   // add a new submenu for sritoni cashfree plugin settings in Woocommerce. This is to be done only once!!!!
-  $sritoniCashfreeSettings = new avas_studer_settings();
+  $avas_studer_settings = new avas_studer_settings();
 }
 
 function add_studer_menu()
@@ -37,11 +37,11 @@ function studer_menu()
 {
   $studer_api = new studer_api();
 
-  $this->paramId              = 1107;
-  $this->device               = 'XT1';
-  $this->paramPart            = 'Value';
+  $studer_api->paramId              = 1107;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
 
-  $paramValue       = $this->get_parameter_value();
+  $paramValue       = $studer_api->get_parameter_value();
 
   esc_html_e( 'Admin Page Test' );
   esc_html_e( 'AC input current maximum value' . $paramValue);
