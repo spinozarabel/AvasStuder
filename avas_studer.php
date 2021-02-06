@@ -37,7 +37,7 @@ function studer_menu()
 {
   $studer_api = new studer_api();
   // top line displayed on page
-    echo 'My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->$user_display_name . "</b>";
+  echo 'My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->$user_display_name . "</b>";
 
 
   $studer_api->paramId              = 1107;
