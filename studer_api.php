@@ -19,7 +19,7 @@ class studer_api
 {
     const VERBOSE          = true;
 
-    public function __construct($paramId, $device, $paramPart)
+    public function __construct()
     {
         $this->verbose      = self::VERBOSE;
 
@@ -40,9 +40,7 @@ class studer_api
       $this->api_uhash		        = $api_uhash;
 		  $this->api_phash	          = $api_phash;
 		  $this->api_baseUrl	        = $api_baseUrl;
-      $this->paramId              = $paramId;
-      $this->device               = $device;
-      $this->paramPart            = $paramPart;
+
 
       $api_installation_id  = $this->get_installation_id();
       error_log( "This is the installation ID extracted . $api_installation_id");
@@ -104,7 +102,7 @@ class studer_api
       $paramId  = $this->paramId;
       $device           = $this->device;
       $paramPart        = $this->paramPart;
-      $installation_id  = $this->api_installation_id;
+      $installation_id  = $this->installation_id;
 
       $headers =
       [
