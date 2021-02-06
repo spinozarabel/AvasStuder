@@ -19,7 +19,7 @@ class studer_api
 {
     const VERBOSE          = true;
 
-    public function __construct()
+    public function __construct($paramId, $device, $paramPart)
     {
         $this->verbose      = self::VERBOSE;
 
@@ -36,10 +36,6 @@ class studer_api
       error_log( "This is the Base URL . $api_baseUrl");
       //$api_installation_id  = 6076;
 
-      $api_installation_id  = $this->get_installation_id();
-      error_log( "This is the installation ID extracted . $api_installation_id");
-
-
       // add these as properties of object
       $this->api_uhash		        = $api_uhash;
 		  $this->api_phash	          = $api_phash;
@@ -47,6 +43,10 @@ class studer_api
       $this->paramId              = $paramId;
       $this->device               = $device;
       $this->paramPart            = $paramPart;
+
+      $api_installation_id  = $this->get_installation_id();
+      error_log( "This is the installation ID extracted . $api_installation_id");
+
       $this->installation_id      = $api_installation_id;
     }       // end construct function
 
