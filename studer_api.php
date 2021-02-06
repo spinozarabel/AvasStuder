@@ -76,11 +76,11 @@ class studer_api
           return;
       }
 
-      $this->installtion_id     = $curlResponse[0]->id    ?? null;
-      $this->suser_display_name = $curlResponse[0]->name  ?? null;
-      $this->guid               = $curlResponse[0]->guid  ?? null;
+      $this->installtion_id     = $curlResponse[0]->id;
+      $this->name               = $curlResponse[0]->name;
+      $this->guid               = $curlResponse[0]->guid;
 
-
+      return;
     }
 
     /**
