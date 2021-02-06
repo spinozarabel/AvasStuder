@@ -29,8 +29,8 @@ class studer_api
             // Make sure these work for Virtual Account API
 			$api_uhash		= md5($this->getoption("studer_settings", "studer_email"));
 			$api_phash		= hash('sha256', $this->getoption("studer_settings", "studer_password"));
-      error_log( "This is the uhash . $api_uhash";
-      error_log( "This is the phash . $api_phash";
+      error_log( "This is the uhash . $api_uhash");
+      error_log( "This is the phash . $api_phash");
 
 		  $api_baseUrl          = $this->getoption("studer_settings", "studer_api_baseurl");
       error_log( "This is the Base URL . $api_baseUrl";
