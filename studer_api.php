@@ -17,35 +17,27 @@ if (!defined( "ABSPATH" ) && !defined( "MOODLE_INTERNAL" ) )
 // class definition begins
 class studer_api
 {
-    const VERBOSE          = true;
+    const VERBOSE     = true;
 
     public function __construct()
     {
-        $this->verbose      = self::VERBOSE;
+      $this->verbose  = self::VERBOSE;
 
-
-			// we are in wordpress environment, don't care about $site_name since get_option is site dependendent
-            // ensure key and sercret set correctly no check is made wether set or not
-            // Make sure these work for Virtual Account API
-			$phash		= md5($this->getoption("studer_settings", "studer_password"));
+			$phash		=            md5($this->getoption("studer_settings", "studer_password"));
 			$uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
-      error_log( "This is the uhash . $uhash");
-      error_log( "This is the phash . $phash");
 
-		  $baseurl = $this->getoption("studer_settings", "studer_api_baseurl");
-      error_log( "This is the Base URL . $baseurl");
-      //$api_installation_id  = 6076;
 
-      // add these as properties of object
+		  $baseurl =                 $this->getoption("studer_settings", "studer_api_baseurl");
+
+      // add these as properties to object for use in $this functions later on
       $this->uhash		        = $uhash;
 		  $this->phash	          = $phash;
 		  $this->baseurl	        = $baseurl;
 
+      // get installation ID. Assumes 1st installation ID at index 0
+      $installation_id        = $this->get_installation_id();
 
-      $installation_id  = $this->get_installation_id();
-      error_log( "This is the installation ID extracted . $installation_id");
-
-      $this->installation_id      = $installation_id;
+      $this->installation_id  = $installation_id;
     }       // end construct function
 
   	/**
@@ -58,6 +50,9 @@ class studer_api
   		return get_option( $optionGroup)[$optionField];
   	}
 
+    /**
+    *   gets the 1st installation ID for this user at index 0
+    */
     public function get_installation_id()
     {
       $uhash    = $this->uhash;
@@ -72,15 +67,13 @@ class studer_api
 
       $endpoint = $baseurl . "/api/v1/installation/installations";
 
-      error_log( "These are the values for uhash, phash, and endpoint URL in getCurl function  $uhash $phash $endpoint" );
 
       $curlResponse   = $this->getCurl($endpoint, $headers);
 
-      error_log( "This is the response while querying for your Studer installations" . print_r($curlResponse, true) );
 
       if ($curlResponse[0]->id)
           {
-              return $curlResponse[0]->id; // returns parameter value
+              return $curlResponse[0]->id; // returns installation ID value
           }
       else
           {
@@ -98,13 +91,15 @@ class studer_api
     */
     public function get_parameter_value()
     {
-      $uhash    = $this->uhash;
-      $phash    = $this->phash;
-      $baseurl  = $this->baseurl;
-      $paramId  = $this->paramId;
+      $uhash            = $this->uhash;
+      $phash            = $this->phash;
+      $baseurl          = $this->baseurl;
+      $installation_id  = $this->installation_id;
+
+      // the ones below are not set inside of this class but the function calling this as a public function outside the class
+      $paramId          = $this->paramId;
       $device           = $this->device;
       $paramPart        = $this->paramPart;
-      $installation_id  = $this->installation_id;
 
       $headers =
       [
@@ -112,6 +107,7 @@ class studer_api
        "PHASH: $phash"
       ];
 
+      // parameters for query string
       $params     = array
                           (
                               "device"    => $device,
@@ -122,7 +118,7 @@ class studer_api
       $endpoint = $baseurl . "/api/v1/installation/parameter/" . $installation_id;
 
       $curlResponse   = $this->getCurl($endpoint, $headers, $params);
-      error_log( "This is the response while querying for your Studer parameter" . print_r($curlResponse, true) );
+
 
       if ($curlResponse->status == "OK")
           {
