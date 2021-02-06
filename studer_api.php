@@ -70,19 +70,17 @@ class studer_api
 
       $curlResponse   = $this->getCurl($endpoint, $headers);
 
+      if (!$curlResponse[0]->id)
+      {
+          error_log( "This is the error message while querying for your Studer Installations" . print_r($curlResponse, true) );
+          return;
+      }
 
-      if ($curlResponse[0]->id)
-          {
-              return $curlResponse[0]->id; // returns installation ID value
-          }
-      else
-          {
-              if ($this->verbose)
-              {
-                  error_log( "This is the error message while querying for your Studer Installations" . print_r($curlResponse, true) );
-              }
-              return null;
-          }
+      $this->installtion_id     = $curlResponse[0]->id    ?? null;
+      $this->suser_display_name = $curlResponse[0]->name  ?? null;
+      $this->guid               = $curlResponse[0]->guid  ?? null;
+
+
     }
 
     /**

@@ -36,6 +36,9 @@ function add_studer_menu()
 function studer_menu()
 {
   $studer_api = new studer_api();
+  // top line displayed on page
+    echo 'My Studer Parameters for my installation ID: ' . "<b>" . $this->installation_id . "</b>" . ' of User: ' . "<b>" . $this->$user_display_name . "</b>";
+
 
   $studer_api->paramId              = 1107;
   $studer_api->device               = 'XT1';
@@ -43,6 +46,5 @@ function studer_menu()
 
   $paramValue       = $studer_api->get_parameter_value();
 
-  esc_html_e( 'Admin Page Test' );
-  esc_html_e( 'AC input current maximum value' . $paramValue);
+  esc_html_e( 'AC input current maximum value: ' . $paramValue);
 }
