@@ -57,6 +57,7 @@ function studer_menu()
       <th>Description</th>
       <th>Value</th>
       <th>Units</th>
+      <th>Default</th>
     </tr>
   <?php
 
@@ -122,6 +123,33 @@ function studer_menu()
   $param_desc                       = "Battery undervoltage level without load";
   $param_units                      = "Vdc";
   $factory_default                  = 46.3;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1190;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery undervoltage Duration before cut-off";
+  $param_units                      = "mins";
+  $factory_default                  = 3;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1110;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Restart voltage after batteries undervoltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 48;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1121;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery overvoltage level";
+  $param_units                      = "Vdc";
+  $factory_default                  = 68.2;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
