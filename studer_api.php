@@ -55,7 +55,7 @@ class studer_api
   		return get_option( $optionGroup)[$optionField];
   	}
 
-    protected function get_installation_id();
+    protected function get_installation_id()
     {
       $uhash    = $this->api_uhash;
       $phash    = $this->api_phash;
