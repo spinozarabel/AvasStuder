@@ -72,6 +72,8 @@ class studer_api
 
       $endpoint = $baseUrl . "/api/v1/installation/installations";
 
+      error_log( "These are the values for uhash, phash, and endpoint URL in getCurl function  $uhash $phash $endpoint" );
+
       $curlResponse   = $this->getCurl($endpoint, $headers);
 
       error_log( "This is the response while querying for your Studer installations" . print_r($curlResponse, true) );
