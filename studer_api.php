@@ -27,8 +27,8 @@ class studer_api
 			// we are in wordpress environment, don't care about $site_name since get_option is site dependendent
             // ensure key and sercret set correctly no check is made wether set or not
             // Make sure these work for Virtual Account API
-			$api_uhash		= md5($this->getoption("studer_settings", "studer_email"));
-			$api_phash		= hash('sha256', $this->getoption("studer_settings", "studer_password"));
+			$api_phash		= md5($this->getoption("studer_settings", "studer_password"));
+			$api_uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
       error_log( "This is the uhash . $api_uhash");
       error_log( "This is the phash . $api_phash");
 
