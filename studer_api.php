@@ -117,7 +117,7 @@ class studer_api
                               "paramPart" => $paramPart,
                           );
 
-      $endpoint = $this->baseUrl . "/api/v1/installation/parameter/" . $installation_id;
+      $endpoint = $baseUrl . "/api/v1/installation/parameter/" . $installation_id;
 
       $curlResponse   = $this->getCurl($endpoint, $headers, $params);
       error_log( "This is the response while querying for your Studer parameter" . print_r($curlResponse, true) );
