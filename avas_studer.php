@@ -36,15 +36,57 @@ function add_studer_menu()
 function studer_menu()
 {
   $studer_api = new studer_api();
+
   // top line displayed on page
   echo nl2br('My Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+
+  ?>
+  <style>
+    table {
+    border-collapse: collapse;
+    }
+    th, td {
+    border: 1px solid orange;
+    padding: 10px;
+    text-align: left;
+    }
+</style>
+  <table style="width:100%">
+    <tr>
+      <th>Parameter ID</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Units</th>
+    </tr>
+  <?php
+
+  // get the AC voltage level
+  $studer_api->paramId              = 1286;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "AC output Voltage";
+  $param_units                      = "Vac";
+  print_row_table($param_value, $param_desc, $param_units);
 
 
   $studer_api->paramId              = 1107;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
 
-  $param_1107       = $studer_api->get_parameter_value();
+  $param_value                      = $studer_api->get_parameter_value();
+  print_row_table($param_value, $param_desc, $param_units);
 
-  echo nl2br( 'AC input current maximum value: ' . $param_1107 . "\n");
+}
+
+function print_row_table($param_value, $param_desc, $param_units)
+{
+  ?>
+  <tr>
+    <td><?php echo htmlspecialchars($param_value);  ?></td>
+    <td><?php echo htmlspecialchars($param_desc);   ?></td>
+    <td><?php echo htmlspecialchars($param_units);  ?></td>
+  </tr>
+  <?php
+  return;
 }
