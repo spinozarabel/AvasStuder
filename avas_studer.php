@@ -256,7 +256,7 @@ function studer_variotrac_callback()
 
   // Battery Float Voltage
   $studer_api->paramId              = 10005;
-  $studer_api->device               = 'XT1';
+  $studer_api->device               = 'VT_Group';
   $studer_api->paramPart            = 'Value';
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Battery Float Voltage";
