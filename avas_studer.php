@@ -57,7 +57,7 @@ function studer_menu()
       <th>Description</th>
       <th>Value</th>
       <th>Units</th>
-      <th>Default</th>
+      <th>Installed</th>
     </tr>
   <?php
 
@@ -122,7 +122,7 @@ function studer_menu()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Battery undervoltage level without load - Coslight recommends 47.8 for 80% DOD. Boiler plate says 42V!";
   $param_units                      = "Vdc";
-  $factory_default                  = 46.3;
+  $factory_default                  = 45.8;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
   $studer_api->paramId              = 1190;
@@ -158,7 +158,7 @@ function studer_menu()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Battery Floating Voltage - Coslight recommends 54V";
   $param_units                      = "Vdc";
-  $factory_default                  = 54.4;
+  $factory_default                  = 53.3;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
