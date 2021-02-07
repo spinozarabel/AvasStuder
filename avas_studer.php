@@ -254,6 +254,16 @@ function studer_variotrac_callback()
     </tr>
   <?php
 
+  // Synchronized to Xtender?
+  $studer_api->paramId              = 10037;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Synchronisation battery cycle with Xtender";
+  $param_units                      = "1=Yes, 0=No";
+  $factory_default                  = '1=Yes';
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
   // Battery Float Voltage
   $studer_api->paramId              = 10005;
   $studer_api->device               = 'VT_Group';
@@ -261,7 +271,27 @@ function studer_variotrac_callback()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Battery Float Voltage";
   $param_units                      = "Vdc";
-  $factory_default                  = 54;
+  $factory_default                  = 54.4;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Battery underVoltage
+  $studer_api->paramId              = 10334;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery Under Voltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 40;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Battery Charge Current
+  $studer_api->paramId              = 10002;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery Charge Current";
+  $param_units                      = "Adc";
+  $factory_default                  = 80;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 }
 
