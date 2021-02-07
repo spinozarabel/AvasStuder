@@ -34,7 +34,7 @@ function add_studer_menu()
    add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )
    *					        parent slug		 newsubmenupage	 submenu title  	  capability         new submenu slug      callback for display page
    */
-   add_submenu_page( 'studer',      'VarioTrac',      'VarioTrac',     'manage_options',   'studer-variotrac',    'studer-variotrac_callback' );
+   add_submenu_page( 'studer',      'VarioTrac',      'VarioTrac',     'manage_options',   'studer-variotrac',    'studer_variotrac_callback' );
 
   return;
 }
@@ -169,7 +169,7 @@ function studer_main()
 
 }
 
-function studer-variotrac_callback()
+function studer_variotrac_callback()
 {
   $studer_api = new studer_api();
 
