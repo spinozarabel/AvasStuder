@@ -63,7 +63,7 @@ function studer_main()
       <th>Description</th>
       <th>Value</th>
       <th>Units</th>
-      <th>Installed</th>
+      <th>Installer Val</th>
     </tr>
   <?php
 
@@ -75,6 +75,36 @@ function studer_main()
   $param_desc                       = "AC output Voltage";
   $param_units                      = "Vac";
   $factory_default                  = 230;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // get Maximum allowed input AC voltage level
+  $studer_api->paramId              = 1432;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Maximum allowed input AC Voltage";
+  $param_units                      = "Vac";
+  $factory_default                  = 270;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Input voltage giving an opening of the transfer relay with delay
+  $studer_api->paramId              = 1199;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Input voltage giving an opening of the transfer relay with delay";
+  $param_units                      = "Vac";
+  $factory_default                  = 200;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Input voltage giving an opening of the transfer relay with delay
+  $studer_api->paramId              = 1200;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Input voltage giving an immediate opening of the transfer relay (UPS)";
+  $param_units                      = "Vac";
+  $factory_default                  = 180;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
   $studer_api->paramId              = 1107;
@@ -101,6 +131,33 @@ function studer_main()
   $param_value                      = $studer_api->get_parameter_value();
   $param_desc                       = "Smart Boost Allowed?";
   $param_units                      = "1/0";
+  $factory_default                  = "Yes";
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1124;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Inverter Allowed?";
+  $param_units                      = "1=Yes, 0=No";
+  $factory_default                  = "Yes";
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1125;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Charger Allowed?";
+  $param_units                      = "1=Yes, 0=No";
+  $factory_default                  = "Yes";
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  $studer_api->paramId              = 1128;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "Transfer Relay Allowed?";
+  $param_units                      = "1=Yes, 0=No";
   $factory_default                  = "Yes";
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
@@ -193,7 +250,7 @@ function studer_variotrac_callback()
       <th>Description</th>
       <th>Value</th>
       <th>Units</th>
-      <th>Installed</th>
+      <th>Installer val</th>
     </tr>
   <?php
 
