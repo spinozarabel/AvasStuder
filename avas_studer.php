@@ -28,12 +28,18 @@ if ( is_admin() )
 function add_studer_menu()
 {
   // add_menu_page( $page_title, $menu_title, $capability,      $menu_slug, $function,      $icon_url, $position )
-     add_menu_page( 'Studer',    'Studer',    'manage_options', 'studer',   'studer_menu' );
+     add_menu_page( 'Studer',    'Studer',    'manage_options', 'studer',   'studer_main' );
+
+     /*
+   add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )
+   *					        parent slug		 newsubmenupage	 submenu title  	  capability         new submenu slug      callback for display page
+   */
+   add_submenu_page( 'studer',      'VarioTrac',      'VarioTrac',     'manage_options',   'studer-variotrac',    'studer-variotrac_callback' );
 
   return;
 }
 
-function studer_menu()
+function studer_main()
 {
   $studer_api = new studer_api();
 
@@ -161,6 +167,45 @@ function studer_menu()
   $factory_default                  = 53.3;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
+}
+
+function studer-variotrac_callback()
+{
+  $studer_api = new studer_api();
+
+  // top line displayed on page
+  echo nl2br('Studer VarioTrac Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+
+  ?>
+  <style>
+    table {
+    border-collapse: collapse;
+    }
+    th, td {
+    border: 1px solid orange;
+    padding: 10px;
+    text-align: left;
+    }
+</style>
+  <table style="width:100%">
+    <tr>
+      <th>Parameter ID</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Installed</th>
+    </tr>
+  <?php
+
+  // get the AC voltage level
+  $studer_api->paramId              = 1286;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "AC output Voltage";
+  $param_units                      = "Vac";
+  $factory_default                  = 230;
+  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 }
 
 function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default)
