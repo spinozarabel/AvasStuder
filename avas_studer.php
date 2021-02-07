@@ -254,14 +254,14 @@ function studer_variotrac_callback()
     </tr>
   <?php
 
-  // get the AC voltage level
-  $studer_api->paramId              = 1286;
+  // Battery Float Voltage
+  $studer_api->paramId              = 10005;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "AC output Voltage";
-  $param_units                      = "Vac";
-  $factory_default                  = 230;
+  $param_desc                       = "Battery Float Voltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 54;
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 }
 
