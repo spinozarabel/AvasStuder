@@ -161,7 +161,7 @@ class studer_api
       $curlResponse   = $this->postCurl($endpoint, $headers, $params);
 
       // the curlResponse is JSON encoded and needs to be decoded in calling routine
-      return curlResponse;
+      return $curlResponse;
     }
 
 
