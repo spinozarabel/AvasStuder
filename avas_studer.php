@@ -88,10 +88,7 @@ function studer_readings_page_render()
   $studer_api->body   = $body;
 
   // POST curl request to Studer
-  $curlResponse_json  = $studer_api->get_user_values();
-
-  // decode JSON response to an object
-  $user_values        = json_decode($curlResponse_json, false);
+  $user_values  = $studer_api->get_user_values();
 
   foreach ($user_values as $user_value)
   {
