@@ -96,7 +96,17 @@ function studer_readings_page_render()
   	{
       case ( $user_value->reference == 3000 ) :
         $battery_voltage_vdc = $user_value->value;
-        print_row_table(3136, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
+        print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
+      break;
+
+      case ( $user_value->reference == 3005 ) :
+        $inverter_current_adc = $user_value->value;
+        print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+      break;
+
+      case ( $user_value->reference == 3005 ) :
+        $inverter_current_adc = $user_value->value;
+        print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
       break;
 
   		case ( $user_value->reference == 3137 ) :
