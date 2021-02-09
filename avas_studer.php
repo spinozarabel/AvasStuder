@@ -84,6 +84,22 @@ function studer_readings_page_render()
                         "userRef"       =>  3000,   // Battery Voltage
                         "infoAssembly"  => "Master"
                       ),
+                array(
+                        "userRef"       =>  3005,   // Battery Voltage
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
+                        "userRef"       =>  11001,   // Battery charge current from variotrac
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
+                        "userRef"       =>  11002,   // solar pv Voltage to variotrac
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
+                        "userRef"       =>  11004,   // Psolkw
+                        "infoAssembly"  => "Master"
+                      ),
                 );
   $studer_api->body   = $body;
 
@@ -117,6 +133,21 @@ function studer_readings_page_render()
       case ( $user_value->reference == 3136 ) :
         $pout_inverter_ac_kw = $user_value->value;
         print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
+      break;
+
+      case ( $user_value->reference == 11001 ) :
+        $battery_charge_adc = $user_value->value;
+        print_row_table(11001, $battery_charge_adc, 'Battery Charge Current', 'Adc', '');
+      break;
+
+      case ( $user_value->reference == 11002 ) :
+        $solar_pv_vdc = $user_value->value;
+        print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
+      break;
+
+      case ( $user_value->reference == 11004 ) :
+        $psolar_kw = $user_value->value;
+        print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
       break;
     }
   }
