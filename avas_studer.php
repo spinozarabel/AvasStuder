@@ -27,24 +27,26 @@ if ( is_admin() )
 
 function add_studer_menu()
 {
-  // add_menu_page( $page_title, $menu_title, $capability,      $menu_slug, $function,      $icon_url, $position )
-     add_menu_page( 'Studer',    'Studer',    'manage_options', 'studer',   'studer_main' );
+  // add_menu_page( $page_title,    $menu_title,    $capability,      $menu_slug, $function,      $icon_url, $position )
+     add_menu_page( 'Studer Main',  'Studer Main',  'manage_options', 'studer',   'studer_main_page_render' );
 
      /*
    add_submenu_page( string $parent_slug, string $page_title, string $menu_title, string $capability, string $menu_slug, callable $function = '' )
    *					        parent slug		 newsubmenupage	 submenu title  	  capability         new submenu slug      callback for display page
    */
-   add_submenu_page( 'studer',      'VarioTrac',      'VarioTrac',     'manage_options',   'studer-variotrac',    'studer_variotrac_callback' );
+   add_submenu_page( 'studer',      'VarioTrac',      'VarioTrac',     'manage_options',   'studer-variotrac',    'studer_variotrac_page_render' );
+
+   add_submenu_page( 'studer',      'Readings',       'Readings',      'manage_options',   'studer-readings',     'studer_readings_page_render' );
 
   return;
 }
 
-function studer_main()
+function studer_readings_page_render()
 {
   $studer_api = new studer_api();
 
   // top line displayed on page
-  echo nl2br('Studer Main Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
 
   ?>
   <style>
@@ -63,170 +65,60 @@ function studer_main()
       <th>Description</th>
       <th>Value</th>
       <th>Units</th>
-      <th>Installer Val</th>
+      <th>Comments</th>
     </tr>
   <?php
 
-  // get the AC voltage level
-  $studer_api->paramId              = 1286;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "AC output Voltage";
-  $param_units                      = "Vac";
-  $factory_default                  = 230;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  $body = [];
 
-  // get Maximum allowed input AC voltage level
-  $studer_api->paramId              = 1432;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Maximum allowed input AC Voltage";
-  $param_units                      = "Vac";
-  $factory_default                  = 270;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  // get the input AC active power value
+  $body = array(array(
+                        "userRef"       =>  3136,   // AC active power delivered by inverter
+                        "infoAssembly"  => "Master"
+                     ),
+                array(
+                        "userRef"       =>  3137,   // Grid AC input Active power
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
+                        "userRef"       =>  3000,   // Battery Voltage
+                        "infoAssembly"  => "Master"
+                      ),
+                );
+  $studer_api->body   = $body;
 
-  // Input voltage giving an opening of the transfer relay with delay
-  $studer_api->paramId              = 1199;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Input voltage giving an opening of the transfer relay with delay";
-  $param_units                      = "Vac";
-  $factory_default                  = 200;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  // POST curl request to Studer
+  $curlResponse_json  = $studer_api->get_user_values();
 
-  // Input voltage giving an opening of the transfer relay with delay
-  $studer_api->paramId              = 1200;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Input voltage giving an immediate opening of the transfer relay (UPS)";
-  $param_units                      = "Vac";
-  $factory_default                  = 180;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  // decode JSON response to an object
+  $user_values        = json_decode($curlResponse_json, false);
 
-  $studer_api->paramId              = 1107;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Maximum current of AC source (Input limit)";
-  $param_units                      = "Aac";
-  $factory_default                  = 32;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  foreach ($user_values as $user_value)
+  {
+    switch (true)
+  	{
+      case ( $user_value->reference == 3000 ) :
+        $battery_voltage_vdc = $user_value->value;
+        print_row_table(3136, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
+      break;
 
-  $studer_api->paramId              = 1138;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery Charge Current";
-  $param_units                      = "Adc";
-  $factory_default                  = 60;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+  		case ( $user_value->reference == 3137 ) :
+        $grid_pin_ac_kw = $user_value->value;
+        print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
+      break;
 
-  $studer_api->paramId              = 1126;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Smart Boost Allowed?";
-  $param_units                      = "1/0";
-  $factory_default                  = "Yes";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+      case ( $user_value->reference == 3136 ) :
+        $pout_inverter_ac_kw = $user_value->value;
+        print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
+      break;
+  }
 
-  $studer_api->paramId              = 1124;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Inverter Allowed?";
-  $param_units                      = "1=Yes, 0=No";
-  $factory_default                  = "Yes";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
-  $studer_api->paramId              = 1125;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Charger Allowed?";
-  $param_units                      = "1=Yes, 0=No";
-  $factory_default                  = "Yes";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
-  $studer_api->paramId              = 1128;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Transfer Relay Allowed?";
-  $param_units                      = "1=Yes, 0=No";
-  $factory_default                  = "Yes";
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1187;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Standby Level";
-  $param_units                      = "%";
-  $factory_default                  = 10;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1139;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Temperature compensation";
-  $param_units                      = "mV/degC/cell";
-  $factory_default                  = -3;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1108;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery undervoltage level without load - Coslight recommends 47.8 for 80% DOD. Boiler plate says 42V!";
-  $param_units                      = "Vdc";
-  $factory_default                  = 45.8;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1190;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery undervoltage Duration before cut-off";
-  $param_units                      = "mins";
-  $factory_default                  = 3;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1110;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Restart voltage after batteries undervoltage";
-  $param_units                      = "Vdc";
-  $factory_default                  = 48;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1121;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery overvoltage level";
-  $param_units                      = "Vdc";
-  $factory_default                  = 68.2;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
-
-  $studer_api->paramId              = 1140;
-  $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
-  $param_value                      = $studer_api->get_parameter_value();
-  $param_desc                       = "Battery Floating Voltage - Coslight recommends 54V";
-  $param_units                      = "Vdc";
-  $factory_default                  = 53.3;
-  print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 
 }
 
-function studer_variotrac_callback()
+function studer_variotrac_page_render()
 {
   $studer_api = new studer_api();
 
