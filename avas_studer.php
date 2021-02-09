@@ -111,6 +111,7 @@ function studer_readings_page_render()
         $pout_inverter_ac_kw = $user_value->value;
         print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
       break;
+    }
   }
 
 
