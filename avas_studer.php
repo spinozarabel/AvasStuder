@@ -100,6 +100,10 @@ function studer_readings_page_render()
                         "userRef"       =>  11004,   // Psolkw
                         "infoAssembly"  => "Master"
                       ),
+                array(
+                        "userRef"       =>  11038,   // Phase of battery charge
+                        "infoAssembly"  => "Master"
+                      ),
                 );
   $studer_api->body   = $body;
 
@@ -148,6 +152,11 @@ function studer_readings_page_render()
       case ( $user_value->reference == 11004 ) :
         $psolar_kw = $user_value->value;
         print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
+      break;
+
+      case ( $user_value->reference == 11038 ) :
+        $phase_battery_charge = $user_value->value;
+        print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
       break;
     }
   }
