@@ -89,16 +89,24 @@ function studer_readings_page_render()
                         "infoAssembly"  => "Master"
                       ),
                 array(
-                        "userRef"       =>  11001,   // Battery charge current from variotrac
-                        "infoAssembly"  => "Master"
+                        "userRef"       =>  11001,   // Battery charge current from VT1
+                        "infoAssembly"  => "1"
+                      ),
+                array(
+                        "userRef"       =>  11001,   // Battery charge current from VT2
+                        "infoAssembly"  => "2"
                       ),
                 array(
                         "userRef"       =>  11002,   // solar pv Voltage to variotrac
                         "infoAssembly"  => "Master"
                       ),
                 array(
-                        "userRef"       =>  11004,   // Psolkw
-                        "infoAssembly"  => "Master"
+                        "userRef"       =>  11004,   // Psolkw from VT1
+                        "infoAssembly"  => "1"
+                      ),
+                array(
+                        "userRef"       =>  11004,   // Psolkw from VT2
+                        "infoAssembly"  => "2"
                       ),
                 array(
                         "userRef"       =>  11038,   // Phase of battery charge
@@ -110,60 +118,70 @@ function studer_readings_page_render()
   // POST curl request to Studer
   $user_values  = $studer_api->get_user_values();
 
+  $battery_charge_adc = 0;
+  $psolar_kw          = 0;
+
+
   foreach ($user_values as $user_value)
   {
     switch (true)
   	{
       case ( $user_value->reference == 3000 ) :
         $battery_voltage_vdc = $user_value->value;
-        print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
+
       break;
 
       case ( $user_value->reference == 3005 ) :
         $inverter_current_adc = $user_value->value;
-        print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+
       break;
 
       case ( $user_value->reference == 3005 ) :
         $inverter_current_adc = $user_value->value;
-        print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+
       break;
 
   		case ( $user_value->reference == 3137 ) :
         $grid_pin_ac_kw = $user_value->value;
-        print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
+
       break;
 
       case ( $user_value->reference == 3136 ) :
         $pout_inverter_ac_kw = $user_value->value;
-        print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
+
       break;
 
       case ( $user_value->reference == 11001 ) :
-        $battery_charge_adc = $user_value->value;
-        print_row_table(11001, $battery_charge_adc, 'Battery Charge Current', 'Adc', '');
+        $battery_charge_adc += $user_value->value;
+
       break;
 
       case ( $user_value->reference == 11002 ) :
         $solar_pv_vdc = $user_value->value;
-        print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
+
       break;
 
       case ( $user_value->reference == 11004 ) :
-        $psolar_kw = $user_value->value;
-        print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
+        $psolar_kw += $user_value->value;
+
       break;
 
       case ( $user_value->reference == 11038 ) :
         $phase_battery_charge = $user_value->value;
-        print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
+
       break;
     }
   }
 
-
-
-
+  print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
+  print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+  print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+  print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
+  print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
+  print_row_table(11001, $battery_charge_adc, 'Battery Charge Current', 'Adc', '');
+  print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
+  print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
+  print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
 }
 
 function studer_variotrac_page_render()
