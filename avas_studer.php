@@ -118,8 +118,8 @@ function studer_readings_page_render()
   // POST curl request to Studer
   $user_values  = $studer_api->get_user_values();
 
-  $battery_charge_adc = 0;
-  $psolar_kw          = 0;
+  $solar_pv_adc = 0;
+  $psolar_kw    = 0;
 
 
   foreach ($user_values as $user_value)
@@ -153,7 +153,7 @@ function studer_readings_page_render()
 
       case ( $user_value->reference == 11001 ) :
         // we have to accumulate values form 2 cases:VT1 and VT2 so we have used accumulation below
-        $battery_charge_adc += $user_value->value;
+        $solar_pv_adc += $user_value->value;
 
       break;
 
@@ -174,10 +174,12 @@ function studer_readings_page_render()
       break;
     }
   }
-
+  // calculate the current into/out of battery
+  $battery_charge_adc = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
   print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
   print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
-  print_row_table(11001, $battery_charge_adc, 'DC current from Solar panels at battery interface', 'Adc', '');
+  print_row_table(11001, $solar_pv_adc, 'DC current from Solar panels at battery interface', 'Adc', '');
+  print_row_table(11001, $battery_charge_adc, 'DC current into or out of Batteries', 'Adc', '+ is charge, - is discharge');
   print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
   print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
   print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
