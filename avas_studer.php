@@ -183,8 +183,9 @@ function studer_readings_page_render()
   print_row_table(11001, $battery_charge_adc, 'DC current into or out of Batteries', 'Adc', '+ is charge, - is discharge');
   print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
   print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
-  print_row_table(11004, $psolar_kw, 'Solar Power', 'kW', '+ means to battery, - means from battery');
-  print_row_table('',    $pbattery_kw, 'Battery Power Generated', 'kW', 'Solar PV array power generated');
+  print_row_table(11004, $psolar_kw, 'Solar Power', 'kW', 'Solar PV array power generated'); //
+  $string = ($pbattery_kw > 0 ? 'Battery Charging Power' : 'Battery Power Discharging');
+  print_row_table('Calc',    $pbattery_kw, $string, 'kW', '+ means to battery, - means from battery');
   print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
   print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
 }
