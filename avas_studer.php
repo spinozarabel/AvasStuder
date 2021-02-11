@@ -168,7 +168,7 @@ function studer_readings_page_render()
 
       break;
 
-      case ( $user_value->reference == 11038 ) :
+      case ( $user_value->reference == 3010 ) :
         $phase_battery_charge = $user_value->value;
 
       break;
