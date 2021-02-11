@@ -109,7 +109,7 @@ function studer_readings_page_render()
                         "infoAssembly"  => "2"
                       ),
                 array(
-                        "userRef"       =>  11038,   // Phase of battery charge
+                        "userRef"       =>  3010,   // Phase of battery charge
                         "infoAssembly"  => "Master"
                       ),
                 );
