@@ -181,7 +181,7 @@ function studer_readings_page_render()
   print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
   print_row_table(11001, $solar_pv_adc, 'DC current from Solar panels at battery interface', 'Adc', '');
   $string = ($battery_charge_adc > 0 ? 'Battery Charging Current' : 'Battery Discharging Current');
-  print_row_table(11001, $battery_charge_adc, string, 'Adc', '+ is charge, - is discharge');
+  print_row_table(11001, $battery_charge_adc, $string, 'Adc', '+ is charge, - is discharge');
   print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
   print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
   print_row_table(11004, $psolar_kw, 'Solar Power', 'kW', 'Solar PV array power generated'); //
