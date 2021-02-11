@@ -152,6 +152,7 @@ function studer_readings_page_render()
       break;
 
       case ( $user_value->reference == 11001 ) :
+        // we have to accumulate values form 2 cases:VT1 and VT2 so we have used accumulation below
         $battery_charge_adc += $user_value->value;
 
       break;
@@ -162,6 +163,7 @@ function studer_readings_page_render()
       break;
 
       case ( $user_value->reference == 11004 ) :
+        // we have to accumulate values form 2 cases so we have used accumulation below
         $psolar_kw += $user_value->value;
 
       break;
@@ -175,12 +177,11 @@ function studer_readings_page_render()
 
   print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
   print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
-  print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
+  print_row_table(11001, $battery_charge_adc, 'DC current from Solar panels at battery interface', 'Adc', '');
   print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
   print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
-  print_row_table(11001, $battery_charge_adc, 'Battery Charge Current', 'Adc', '');
-  print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
   print_row_table(11004, $psolar_kw, 'Solar Power Generated', 'kW', 'Solar PV array power generated');
+  print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
   print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
 }
 
