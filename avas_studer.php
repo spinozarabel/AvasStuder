@@ -50,7 +50,7 @@ function studer_readings_page_render()
 
   ?>
     <div class="container-fluid">
-      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:100%;">
+      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:10%;">
     </div>
   <?php
 
