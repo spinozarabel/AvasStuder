@@ -178,14 +178,14 @@ function studer_readings_page_render()
   $battery_charge_adc = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
   $pbattery_kw        = $psolar_kw - $pout_inverter_ac_kw;
   print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
-  print_row_table(3005, $inverter_current_adc, 'DC current into inverter', 'Vdc', '+ if from Inverter, - if into Inverter');
-  print_row_table(11001, $solar_pv_adc, 'DC current from Solar panels at battery interface', 'Adc', '');
+  print_row_table(3005, $inverter_current_adc, 'Inverter DC current', 'Adc', '+ from Inverter, - into Inverter');
+  print_row_table(11001, $solar_pv_adc, 'Solar panels DC current at battery interface', 'Adc', '');
   $string = ($battery_charge_adc > 0 ? 'Battery Charging Current' : 'Battery Discharging Current');
   print_row_table(11001, $battery_charge_adc, $string, 'Adc', '+ is charge, - is discharge');
   print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
-  print_row_table(3136, $pout_inverter_ac_kw, 'AC power delivered by inverter', 'kW', '');
+  print_row_table(3136, $pout_inverter_ac_kw, 'Inverter AC power output', 'kW', '');
   print_row_table(11004, $psolar_kw, 'Solar Power', 'kW', 'Solar PV array power generated'); //
-  $string = ($pbattery_kw > 0 ? 'Battery Charging Power' : 'Battery Power Discharging');
+  $string = ($pbattery_kw > 0 ? 'Battery Charging Power' : 'Battery Discharging Power');
   print_row_table('Calc',    $pbattery_kw, $string, 'kW', '+ means to battery, - means from battery');
   print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
   print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
