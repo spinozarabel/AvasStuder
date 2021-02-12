@@ -49,6 +49,13 @@ function studer_readings_page_render()
   echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
 
   ?>
+    <div class="container-fluid">
+      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:100%;">
+    </div>
+  <?php
+
+
+  ?>
   <style>
     table {
     border-collapse: collapse;
