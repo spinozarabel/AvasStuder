@@ -172,7 +172,7 @@ function studer_readings_page_render()
     <script
       src="
         <?php
-          echo htmlspecialchars($studer_api->cdn);
+          echo ($studer_api->cdn);
         ?>
       ">
     </script>
