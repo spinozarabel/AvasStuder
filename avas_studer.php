@@ -442,16 +442,6 @@ function studer_readings_page_render()
   <?php
 
   ?>
-    <style>
-      table {
-      border-collapse: collapse;
-      }
-      th, td {
-      border: 1px solid orange;
-      padding: 10px;
-      text-align: left;
-      }
-    </style>
     <table style="width:100%">
       <tr>
         <th>Parameter ID</th>
