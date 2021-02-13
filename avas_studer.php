@@ -358,7 +358,7 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-solar">
                                 <?php echo htmlspecialchars($psolar_kw); ?> kW<br>
-                                <font color="#FFFF00">
+                                <font color="#E0E0E0">
                                 <?php echo htmlspecialchars($solar_pv_adc); ?> Adc
                             </td>
                         </tr>
