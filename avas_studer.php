@@ -175,7 +175,7 @@ function studer_readings_page_render()
   $pbattery_kw         = round($psolar_kw - $pout_inverter_ac_kw, 3);
   $psolar_kw           = round($psolar_kw,3);
   $pout_inverter_ac_kw = round($pout_inverter_ac_kw,3);
-
+  $solar_pv_vdc        = round($solar_pv_vdc,2);
 
   ?>
     <script
@@ -358,6 +358,7 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-solar">
                                 <?php echo htmlspecialchars($psolar_kw); ?> kW<br>
+                                <font color="#FFFF00">
                                 <?php echo htmlspecialchars($solar_pv_adc); ?> Adc
                             </td>
                         </tr>
