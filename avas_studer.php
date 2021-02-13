@@ -183,6 +183,18 @@ function studer_readings_page_render()
   $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
   $pbattery_kw         = $psolar_kw - $pout_inverter_ac_kw;
 
+  // conditional class names for battery charge down or up arrow
+  if ($battery_charge_adc > 0.0)
+  {
+    // current is positive so battery is charging so arrow is down
+    $battery_charge_arrow_class = "fa fa-3x fa-long-arrow-down";
+  }
+  else
+  {
+    // current is -ve so battery is discharging so arrow is up
+    $battery_charge_arrow_class = "fa fa-3x fa-long-arrow-up";
+  }
+
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
     <script src="https://use.fontawesome.com/7982b10e46.js"></script>
@@ -359,7 +371,7 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="fa fa-3x fa-long-arrow-down" id="power-arrow-solar"></i>
+                                <i class="<?php echo htmlspecialchars($battery_charge_arrow_class); ?>" id="power-arrow-solar"></i>
                             </td>
                             <td
                                 class="legend" id="power-solar">
