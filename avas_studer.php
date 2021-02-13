@@ -523,10 +523,10 @@ function studer_readings_page_render()
                             </td>
                             <td
                                 class="legend" id="power-battery">
-                                <?php echo htmlspecialchars($pbattery_kw); ?> kW<br>
+                                <?php echo htmlspecialchars(abs($pbattery_kw)); ?> kW<br>
                                 <font color="#D0D0D0">
                                 <?php echo htmlspecialchars($battery_voltage_vdc); ?> Vdc<br>
-                                <?php echo htmlspecialchars($battery_charge_adc); ?> Adc
+                                <?php echo htmlspecialchars(abs($battery_charge_adc)); ?> Adc
                             </td>
                         </tr>
                     </table>
