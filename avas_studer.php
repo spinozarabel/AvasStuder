@@ -230,6 +230,25 @@ function studer_readings_page_render()
     $solar_arrow_class = "fa fa-minus fa-rotate-90";
   }
 
+  switch(true)
+  {
+    case (abs($psolar_kw) < 0.5 ) :
+      $solar_arrow_class .= " fa-1x";
+    break;
+
+    case (abs($psolar_kw) < 1.5 ) :
+      $solar_arrow_class .= " fa-2x";
+    break;
+
+    case (abs($psolar_kw) < 2.5 ) :
+      $solar_arrow_class .= " fa-3x";
+    break;
+
+    case (abs($psolar_kw) < 3.5 ) :
+      $solar_arrow_class .= " fa-4x";
+    break;
+  }
+
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
     <script src="https://use.fontawesome.com/7982b10e46.js"></script>
