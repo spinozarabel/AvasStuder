@@ -179,11 +179,7 @@ function studer_readings_page_render()
   $battery_voltage_vdc = round($battery_voltage_vdc,2);
 
   ?>
-    <script type="text/javascript">
-      setTimeout(function () {
-        location.reload();
-      }, 15 * 1000);
-    </script>
+    <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
     <script
       src="https://use.fontawesome.com/7982b10e46.js">
     </script>
