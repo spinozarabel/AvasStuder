@@ -62,7 +62,7 @@ function studer_readings_page_render()
   $studer_api = new studer_api();
 
   // top line on page
-  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+  // echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
 
   $body = [];
 
