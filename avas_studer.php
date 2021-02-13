@@ -126,7 +126,7 @@ function studer_readings_page_render()
       break;
 
       case ( $user_value->reference == 3005 ) :
-        $inverter_current_adc = roud($user_value->value, 0);
+        $inverter_current_adc = round($user_value->value, 0);
       break;
 
   		case ( $user_value->reference == 3137 ) :
