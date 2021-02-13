@@ -60,40 +60,6 @@ function studer_readings_page_render()
 {
   $studer_api = new studer_api();
 
-  // top line displayed on page
-  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
-
-  ?>
-    <div class="container-fluid">
-      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:10%;">
-    </div>
-    <div class="container-fluid">
-      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/right_arrow.png" alt="grid" style="width:3%;">
-    </div>
-  <?php
-
-
-  ?>
-  <style>
-    table {
-    border-collapse: collapse;
-    }
-    th, td {
-    border: 1px solid orange;
-    padding: 10px;
-    text-align: left;
-    }
-</style>
-  <table style="width:100%">
-    <tr>
-      <th>Parameter ID</th>
-      <th>Description</th>
-      <th>Value</th>
-      <th>Units</th>
-      <th>Comments</th>
-    </tr>
-  <?php
-
   $body = [];
 
   // get the input AC active power value
@@ -199,9 +165,303 @@ function studer_readings_page_render()
       break;
     }
   }
+
   // calculate the current into/out of battery
   $battery_charge_adc = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
   $pbattery_kw        = $psolar_kw - $pout_inverter_ac_kw;
+
+
+  ?>
+    <style>
+        /* xs (moins de 768px) */
+        .lSAction>a {
+            top: 100%;
+            background-image: url('');
+        }
+
+        .center-thumbs .lslide {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mod-install {
+            font-size: 15px;
+            margin: 0 0 10px;
+        }
+
+        .img-stuser {
+            max-height: 420px;
+            max-width: 100%;
+        }
+
+        .img-logo {
+            max-height: 100px;
+        }
+
+        .legend {
+            font-weight: bold;
+        }
+
+        .display {
+            font-size: large;
+            font-weight: bold;
+        }
+
+        .synoptic-fixed-height {
+            height: 450px;
+        }
+
+        .synoptic-table {
+            margin: auto;
+            width: 80% !important;
+            height: auto;
+            border-collapse: collapse;
+            overflow-x: auto;
+            border-spacing: 0;
+            font-size: 12px;
+        }
+
+        .synoptic-table td {
+            padding: 2px;
+        }
+
+        .arrow-table-horizontal {
+            text-align: center;
+            width: 100%;
+        }
+        .arrow-table-horizontal td {
+            width: 33%;
+        }
+
+        .arrow-table-vertical {
+            text-align: center;
+            width: 100%;
+        }
+        .refresh-button {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            border: none;
+            cursor: pointer;
+            overflow: hidden;
+            outline: none;
+            text-align: center !important;
+        }
+        .quickoverview-title {
+            padding-bottom: 10px;
+            padding-left: 10px;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .installation-details-fixed {
+            height: 440px;
+        }
+
+        .installation-details-title {
+            font-size: large;
+            font-weight: bold;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .installer-title {
+            font-size: large;
+            font-weight: bold;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        .img-pow-pv {
+            max-width: 59px;
+        }
+
+        .img-pow-genset {
+            max-width: 59px;
+        }
+
+        .img-pow-logo {
+            max-width: 65px;
+        }
+
+        .img-pow-load {
+            max-width: 59px;
+        }
+
+        /* xs (plus de 768px */
+        @media (min-width: 768px) {
+            .synoptic-table {
+                margin: auto;
+                width: 80% !important;
+                height: 100%;
+                border-collapse: collapse;
+                overflow-x: auto;
+                border-spacing: 0;
+                font-size: 14px;
+            }
+
+            .synoptic-table td {
+                padding: 2px;
+            }
+
+            .synoptic-fixed-height {
+                height: 450px;
+                width: auto;
+            }
+
+            .quickoverview-title {
+                padding-left: 0;
+            }
+
+            .img-pow-genset {
+                max-width: 59px;
+            }
+
+            .img-pow-logo {
+                max-width: 100px;
+            }
+
+            .img-pow-load {
+                max-width: 59px;
+            }
+        }
+
+    </style>
+
+    <div class="row-fluid">
+    <div class="table-responsive synoptic-fixed-height">
+        <table class="synoptic-table">
+            <tr>
+                <td colspan="5" style="text-align: center">
+                    <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <table class="arrow-table-horizontal">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <i class="fa fa-3x fa-long-arrow-down" id="power-arrow-solar"></i>
+                            </td>
+                            <td class="legend" id="power-solar">-- kW</td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+
+                <td>
+                    <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
+                </td>
+
+                <td>
+                    <table class="arrow-table-vertical" height="100">
+                        <tr>
+                            <td height="33" class="legend" id="power-grid-genset">-- kW</td>
+                        </tr>
+                        <tr>
+                            <td height="33">
+                                <i class="fa fa-3x fa-minus" id="power-arrow-grid-genset"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="text-align: center;">
+                    <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/studer_innotec_logo_blue.png" class="img-pow-logo" id="power-img-logo"/>
+                </td>
+                <td>
+                    <table class="arrow-table-vertical" height="100">
+                        <tr>
+                            <td height="33" class="legend" id="power-load">2.3 kW</td>
+                        </tr>
+                        <tr>
+                            <td height="33">
+                                <i class="fa fa-3x fa-long-arrow-right" id="power-arrow-load"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <img id="pow-load-img" src="house.svg" class="img-pow-load"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <table class="arrow-table-horizontal">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <i class="fa fa-3x fa-long-arrow-up" id="power-arrow-battery"></i>
+                            </td>
+                            <td class="legend" id="power-battery">2.3 kW</td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center">
+					             <i class="fa fa-3x fa-battery-full fa-rotate-270" id="power_battery-icon"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+  <?php
+
+
+
+
+  // top line displayed on page
+  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+
+  ?>
+    <div class="container-fluid">
+      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:10%;">
+    </div>
+    <div class="container-fluid">
+      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/right_arrow.png" alt="grid" style="width:3%;">
+    </div>
+  <?php
+
+  ?>
+    <style>
+      table {
+      border-collapse: collapse;
+      }
+      th, td {
+      border: 1px solid orange;
+      padding: 10px;
+      text-align: left;
+      }
+    </style>
+    <table style="width:100%">
+      <tr>
+        <th>Parameter ID</th>
+        <th>Description</th>
+        <th>Value</th>
+        <th>Units</th>
+        <th>Comments</th>
+      </tr>
+  <?php
+
   print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
   print_row_table(3005, $inverter_current_adc, 'Inverter DC current', 'Adc', '+ from Inverter, - into Inverter');
   print_row_table(11001, $solar_pv_adc, 'Solar panels DC current at battery interface', 'Adc', '');
