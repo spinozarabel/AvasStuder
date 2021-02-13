@@ -187,22 +187,47 @@ function studer_readings_page_render()
   if ($battery_charge_adc > 0.0)
   {
     // current is positive so battery is charging so arrow is down
-    $battery_charge_arrow_class = "fa fa-3x fa-long-arrow-down";
+    $battery_charge_arrow_class = "fa fa-long-arrow-down";
   }
   else
   {
     // current is -ve so battery is discharging so arrow is up
-    $battery_charge_arrow_class = "fa fa-3x fa-long-arrow-up";
+    $battery_charge_arrow_class = "fa fa-long-arrow-up";
+  }
+
+  switch(true)
+  {
+    case (abs($battery_charge_adc) < 10 ) :
+      $battery_charge_arrow_class .= " fa-1x";
+    break;
+
+    case (abs($battery_charge_adc) < 20 ) :
+      $battery_charge_arrow_class .= " fa-2x";
+    break;
+
+    case (abs($battery_charge_adc) < 40 ) :
+      $battery_charge_arrow_class .= " fa-3x";
+    break;
+
+    case (abs($battery_charge_adc) < 60 ) :
+      $battery_charge_arrow_class .= " fa-4x";
+    break;
+
+    case (abs($battery_charge_adc) < 80 ) :
+      $battery_charge_arrow_class .= " fa-5x";
+    break;
   }
 
   // conditional for solar pv arrow
   if ($psolar_kw > 0.2)
   {
-    $solar_arrow_class = "fa fa-3x fa-long-arrow-down";
+    // power is greater than 0.2kW so indicate down arrow
+    $solar_arrow_class = "fa fa-long-arrow-down";
   }
   else
   {
-    $solar_arrow_class = "fa fa-3x fa-minus fa-rotate-90";
+    // power is too small indicate a blank line vertically down from SOlar panel to Inverter in diagram
+    $solar_arrow_class = "fa fa-minus fa-rotate-90";
   }
 
   ?>
