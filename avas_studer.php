@@ -183,6 +183,8 @@ function studer_readings_page_render()
   $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
   $pbattery_kw         = $psolar_kw - $pout_inverter_ac_kw;
 
+  $inverter_pout_arrow_class = "fa fa-long-arrow-right";
+
   // conditional class names for battery charge down or up arrow
   if ($battery_charge_adc > 0.0)
   {
@@ -246,6 +248,25 @@ function studer_readings_page_render()
 
     case (abs($psolar_kw) < 3.5 ) :
       $solar_arrow_class .= " fa-4x";
+    break;
+  }
+
+  switch(true)
+  {
+    case (abs($pout_inverter_ac_kw) < 0.5 ) :
+      $inverter_pout_arrow_class .= " fa-1x";
+    break;
+
+    case (abs($pout_inverter_ac_kw) < 2.0 ) :
+      $inverter_pout_arrow_class .= " fa-2x";
+    break;
+
+    case (abs($pout_inverter_ac_kw) < 3.5 ) :
+      $inverter_pout_arrow_class .= " fa-3x";
+    break;
+
+    case (abs($pout_inverter_ac_kw) < 4 ) :
+      $inverter_pout_arrow_class .= " fa-4x";
     break;
   }
 
@@ -478,7 +499,7 @@ function studer_readings_page_render()
                         </tr>
                         <tr>
                             <td height="33">
-                                <i class="fa fa-3x fa-long-arrow-right" id="power-arrow-load"></i>
+                                <i class="<?php echo htmlspecialchars($inverter_pout_arrow_class); ?>" id="power-arrow-load"></i>
                             </td>
                         </tr>
                         <tr>
