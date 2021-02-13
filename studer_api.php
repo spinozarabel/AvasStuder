@@ -29,6 +29,8 @@ class studer_api
 
 		  $baseurl =                 $this->getoption("studer_settings", "studer_api_baseurl");
 
+      $this->fontawesome_cdn  = $this->getoption("studer_settings", "fontawesome_cdn");
+
       // add these as properties to object for use in $this functions later on
       $this->uhash		        = $uhash;
 		  $this->phash	          = $phash;

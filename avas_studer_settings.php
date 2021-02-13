@@ -85,6 +85,11 @@ class avas_studer_settings
 		add_settings_field( 'studer_password',    'Studer user password', array( $this, 'studer_password_callback' ),     'studer_settings', 'studer_section' );
     add_settings_field( 'studer_api_baseurl', 'Studer API base url',  array( $this, 'studer_api_baseurl_callback' ),  'studer_settings', 'studer_section' );
 
+    // add_settings_section( $id, $title, $callback, $page );
+		add_settings_section( 'library_section', 'Library CDN Settings', array( $this, 'print_section_info' ), 'studer_settings' );
+
+    //add_settings_field( 'reconcile', 'Try Reconciling Payments?', array( $this, 'reconcile_callback' ), 'sritoni_settings', 'cashfree_api_section' );
+    add_settings_field( 'fontawesome_cdn',    'Fontawesome CDN',     array( $this, 'fontawesome_cdn_callback' ),      'studer_settings', 'library_section' );
   }
 
 	/**
@@ -109,6 +114,22 @@ class avas_studer_settings
                value='$value'  size='50' class='code' />Studer Installation ID";
 
    }
+
+
+   /**
+   * Get the settings option array and print cashfree_key value
+   */
+  public function fontawesome_cdn_callback()
+  {
+
+    $settings = (array) get_option( 'studer_settings' );
+    $field = "fontawesome_cdn";
+    $value = esc_attr( $settings[$field] );
+
+    echo "<input type='text' name='studer_settings[$field]' id='studer_settings[$field]'
+              value='$value'  size='50' class='code' />Fontawesome CDN here";
+
+  }
 
 
 	   /**
@@ -175,7 +196,10 @@ class avas_studer_settings
             $new_input['studer_password'] = sanitize_text_field( $input['studer_password'] );
 
         if( isset( $input['studer_api_baseurl'] ) )
-            $new_input['studer_api_baseurl'] = sanitize_text_field( $input['studer_api_installation_id'] );
+            $new_input['studer_api_baseurl'] = sanitize_text_field( $input['studer_api_baseurl'] );
+
+        if( isset( $input['fontawesome_cdn'] ) )
+            $new_input['fontawesome_cdn'] = sanitize_text_field( $input['fontawesome_cdn'] );
 
 
         return $new_input;
