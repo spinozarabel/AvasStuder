@@ -60,6 +60,9 @@ function studer_readings_page_render()
 {
   $studer_api = new studer_api();
 
+  // top line on page
+  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+
   $body = [];
 
   // get the input AC active power value
@@ -440,8 +443,6 @@ function studer_readings_page_render()
 
 
 
-  // top line displayed on page
-  echo nl2br('Studer System Readings of my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
 
   ?>
     <div class="container-fluid">
