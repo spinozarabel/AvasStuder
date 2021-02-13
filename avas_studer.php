@@ -172,6 +172,9 @@ function studer_readings_page_render()
 
 
   ?>
+    <script
+      src="https://use.fontawesome.com/7982b10e46.js">
+    </script>
     <style>
         /* xs (moins de 768px) */
         .lSAction>a {
