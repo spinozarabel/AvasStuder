@@ -358,7 +358,7 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-solar">
                                 <?php echo htmlspecialchars($psolar_kw); ?> kW<br>
-                                <font color="#E0E0E0">
+                                <font color="#D0D0D0">
                                 <?php echo htmlspecialchars($solar_pv_adc); ?> Adc
                             </td>
                         </tr>
@@ -427,6 +427,7 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-battery">
                                 <?php echo htmlspecialchars($pbattery_kw); ?> kW<br>
+                                <font color="#D0D0D0">
                                 <?php echo htmlspecialchars($battery_voltage_vdc); ?> Vdc<br>
                                 <?php echo htmlspecialchars($battery_charge_adc); ?> Adc
                             </td>
