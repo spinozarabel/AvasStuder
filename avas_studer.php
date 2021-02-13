@@ -414,9 +414,12 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="fa fa-3x fa-long-arrow-up" id="power-arrow-battery"></i>
+                                <i class="fa fa-3x fa-long-arrow-down" id="power-arrow-battery"></i>
                             </td>
-                            <td class="legend" id="power-battery">2.3 kW</td>
+                            <td
+                                class="legend" id="power-battery">
+                                <?php echo htmlspecialchars($pbattery_kw); ?> kW
+                            </td>
                         </tr>
                     </table>
                 </td>
