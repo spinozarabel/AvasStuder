@@ -238,22 +238,22 @@ function studer_readings_page_render()
       $solar_arrow_class .= " fa-1x";
     break;
 
-    case (abs($psolar_kw) < 1.5 ) :
+    case (abs($psolar_kw) < 2.0 ) :
       $solar_arrow_class .= " fa-2x";
     break;
 
-    case (abs($psolar_kw) < 2.5 ) :
+    case (abs($psolar_kw) < 3.5 ) :
       $solar_arrow_class .= " fa-3x";
     break;
 
-    case (abs($psolar_kw) < 3.5 ) :
+    case (abs($psolar_kw) < 4.0 ) :
       $solar_arrow_class .= " fa-4x";
     break;
   }
 
   switch(true)
   {
-    case (abs($pout_inverter_ac_kw) < 0.5 ) :
+    case (abs($pout_inverter_ac_kw) < 1.0 ) :
       $inverter_pout_arrow_class .= " fa-1x";
     break;
 
