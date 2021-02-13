@@ -170,11 +170,7 @@ function studer_readings_page_render()
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
     <script
-      src=
-        <?php
-          echo ($studer_api->cdn);
-        ?>
-      >
+      src="<?php echo ($studer_api->cdn);?>">
     </script>
     <style>
         /* xs (moins de 768px) */
