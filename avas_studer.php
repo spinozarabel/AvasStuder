@@ -349,7 +349,10 @@ function studer_readings_page_render()
                             <td>
                                 <i class="fa fa-3x fa-long-arrow-down" id="power-arrow-solar"></i>
                             </td>
-                            <td class="legend" id="power-solar">-- kW</td>
+                            <td
+                                class="legend" id="power-solar">
+                                <?php echo htmlspecialchars($psolar_kw); ?> kW
+                            </td>
                         </tr>
                     </table>
                 </td>
