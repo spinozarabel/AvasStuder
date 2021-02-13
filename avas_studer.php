@@ -170,9 +170,10 @@ function studer_readings_page_render()
   }
 
   // calculate the current into/out of battery
-  $battery_charge_adc = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
-  $pbattery_kw        = round($psolar_kw - $pout_inverter_ac_kw, 3);
-  $psolar_kw          = round($psolar_kw,3);
+  $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
+  $pbattery_kw         = round($psolar_kw - $pout_inverter_ac_kw, 3);
+  $psolar_kw           = round($psolar_kw,3);
+  $pout_inverter_ac_kw = round($pout_inverter_ac_kw,3);
 
 
   ?>
