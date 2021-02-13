@@ -58,6 +58,7 @@ function add_studer_menu()
 
 function studer_readings_page_render()
 {
+
   $studer_api = new studer_api();
 
   // top line on page
@@ -178,6 +179,11 @@ function studer_readings_page_render()
   $battery_voltage_vdc = round($battery_voltage_vdc,2);
 
   ?>
+    <script type="text/javascript">
+      setTimeout(function () {
+        location.reload();
+      }, 15 * 1000);
+    </script>
     <script
       src="https://use.fontawesome.com/7982b10e46.js">
     </script>
