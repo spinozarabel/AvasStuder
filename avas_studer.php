@@ -376,6 +376,7 @@ function studer_readings_page_render()
 
         .img-pow-pv {
             max-width: 59px;
+            border: 5px solid #555;
         }
 
         .img-pow-genset {
