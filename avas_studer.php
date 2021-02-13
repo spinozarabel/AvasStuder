@@ -387,7 +387,9 @@ function studer_readings_page_render()
                 <td>
                     <table class="arrow-table-vertical" height="100">
                         <tr>
-                            <td height="33" class="legend" id="power-load">2.3 kW</td>
+                            <td height="33" class="legend" id="power-load">
+                              <?php echo htmlspecialchars($pout_inverter_ac_kw); ?> kW
+                            </td>
                         </tr>
                         <tr>
                             <td height="33">
