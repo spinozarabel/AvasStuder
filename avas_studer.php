@@ -21,8 +21,23 @@ if ( is_admin() )
   // add sub-menu for a
   add_action('admin_menu', 'add_studer_menu');
 
+  // add support for SVG file types
+  add_filter('upload_mimes', 'add_file_types_to_uploads');
+
   // add a new submenu for sritoni cashfree plugin settings in Woocommerce. This is to be done only once!!!!
   $avas_studer_settings = new avas_studer_settings();
+}
+
+/**
+** Function to add SVG file type support
+**
+*/
+function add_file_types_to_uploads($file_types)
+{
+  $new_filetypes = array();
+  $new_filetypes['svg'] = 'image/svg+xml';
+  $file_types = array_merge($file_types, $new_filetypes );
+  return $file_types;
 }
 
 function add_studer_menu()
