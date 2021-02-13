@@ -169,9 +169,8 @@ function studer_readings_page_render()
 
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
-    <script
-      src="<?php echo ($studer_api->cdn);?>">
-    </script>
+    <script src="https://use.fontawesome.com/7982b10e46.js"></script>
+
     <style>
         /* xs (moins de 768px) */
         .lSAction>a {
