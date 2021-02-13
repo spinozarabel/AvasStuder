@@ -382,6 +382,7 @@ function studer_readings_page_render()
 
         .img-pow-logo {
             max-width: 65px;
+            border: 5px solid #555;
         }
 
         .img-pow-load {
