@@ -366,7 +366,9 @@ function studer_readings_page_render()
                 <td>
                     <table class="arrow-table-vertical" height="100">
                         <tr>
-                            <td height="33" class="legend" id="power-grid-genset">-- kW</td>
+                            <td height="33" class="legend" id="power-grid-genset">
+                              <?php echo htmlspecialchars($grid_pin_ac_kw); ?> kW
+                            </td>
                         </tr>
                         <tr>
                             <td height="33">
