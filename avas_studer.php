@@ -424,7 +424,8 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-battery">
                                 <?php echo htmlspecialchars($pbattery_kw); ?> kW<br>
-                                <?php echo htmlspecialchars($battery_voltage_vdc); ?> Vdc
+                                <?php echo htmlspecialchars($battery_voltage_vdc); ?> Vdc<br>
+                                <?php echo htmlspecialchars($battery_charge_adc); ?> Adc
                             </td>
                         </tr>
                     </table>
