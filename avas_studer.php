@@ -443,18 +443,6 @@ function studer_readings_page_render()
   <?php
 
 
-
-
-
-  ?>
-    <div class="container-fluid">
-      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/electrical-grid-clipart.jpg" alt="grid" style="width:10%;">
-    </div>
-    <div class="container-fluid">
-      <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/right_arrow.png" alt="grid" style="width:3%;">
-    </div>
-  <?php
-
   ?>
     <table style="width:100%">
       <tr>
