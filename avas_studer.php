@@ -398,7 +398,7 @@ function studer_readings_page_render()
                     </table>
                 </td>
                 <td>
-                    <img id="pow-load-img" src="house.svg" class="img-pow-load"/>
+                    <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
                 </td>
             </tr>
             <tr>
