@@ -122,33 +122,26 @@ function studer_readings_page_render()
     switch (true)
   	{
       case ( $user_value->reference == 3000 ) :
-        $battery_voltage_vdc = $user_value->value;
-
+        $battery_voltage_vdc = round($user_value->value, 2);
       break;
 
       case ( $user_value->reference == 3005 ) :
-        $inverter_current_adc = $user_value->value;
-
-      break;
-
-      case ( $user_value->reference == 3005 ) :
-        $inverter_current_adc = $user_value->value;
-
+        $inverter_current_adc = roud($user_value->value, 0);
       break;
 
   		case ( $user_value->reference == 3137 ) :
-        $grid_pin_ac_kw = $user_value->value;
+        $grid_pin_ac_kw = round($user_value->value, 2);
 
       break;
 
       case ( $user_value->reference == 3136 ) :
-        $pout_inverter_ac_kw = $user_value->value;
+        $pout_inverter_ac_kw = round($user_value->value, 2);
 
       break;
 
       case ( $user_value->reference == 11001 ) :
         // we have to accumulate values form 2 cases:VT1 and VT2 so we have used accumulation below
-        $solar_pv_adc += $user_value->value;
+        $solar_pv_adc += round($user_value->value, 0);
 
       break;
 
@@ -159,7 +152,7 @@ function studer_readings_page_render()
 
       case ( $user_value->reference == 11004 ) :
         // we have to accumulate values form 2 cases so we have used accumulation below
-        $psolar_kw += $user_value->value;
+        $psolar_kw += round($user_value->value, 2);
 
       break;
 
@@ -171,12 +164,8 @@ function studer_readings_page_render()
   }
 
   // calculate the current into/out of battery
-  $battery_charge_adc  = round($solar_pv_adc + $inverter_current_adc, 0); // + is charge, - is discharge
-  $solar_pv_adc        = round($solar_pv_adc, 0);
-  $pbattery_kw         = round($psolar_kw - $pout_inverter_ac_kw, 3);
-  $psolar_kw           = round($psolar_kw,3);
-  $pout_inverter_ac_kw = round($pout_inverter_ac_kw,3);
-  $battery_voltage_vdc = round($battery_voltage_vdc,2);
+  $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
+  $pbattery_kw         = $psolar_kw - $pout_inverter_ac_kw;
 
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
