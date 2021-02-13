@@ -199,24 +199,20 @@ function studer_readings_page_render()
 
   switch(true)
   {
-    case (abs($battery_charge_adc) < 10 ) :
+    case (abs($battery_charge_adc) < 20 ) :
       $battery_charge_arrow_class .= " fa-1x";
     break;
 
-    case (abs($battery_charge_adc) < 20 ) :
+    case (abs($battery_charge_adc) < 40 ) :
       $battery_charge_arrow_class .= " fa-2x";
     break;
 
-    case (abs($battery_charge_adc) < 40 ) :
+    case (abs($battery_charge_adc) < 60 ) :
       $battery_charge_arrow_class .= " fa-3x";
     break;
 
-    case (abs($battery_charge_adc) < 60 ) :
-      $battery_charge_arrow_class .= " fa-4x";
-    break;
-
     case (abs($battery_charge_adc) < 80 ) :
-      $battery_charge_arrow_class .= " fa-5x";
+      $battery_charge_arrow_class .= " fa-4x";
     break;
   }
 
