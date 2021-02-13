@@ -175,7 +175,7 @@ function studer_readings_page_render()
   $pbattery_kw         = round($psolar_kw - $pout_inverter_ac_kw, 3);
   $psolar_kw           = round($psolar_kw,3);
   $pout_inverter_ac_kw = round($pout_inverter_ac_kw,3);
-  $solar_pv_vdc        = round($solar_pv_vdc,2);
+  $battery_voltage_vdc = round($battery_voltage_vdc,2);
 
   ?>
     <script
