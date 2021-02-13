@@ -80,6 +80,14 @@ function studer_readings_page_render()
                         "infoAssembly"  => "Master"
                       ),
                 array(
+                        "userRef"       =>  3011,   // Grid AC in Voltage Vac
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
+                        "userRef"       =>  3012,   // Grid AC in Current Aac
+                        "infoAssembly"  => "Master"
+                      ),
+                array(
                         "userRef"       =>  3005,   // Battery Voltage
                         "infoAssembly"  => "Master"
                       ),
@@ -121,6 +129,14 @@ function studer_readings_page_render()
   {
     switch (true)
   	{
+      case ( $user_value->reference == 3011 ) :
+        $grid_input_vac = round($user_value->value, 0);
+      break;
+
+      case ( $user_value->reference == 3012 ) :
+        $grid_input_aac = round($user_value->value, 1);
+      break;
+
       case ( $user_value->reference == 3000 ) :
         $battery_voltage_vdc = round($user_value->value, 2);
       break;
@@ -367,7 +383,10 @@ function studer_readings_page_render()
                     <table class="arrow-table-vertical" height="100">
                         <tr>
                             <td height="33" class="legend" id="power-grid-genset">
-                              <?php echo htmlspecialchars($grid_pin_ac_kw); ?> kW
+                              <?php echo htmlspecialchars($grid_pin_ac_kw); ?> kW<br>
+                              <font color="#D0D0D0">
+                              <?php echo htmlspecialchars($grid_input_vac); ?> Vac<br>
+                              <?php echo htmlspecialchars($grid_input_aac); ?> Aac
                             </td>
                         </tr>
                         <tr>
