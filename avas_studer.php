@@ -195,6 +195,16 @@ function studer_readings_page_render()
     $battery_charge_arrow_class = "fa fa-3x fa-long-arrow-up";
   }
 
+  // conditional for solar pv arrow
+  if ($psolar_kw > 0.2)
+  {
+    $solar_arrow_class = "fa fa-3x fa-long-arrow-down";
+  }
+  else
+  {
+    $solar_arrow_class = "fa fa-3x fa-minus fa-rotate-90";
+  }
+
   ?>
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
     <script src="https://use.fontawesome.com/7982b10e46.js"></script>
@@ -371,7 +381,7 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="<?php echo htmlspecialchars($battery_charge_arrow_class); ?>" id="power-arrow-solar"></i>
+                                <i class="<?php echo htmlspecialchars($solar_arrow_class); ?>" id="power-arrow-solar"></i>
                             </td>
                             <td
                                 class="legend" id="power-solar">
@@ -445,7 +455,7 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="fa fa-3x fa-long-arrow-down" id="power-arrow-battery"></i>
+                                <i class="<?php echo htmlspecialchars($battery_charge_arrow_class); ?>" id="power-arrow-battery"></i>
                             </td>
                             <td
                                 class="legend" id="power-battery">
