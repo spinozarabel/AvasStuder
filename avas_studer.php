@@ -171,6 +171,7 @@ function studer_readings_page_render()
 
   // calculate the current into/out of battery
   $battery_charge_adc  = round($solar_pv_adc + $inverter_current_adc, 0); // + is charge, - is discharge
+  $solar_pv_adc        = round($solar_pv_adc, 0);
   $pbattery_kw         = round($psolar_kw - $pout_inverter_ac_kw, 3);
   $psolar_kw           = round($psolar_kw,3);
   $pout_inverter_ac_kw = round($pout_inverter_ac_kw,3);
@@ -356,7 +357,8 @@ function studer_readings_page_render()
                             </td>
                             <td
                                 class="legend" id="power-solar">
-                                <?php echo htmlspecialchars($psolar_kw); ?> kW
+                                <?php echo htmlspecialchars($psolar_kw); ?> kW<br>
+                                <?php echo htmlspecialchars($solar_pv_adc); ?> Adc
                             </td>
                         </tr>
                     </table>
@@ -445,6 +447,8 @@ function studer_readings_page_render()
   <?php
 
 
+  /*
+
   ?>
     <table style="width:100%">
       <tr>
@@ -455,6 +459,7 @@ function studer_readings_page_render()
         <th>Comments</th>
       </tr>
   <?php
+
 
   print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
   print_row_table(3005, $inverter_current_adc, 'Inverter DC current', 'Adc', '+ from Inverter, - into Inverter');
@@ -468,6 +473,7 @@ function studer_readings_page_render()
   print_row_table('Calc',    $pbattery_kw, $string, 'kW', '+ means to battery, - means from battery');
   print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
   print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
+  */
 }
 
 function studer_variotrac_page_render()
