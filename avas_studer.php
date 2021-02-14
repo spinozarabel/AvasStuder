@@ -217,7 +217,7 @@ function studer_readings_page_render()
   }
 
   // conditional for solar pv arrow
-  if ($psolar_kw > 0.2)
+  if ($psolar_kw > 0.1)
   {
     // power is greater than 0.2kW so indicate down arrow
     $solar_arrow_class = "fa fa-long-arrow-down";
