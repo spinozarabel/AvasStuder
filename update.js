@@ -2,8 +2,8 @@ jQuery(document).ready(function($) {
 
   // set an intervel of 3s. The callback function that gets
   // executed at the end is passed as timingload() that needs to be defined
-  //setInterval(timingLoad, 3000)
-  timingLoad();
+  setInterval(timingLoad, 60000);
+
   //
   function timingLoad() {
 
