@@ -47,7 +47,7 @@ add_action('ajax_get_studer_readings', 'ajax_get_studer_readings');
 function add_my_scripts($hook)
 // register and enque jquery scripts wit nonce for ajax calls
 {
-    // load script only on desired page-otherwise script looks for non-existent entities and creates errors
+  // load script only on desired page-otherwise script looks for non-existent entities and creates errors
 	if ($hook == 'studer-readings' || $hook == 'Readings')
 	{
 		// https://developer.wordpress.org/plugins/javascript/enqueuing/
@@ -67,7 +67,20 @@ function add_my_scripts($hook)
 	}
   else
   {
-    // no scripts enqued because not desired page
+
+    wp_register_script('my_studer_app_script', plugins_url('update.js', __FILE__), array('jquery'),'1.0', true);
+
+		wp_enqueue_script('my_studer_app_script');
+
+		$commonapp_nonce = wp_create_nonce('my_studer_app_script');
+		// note the key here is the global my_ajax_obj that will be referenced by our Jquery in update.js
+	  //  wp_localize_script( string $handle,       string $object_name, associative array )
+    wp_localize_script('my_studer_app_script', 'my_ajax_obj', array(
+                                																		'ajax_url' => admin_url( 'admin-ajax.php' ),
+                                																		'nonce'    => $commonapp_nonce,
+																                                   )
+					             );
+
     return;
   }
 }
