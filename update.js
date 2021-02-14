@@ -3,6 +3,7 @@ jQuery(document).ready(function($) {
   // set an intervel of 3s. The callback function that gets
   // executed at the end is passed as timingload() that needs to be defined
   //setInterval(timingLoad, 60000);
+  console.log('my_ajax_obj: ', my_ajax_obj);
   timingLoad();
 
   //
@@ -10,7 +11,6 @@ jQuery(document).ready(function($) {
 
     $.post(my_ajax_obj.ajax_url,
     {                                 //POST request
-      console.log('my_ajax_obj: ', my_ajax_obj);
       _ajax_nonce: my_ajax_obj.nonce, //nonce extracted and sent
       action: "ajax_get_studer_readings"  // hook added for action wp_ajax_spzrbl_city in php file
     },
