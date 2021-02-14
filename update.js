@@ -10,6 +10,7 @@ jQuery(document).ready(function($) {
 
     $.post(my_ajax_obj.ajax_url,
     {                                 //POST request
+      console.log('my_ajax_obj: ', my_ajax_obj);
       _ajax_nonce: my_ajax_obj.nonce, //nonce extracted and sent
       action: "ajax_get_studer_readings"  // hook added for action wp_ajax_spzrbl_city in php file
     },
