@@ -45,7 +45,7 @@ function add_my_scripts($hook)
 // register and enque jquery scripts wit nonce for ajax calls
 {
     // load script only on desired page-otherwise script looks for non-existent entities and creates errors
-	if ($hook == 'studer-readings')
+	if ($hook == 'studer-readings' || $hook == 'Readings')
 	{
 		// https://developer.wordpress.org/plugins/javascript/enqueuing/
 	    //wp_register_script($handle            , $src                                 , $deps         , $ver, $in_footer)
