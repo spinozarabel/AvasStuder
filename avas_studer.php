@@ -142,7 +142,7 @@ function studer_readings_page_render()
       break;
 
       case ( $user_value->reference == 3005 ) :
-        $inverter_current_adc = round($user_value->value, 0);
+        $inverter_current_adc = round($user_value->value, 1);
       break;
 
   		case ( $user_value->reference == 3137 ) :
@@ -157,7 +157,7 @@ function studer_readings_page_render()
 
       case ( $user_value->reference == 11001 ) :
         // we have to accumulate values form 2 cases:VT1 and VT2 so we have used accumulation below
-        $solar_pv_adc += round($user_value->value, 0);
+        $solar_pv_adc += round($user_value->value, 1);
 
       break;
 
