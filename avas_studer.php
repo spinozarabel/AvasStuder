@@ -120,6 +120,12 @@ function add_studer_menu()
   return;
 }
 
+function studer_main_page_render()
+{
+  // fill this in later
+  return;
+}
+
 function studer_readings_page_render()
 {
 
