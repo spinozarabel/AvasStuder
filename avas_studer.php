@@ -265,10 +265,12 @@ function studer_readings_page_render()
       $inverter_pout_arrow_class .= " fa-4x";
     break;
   }
+  $script = '"' . $studer_api->fontawesome_cdn . '"';
 
   ?>
+
     <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
-    <script src="https://use.fontawesome.com/7982b10e46.js"></script>
+    <script src=<?php echo $script; ?>></script>
 
     <style>
         /* xs (moins de 768px) */

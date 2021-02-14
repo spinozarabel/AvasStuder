@@ -27,7 +27,7 @@ class studer_api
 			$uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
 
 
-		  $baseurl =                 $this->getoption("studer_settings", "studer_api_baseurl");
+		  $baseurl =                $this->getoption("studer_settings", "studer_api_baseurl");
 
       $this->fontawesome_cdn  = $this->getoption("studer_settings", "fontawesome_cdn");
 
