@@ -29,7 +29,7 @@ if ( is_admin() )
 }
 
 // add action to load the javascripts
-add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
+add_action( 'admin_enqueue_scripts', 'add_my_scripts' );
 
 // add action for the ajax handler on server side.
 // Once city is selected by JS the selected city is sent to handler
@@ -41,11 +41,11 @@ add_action('ajax_get_studer_readings', 'ajax_get_studer_readings');
 *   register and enque jquery scripts with nonce for ajax calls. Load only for desired page
 *   called by add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
 */
-function add_my_scripts()
+function add_my_scripts($hook)
 // register and enque jquery scripts wit nonce for ajax calls
 {
     // load script only on desired page-otherwise script looks for non-existent entities and creates errors
-	//if (is_page('studer-readings'))
+	if ($hook == 'studer-readings')
 	{
 		// https://developer.wordpress.org/plugins/javascript/enqueuing/
 	    //wp_register_script($handle            , $src                                 , $deps         , $ver, $in_footer)
@@ -62,6 +62,11 @@ function add_my_scripts()
 																                                   )
 					             );
 	}
+  else
+  {
+    // no scripts enqued because not desired page
+    return;
+  }
 }
 
 
