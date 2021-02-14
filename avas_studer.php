@@ -31,6 +31,9 @@ if ( is_admin() )
 // add action to load the javascripts
 add_action( 'admin_enqueue_scripts', 'add_my_scripts' );
 
+// add action to load the javascripts
+add_action( 'wp_enqueue_scripts',    'add_my_scripts' );
+
 // add action for the ajax handler on server side.
 // Once city is selected by JS the selected city is sent to handler
 // the 1st argument is in update.js, action: "ajax_get_studer_readings"
