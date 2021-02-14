@@ -725,12 +725,12 @@ function get_studer_readings()
   if ($grid_pin_ac_kw > 0.1)
   {
     // power is greater than 0.2kW so indicate down arrow
-    $grid_pin_ac_kw = "fa fa-long-arrow-right";
+    $grid_input_arrow_class = "fa fa-long-arrow-right";
   }
   else
   {
     // power is too small indicate a blank line vertically down from SOlar panel to Inverter in diagram
-    $grid_pin_ac_kw = "fa fa-minus";
+    $grid_input_arrow_class = "fa fa-minus";
   }
 
   switch(true)
