@@ -374,22 +374,18 @@ function studer_readings_page_render()
 
         .img-pow-pv {
             max-width: 59px;
-            border: 5px solid #555;
         }
 
         .img-pow-genset {
             max-width: 59px;
-            border: 5px solid #555;
         }
 
         .img-pow-logo {
             max-width: 65px;
-            border: 5px solid #555;
         }
 
         .img-pow-load {
             max-width: 59px;
-            border: 5px solid #555;
         }
 
         /* xs (plus de 768px */
