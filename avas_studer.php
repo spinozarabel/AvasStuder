@@ -181,7 +181,7 @@ function studer_readings_page_render()
 
   // calculate the current into/out of battery
   $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
-  $pbattery_kw         = $psolar_kw - $pout_inverter_ac_kw;
+  $pbattery_kw         = $battery_voltage_vdc * $battery_charge_adc * 0.001; //$psolar_kw - $pout_inverter_ac_kw;
 
   $inverter_pout_arrow_class = "fa fa-long-arrow-right";
 
