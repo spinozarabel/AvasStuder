@@ -24,15 +24,16 @@ if ( is_admin() )
   // add support for SVG file types
   add_filter('upload_mimes', 'add_file_types_to_uploads');
 
+  // add action to load the javascripts
+  add_action( 'admin_enqueue_scripts', 'add_my_scripts' );
+
   // do the following only once, that too if you are an admin!
   $avas_studer_settings = new avas_studer_settings();
 }
 
-// add action to load the javascripts
-add_action( 'admin_enqueue_scripts', 'add_my_scripts' );
 
 // add action to load the javascripts
-add_action( 'wp_enqueue_scripts',    'add_my_scripts' );
+//add_action( 'wp_enqueue_scripts',    'add_my_scripts' );
 
 // add action for the ajax handler on server side.
 // Once city is selected by JS the selected city is sent to handler
