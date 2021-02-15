@@ -37,9 +37,9 @@ if ( is_admin() )
 
 // add action for the ajax handler on server side.
 // Once city is selected by JS the selected city is sent to handler
-// the 1st argument is in update.js, action: "ajax_get_studer_readings"
-// the 2nd argument is the local callback function
-add_action('ajax_get_studer_readings', 'ajax_get_studer_readings');
+// the 1st argument is in update.js, action: "get_studer_readings"
+// the 2nd argument is the local callback function as the ajax handler
+add_action('wp_ajax_get_studer_readings', 'ajax_studer_readings_handler');
 
 /**
 *   register and enque jquery scripts with nonce for ajax calls. Load only for desired page
@@ -63,7 +63,7 @@ function add_my_scripts($hook)
     wp_localize_script('my_studer_app_script', 'my_ajax_obj', array(
                                 																		'ajax_url' => admin_url( 'admin-ajax.php' ),
                                 																		'nonce'    => $commonapp_nonce,
-																                                   )
+																                                    )
 					             );
 	}
   else
@@ -79,7 +79,7 @@ function add_my_scripts($hook)
     wp_localize_script('my_studer_app_script', 'my_ajax_obj', array(
                                 																		'ajax_url' => admin_url( 'admin-ajax.php' ),
                                 																		'nonce'    => $commonapp_nonce,
-																                                   )
+																                                    )
 					             );
 
     return;
@@ -92,7 +92,7 @@ function add_my_scripts($hook)
 **  Ajax call from JQ to server being handled here. These values will be sent back to user's browser
 **  using wp_send_json() function and will be used by JQ that called this AJAX, to refresh page locally
 */
-function ajax_get_studer_readings()
+function ajax_studer_readings_handler()
 {
   // Ensures nonce is correct for security. It dies automatically if check is false. This is a WP core function
 	check_ajax_referer('my_studer_app_script');
