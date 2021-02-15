@@ -24,7 +24,8 @@ jQuery(document).ready(function($) {
 
 
         //Change Inverter output power value using Ajax delivered object data
-        $('#power-load').val(data.pout_inverter_ac_kw + ' kW');
+        var pout_inverter_ac_kw = data.pout_inverter_ac_kw;
+        $('#power-load').val(pout_inverter_ac_kw);
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
 
@@ -45,7 +46,7 @@ jQuery(document).ready(function($) {
         $('#ppower-grid-genset').val(data.grid_pin_ac_kw + ' kW');
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
-  
+
       });
   };
 
