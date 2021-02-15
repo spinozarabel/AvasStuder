@@ -9,7 +9,7 @@ jQuery(document).ready(function($) {
 
   function stopSetInterval() {
     clearInterval(setInterval_ID);
-  }
+  };
 
   function triggerAjax() {
 
