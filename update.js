@@ -2,10 +2,10 @@ jQuery(document).ready(function($) {
 
   // set an intervel of 3s. The callback function that gets
   // executed at the end is passed as timingload() that needs to be defined
-  var setInterval_ID = setInterval(triggerAjax, 5000);
+  var setInterval_ID = setInterval(triggerAjax, 10000);
   // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  setTimeout(stopSetInterval, 20000);
+  setTimeout(stopSetInterval, 60000);
 
   function stopSetInterval() {
     clearInterval(setInterval_ID);
@@ -24,8 +24,7 @@ jQuery(document).ready(function($) {
 
 
         //Change Inverter output power value using Ajax delivered object data
-        var pout_inverter_ac_kw = data.pout_inverter_ac_kw;
-        $('#power-load').html(pout_inverter_ac_kw);
+        $('#power-load').html( data.pout_inverter_ac_kw + ' kW');
         console.log('existing value of inverter pout', $('#power-load').html());
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
