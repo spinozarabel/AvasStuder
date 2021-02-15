@@ -5,7 +5,7 @@ jQuery(document).ready(function($) {
   var setInterval_ID = setInterval(triggerAjax, 10000);
   // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  setTimeout(stopSetInterval, 60000);
+  setTimeout(stopSetInterval, 100000);
 
   function stopSetInterval() {
     clearInterval(setInterval_ID);
@@ -33,7 +33,7 @@ jQuery(document).ready(function($) {
         // Solar Power related values Ajax update
         //Change Solar output power value using Ajax delivered object data
         $('#power-solar').html(data.psolar_kw + ' kW<br>'  + '<font color="#D0D0D0">'
-                                                  + data.solar_pv_adc + 'Adc');
+                                                  + data.solar_pv_adc + ' Adc');
         // todo need to add the SOlar-PB current at battery interface
         // update the arrow based on ajax
         $('#power-arrow-solar').removeClass().addClass(data.solar_arrow_class);
@@ -42,14 +42,14 @@ jQuery(document).ready(function($) {
         $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);
         //Change Inverter output power value using Ajax delivered object data
         $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#D0D0D0">'
-                                                  + data.battery_voltage_vdc + 'Vdc'
-                                                  + data.battery_charge_adc + 'Adc');
+                                                  + data.battery_voltage_vdc + ' Vdc'
+                                                  + data.battery_charge_adc + ' Adc');
 
         //Change Grid AC in power and arrow calss based on Ajax updates
         //Change Inverter output power value using Ajax delivered object data
         $('#ppower-grid-genset').html(data.grid_pin_ac_kw + ' kW<br>'  + '<font color="#D0D0D0">'
-                                                  + data.grid_input_vac + 'Vdc'
-                                                  + data.grid_input_aac + 'Aac');
+                                                  + data.grid_input_vac + ' Vac'
+                                                  + data.grid_input_aac + ' Aac');
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
 
