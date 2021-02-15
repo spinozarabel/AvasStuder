@@ -40,7 +40,7 @@ jQuery(document).ready(function($) {
         // Change the Battery values based on Ajax update
         $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);
         //Change Inverter output power value using Ajax delivered object data
-        $('#power-battery').html(data.pbattery_kw + ' kW' + "<b>" + '<font color="#D0D0D0">' + data.battery_voltage_vdc + 'Vdc');
+        $('#power-battery').html(data.pbattery_kw + ' kW'  + '<font color="#D0D0D0">' + data.battery_voltage_vdc + 'Vdc');
 
         //Change Grid AC in power and arrow calss based on Ajax updates
         //Change Inverter output power value using Ajax delivered object data
