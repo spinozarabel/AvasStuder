@@ -25,8 +25,8 @@ jQuery(document).ready(function($) {
 
         //Change Inverter output power value using Ajax delivered object data
         var pout_inverter_ac_kw = data.pout_inverter_ac_kw;
-        $('#power-load').val(pout_inverter_ac_kw);
-        console.log('existing value of inverter pout', $('#power-load')[0]);
+        $('#power-load').html(pout_inverter_ac_kw);
+        console.log('existing value of inverter pout', $('#power-load').html());
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
 
