@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
     },
       function(data) 	{				// data is JSON data sent back by server in response, wp_send_json($somevariable)
         // update the page with new readings. Lets just log the value sto see if we are getting good data
-        console.log('data: ', data);
+        // console.log('data: ', data);
 
 
         //Change Inverter output power value using Ajax delivered object data
@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 
         // Solar Power related values Ajax update
         //Change Solar output power value using Ajax delivered object data
-        $('#power-solar').html(data.psolar_kw + ' kW');
+        $('#power-solar').html(data.psolar_kw + ' kW<b>' + '<font color="#D0D0D0">' + data.battery_voltage_vdc + 'Vdc');
         // todo need to add the SOlar-PB current at battery interface
         // update the arrow based on ajax
         $('#power-arrow-solar').removeClass().addClass(data.solar_arrow_class);
