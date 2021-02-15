@@ -2,8 +2,12 @@ jQuery(document).ready(function($) {
 
   // set an intervel of 3s. The callback function that gets
   // executed at the end is passed as timingload() that needs to be defined
-  //setInterval(timingLoad, 20000);
+  var updateInterval = setInterval(timingLoad, 20000);
   // console.log('my_ajax_obj: ', my_ajax_obj);
+
+  $(window).unload(function(){
+    clearInterval(updateInterval);
+  });
 
   //
   function timingLoad() {
@@ -17,6 +21,7 @@ jQuery(document).ready(function($) {
         // update the page with new readings. Lets just log the value sto see if we are getting good data
         console.log('data: ', data);
 
+/*
         //Change Inverter output power value using Ajax delivered object data
         $('#power-load').val(data.pout_inverter_ac_kw + ' kW');
         // change the arrow class for Inverter Pout to Home using Ajax update
@@ -39,6 +44,7 @@ jQuery(document).ready(function($) {
         $('#ppower-grid-genset').val(data.grid_pin_ac_kw + ' kW');
         // change the arrow class for Inverter Pout to Home using Ajax update
         $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
+  */
       });
   };
 
