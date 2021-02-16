@@ -44,7 +44,7 @@ jQuery(document).ready(function($) {
 
                                                 // Solar Power related values Ajax update
                                                 //Change Solar output power value using Ajax delivered object data
-                                                $('#power-solar').html(data.psolar_kw + ' kW<br>'  + '<font color="#D0D0D0">'
+                                                $('#power-solar').html(round(data.psolar_kw, 2) + ' kW<br>'  + '<font color="#D0D0D0">'
                                                                                           + data.solar_pv_adc + 'A');
                                                 // todo need to add the SOlar-PB current at battery interface
                                                 // update the arrow based on ajax
@@ -67,6 +67,23 @@ jQuery(document).ready(function($) {
 
                                               });
                         };
+    function round(value, exp) {
+    if (typeof exp === 'undefined' || +exp === 0)
+      return Math.round(value);
 
+    value = +value;
+    exp = +exp;
+
+    if (isNaN(value) || !(typeof exp === 'number' && exp % 1 === 0))
+      return NaN;
+
+    // Shift
+    value = value.toString().split('e');
+    value = Math.round(+(value[0] + 'e' + (value[1] ? (+value[1] + exp) : exp)));
+
+    // Shift back
+    value = value.toString().split('e');
+    return +(value[0] + 'e' + (value[1] ? (+value[1] - exp) : -exp));
+  }
 
 });
