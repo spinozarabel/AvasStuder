@@ -316,13 +316,13 @@ function studer_readings_page_render()
                         <div class="row-fluid quickoverview-title">
         Quick overview - Power flows
         <div class="box-tools pull-right">
-    <button type="button" class="btn btn-box-tool refresh-button" id="refresh-button" data-placement="right"
+    <button type="button" class="btn btn-box-tool refresh-button"  data-placement="right"
             data-toggle="tooltip"
             data-container="body"
             title="Refresh"
             onclick="refreshAll();"
             >
-        <i class="fa fa-1x fa-spinner fa-spin" style="height: 15px; width: 15px;"></i>
+        <i class="fa fa-1x fa-spinner fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
     </button>
     <button type="button" class="btn btn-box-tool" data-placement="right"
             data-toggle="tooltip"
