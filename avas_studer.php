@@ -307,6 +307,33 @@ function studer_readings_page_render()
         }
 
     </style>
+    <div class="col-xs-12 col-md-6">
+    <div class="row">
+        <div class="box box-primary">
+            <div class="box-body">
+                <ul id="lightSlider">
+                    <li>
+                        <div class="row-fluid quickoverview-title">
+        Quick overview - Power flows
+        <div class="box-tools pull-right">
+    <button type="button" class="btn btn-box-tool refresh-button" data-placement="right"
+            data-toggle="tooltip"
+            data-container="body"
+            title="Refresh"
+            onclick="refreshAll();"
+            >
+        <i class="fa fa-1x fa-spinner fa-spin" style="height: 15px; width: 15px;"></i>
+    </button>
+    <button type="button" class="btn btn-box-tool" data-placement="right"
+            data-toggle="tooltip"
+            data-container="body"
+            title="Connected"
+            onclick="refreshAll();"
+            >
+        <span class="fa studer-action-toolbox fa-circle text-green"></span>
+    </button>
+</div>
+</div>
 
     <div class="row-fluid">
     <div class="table-responsive synoptic-fixed-height">
