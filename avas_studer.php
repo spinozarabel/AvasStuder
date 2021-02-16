@@ -569,6 +569,8 @@ function print_row_table($paramId, $param_value, $param_desc, $param_units, $fac
 */
 function get_studer_readings()
 {
+  $Ra = 0.12;       // value of resistance from DC junction to Inverter
+  $Rb = 0.12;       // value of resistance from DC junction to Battery terminals
 
   $studer_api = new studer_api();
 
@@ -695,6 +697,8 @@ function get_studer_readings()
   $battery_charge_adc  = round($solar_pv_adc + $inverter_current_adc, 1); // + is charge, - is discharge
   $pbattery_kw         = round($battery_voltage_vdc * $battery_charge_adc * 0.001, 2); //$psolar_kw - $pout_inverter_ac_kw;
 
+
+  // inverter's output always goes to load never the other way around :-)
   $inverter_pout_arrow_class = "fa fa-long-arrow-right";
 
   // conditional class names for battery charge down or up arrow
@@ -702,11 +706,17 @@ function get_studer_readings()
   {
     // current is positive so battery is charging so arrow is down
     $battery_charge_arrow_class = "fa fa-long-arrow-down";
+
+    // also good time to compensate for IR drop
+    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * Ra - abs(battery_charge_adc) * Rb, 2);
   }
   else
   {
     // current is -ve so battery is discharging so arrow is up
     $battery_charge_arrow_class = "fa fa-long-arrow-up";
+
+    // also good time to compensate for IR drop
+    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * Ra + abs(battery_charge_adc) * Rb, 2);
   }
 
   switch(true)
