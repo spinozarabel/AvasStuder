@@ -442,7 +442,7 @@ function studer_readings_page_render()
             </tr>
             <tr>
                 <td colspan="5" style="text-align: center">
-					             <i class="fa fa-3x fa-battery-full fa-rotate-270" id="power_battery-icon"></i>
+					             <i class="<?php echo htmlspecialchars($data->battery_icon_class); ?>" id="power_battery-icon"></i>
                 </td>
             </tr>
         </table>
@@ -819,11 +819,36 @@ function get_studer_readings()
     break;
   }
 
+// select battery icon based on charge level
+  switch(true)
+  {
+    case ($battery_voltage_vdc >= 47.8 && $battery_voltage_vdc < 48.7 ):
+      $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
+    break;
+
+    case ($battery_voltage_vdc >= 48.7 && $battery_voltage_vdc < 49.2 ):
+      $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
+    break;
+
+    case ($battery_voltage_vdc >= 49.2 && $battery_voltage_vdc < 50.0 ):
+      $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
+    break;
+
+    case ($battery_voltage_vdc >= 50.0 && $battery_voltage_vdc < 51.0 ):
+      $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
+    break;
+
+    case ($battery_voltage_vdc >= 51.0 && $battery_voltage_vdc < 54.0 ):
+      $battery_icon_class = "fa fa-3x fa-battery-full fa-rotate-270";
+    break;
+  }
+
   // update the object with battery data read
   $studer_readings_obj->battery_charge_adc          = abs($battery_charge_adc);
   $studer_readings_obj->pbattery_kw                 = abs($pbattery_kw);
   $studer_readings_obj->battery_voltage_vdc         = $battery_voltage_vdc;
   $studer_readings_obj->battery_charge_arrow_class  = $battery_charge_arrow_class;
+  $studer_readings_obj->battery_icon_class          = $battery_icon_class;
 
   // update the object with SOlar data read
   $studer_readings_obj->psolar_kw                   = $psolar_kw;
