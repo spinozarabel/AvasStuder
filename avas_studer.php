@@ -640,12 +640,12 @@ function get_studer_readings()
 
       case ( $user_value->reference == 11001 ) :
         // we have to accumulate values form 2 cases:VT1 and VT2 so we have used accumulation below
-        $solar_pv_adc += round($user_value->value, 1);
+        $solar_pv_adc += $user_value->value;
 
       break;
 
       case ( $user_value->reference == 11002 ) :
-        $solar_pv_vdc = $user_value->value;
+        $solar_pv_vdc = round($user_value->value, 1);
 
       break;
 
@@ -662,8 +662,10 @@ function get_studer_readings()
     }
   }
 
+  $solar_pv_adc = round($solar_pv_adc, 1);
+
   // calculate the current into/out of battery
-  $battery_charge_adc  = $solar_pv_adc + $inverter_current_adc; // + is charge, - is discharge
+  $battery_charge_adc  = round($solar_pv_adc + $inverter_current_adc, 1); // + is charge, - is discharge
   $pbattery_kw         = round($battery_voltage_vdc * $battery_charge_adc * 0.001, 2); //$psolar_kw - $pout_inverter_ac_kw;
 
   $inverter_pout_arrow_class = "fa fa-long-arrow-right";
