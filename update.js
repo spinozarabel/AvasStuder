@@ -57,7 +57,7 @@ jQuery(document).ready(function($) {
                                               });
                         };
 
-  function refreshAll() {
+  $('#refresh-button').on('click', function() {
                           // set an intervel. The callback gets executed every interval
                           var setInterval_ID = setInterval(triggerAjax, 5000); // 10,000 is 10 seconds
                                             // console.log('my_ajax_obj: ', my_ajax_obj);
