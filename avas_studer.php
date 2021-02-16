@@ -316,7 +316,7 @@ function studer_readings_page_render()
                         <div class="row-fluid quickoverview-title">
         Quick overview - Power flows
         <div class="box-tools pull-right">
-    <button type="button" class="btn btn-box-tool refresh-button" data-placement="right"
+    <button type="button" class="btn btn-box-tool refresh-button" id="refresh-button" data-placement="right"
             data-toggle="tooltip"
             data-container="body"
             title="Refresh"

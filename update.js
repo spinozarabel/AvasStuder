@@ -8,6 +8,8 @@ jQuery(document).ready(function($) {
 
   function stopSetInterval() {
                                 clearInterval(setInterval_ID);
+                                // stop spinning of update wheel
+                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                               };
 
   function triggerAjax() {
