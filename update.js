@@ -67,5 +67,5 @@ jQuery(document).ready(function($) {
                           setTimeout(stopSetInterval, 60000); // this is 120 seconds or 2 minutes for 12 updates
 
                           triggerAjax();
-  };
+  });
 });
