@@ -4,10 +4,10 @@ jQuery(document).ready(function($) {
   var setInterval1_ID = setInterval(triggerAjax, 5000); // 10,000 is 10 seconds
                     // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  var timeout1_ID = setTimeout(stopSetInterval(setInterval1_ID), 60000); // this is 120 seconds or 2 minutes for 12 updates
+  var timeout1_ID = setTimeout(stopSetInterval, 60000); // this is 120 seconds or 2 minutes for 12 updates
 
-  function stopSetInterval(interval_ID) {
-                                clearInterval(interval_ID);
+  function stopSetInterval() {
+                                clearInterval(setInterval1_ID);
                                 // stop spinning of update wheel
                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                };
