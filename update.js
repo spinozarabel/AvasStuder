@@ -57,4 +57,13 @@ jQuery(document).ready(function($) {
                                               });
                         };
 
+  function refreshAll() {
+                          // set an intervel. The callback gets executed every interval
+                          var setInterval_ID = setInterval(triggerAjax, 5000); // 10,000 is 10 seconds
+                                            // console.log('my_ajax_obj: ', my_ajax_obj);
+
+                          setTimeout(stopSetInterval, 60000); // this is 120 seconds or 2 minutes for 12 updates
+
+                          triggerAjax();
+  };
 });
