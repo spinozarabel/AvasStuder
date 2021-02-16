@@ -838,7 +838,7 @@ function get_studer_readings()
       $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 51.0 && $battery_voltage_vdc < 54.0 ):
+    case ($battery_voltage_vdc >= 51.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-full fa-rotate-270";
     break;
   }
