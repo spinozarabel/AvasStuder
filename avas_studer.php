@@ -822,19 +822,15 @@ function get_studer_readings()
 // select battery icon based on charge level
   switch(true)
   {
-    case ($battery_voltage_vdc >= 47.8 && $battery_voltage_vdc < 48.7 ):
+    case ($battery_voltage_vdc < 48.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 48.7 && $battery_voltage_vdc < 49.2 ):
+    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 49 ):
       $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 49.2 && $battery_voltage_vdc < 50.0 ):
-      $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
-    break;
-
-    case ($battery_voltage_vdc >= 50.0 && $battery_voltage_vdc < 51.0 ):
+    case ($battery_voltage_vdc >= 49 && $battery_voltage_vdc < 50.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
     break;
 
