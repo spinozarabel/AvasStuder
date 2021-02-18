@@ -240,6 +240,17 @@ function studer_main_page_render()
   }
   print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
 
+  // 1128 Transfer relay Allowed?
+  $studer_api->paramId              = 1128;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $transfer_relay_allowed           = $studer_api->get_parameter_value();
+  if ($transfer_relay_allowed == 1.0)
+  {
+    $transfer_relay_allowed = "Yes";
+  }
+  print_row_table('1126', $transfer_relay_allowed, 'Transfer Relay Allowed?', 'Yes/No', 'Yes');
+
   // 1140 - 1138 Battery Float Voltage and Charge CUrrent
   $studer_api->paramId              = 1140;
   $studer_api->device               = 'XT1';
