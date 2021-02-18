@@ -262,10 +262,20 @@ function studer_main_page_render()
   $studer_api->paramPart            = 'Value';
   $Inverter_battery_charge_current  = round($studer_api->get_parameter_value(), 2);
 
-
-
   $param_desc                       = "Battery float voltage and Inverter Battery charging current";
   print_row_table('1140-1138', $battery_float_voltage . ' Vdc, ' . $Inverter_battery_charge_current . ' Adc', $param_desc, 'Vdc, Adc', '53 Vdc, 60 Adc');
+
+  // 1202 Auxillary contact Operating Mode
+  $studer_api->paramId              = 1202;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_operating_mode              = $studer_api->get_parameter_value();
+  if ($aux1_operating_mode <= 1.0E-10)
+  {
+    $aux1_operating_mode = "Reversed Automatic";
+  }
+  print_row_table('1126', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
+
 
 
   return;
