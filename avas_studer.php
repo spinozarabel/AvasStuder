@@ -198,6 +198,47 @@ function studer_main_page_render()
 
   print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, $description, '', 'Yes, Automatic');
 
+  // 1110 Restart voltage after batteries undervoltage
+  $studer_api->paramId              = 1110;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_uv_1108                  = round($studer_api->get_parameter_value(), 2);
+  $param_desc                       = "Restart voltage after batteries undervoltage";
+
+  print_row_table('1110', $studer_api->paramPart, $description, 'Vdc', '47.9');
+
+  // 1126 SMart-Boost Allowed?
+  $studer_api->paramId              = 1126;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Level';
+  $inverter_smartboost              = $studer_api->get_parameter_value();
+  if ($inverter_smartboost == 1.0)
+  {
+    $inverter_smartboost = "Yes";
+  }
+  print_row_table('1126', $inverter_smartboost, 'Inverter Smart-Boost Allowed?', 'Yes/No', 'Yes');
+
+  // 1124 Inverter Allowed?
+  $studer_api->paramId              = 1124;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Level';
+  $inverter_allowed                 = $studer_api->get_parameter_value();
+  if ($inverter_allowed == 1.0)
+  {
+    $inverter_allowed = "Yes";
+  }
+  print_row_table('1124', $inverter_allowed, 'Inverter Allowed?', 'Yes/No', 'Yes');
+
+  // 1125 Charger Allowed?
+  $studer_api->paramId              = 1125;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Level';
+  $charger_allowed                  = $studer_api->get_parameter_value();
+  if ($charger_allowed == 1.0)
+  {
+    $charger_allowed = "Yes";
+  }
+  print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
 
   return;
 }
