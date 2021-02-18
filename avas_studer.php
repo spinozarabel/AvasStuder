@@ -205,7 +205,7 @@ function studer_main_page_render()
   $battery_uv_1108                  = round($studer_api->get_parameter_value(), 2);
   $param_desc                       = "Restart voltage after batteries undervoltage";
 
-  print_row_table('1110', $studer_api->paramPart, $description, 'Vdc', '47.9');
+  print_row_table('1110', $battery_uv_1108, 'Restart voltage level (after batteries undervoltage disconnect)', 'Vdc', '47.9');
 
   // 1126 SMart-Boost Allowed?
   $studer_api->paramId              = 1126;
@@ -239,6 +239,23 @@ function studer_main_page_render()
     $charger_allowed = "Yes";
   }
   print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
+
+  // 1140 - 1138 Battery Float Voltage and Charge CUrrent
+  $studer_api->paramId              = 1140;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_float_voltage            = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1138;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $Inverter_battery_charge_current  = round($studer_api->get_parameter_value(), 2);
+
+
+
+  $param_desc                       = "Battery float voltage and Inverter Battery charging current";
+  print_row_table('1140-1138', $battery_float_voltage . ' Vdc, ' . $Inverter_battery_charge_current . ' Adc', $param_desc, 'Vdc, Adc', '53 Vdc, 60 Adc');
+
 
   return;
 }
