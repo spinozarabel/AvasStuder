@@ -336,6 +336,41 @@ function studer_main_page_render()
 
   print_row_table('1247-1254', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
 
+  // 1545 Remote Entry Active (Open or CLosed?)
+  $studer_api->paramId              = 1545;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $remote_entry_active              = $studer_api->get_parameter_value();
+  if ($remote_entry_active == 1.0)
+  {
+    $remote_entry_active = "Closed";
+  }
+  print_row_table('1545', $remote_entry_active, 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
+
+
+  // 1538 Prohibits Transfer Relay?
+  $studer_api->paramId              = 1538;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $prohibits_transfer_relay         = $studer_api->get_parameter_value();
+  if ($prohibits_transfer_relay == 1.0)
+  {
+    $prohibits_transfer_relay = "Yes";
+  }
+  print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
+
+  // 1578 Activated by AUX1 state?
+  $studer_api->paramId              = 1578;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $activated_by_aux1                = $studer_api->get_parameter_value();
+  if ($activated_by_aux1 == 1.0)
+  {
+    $activated_by_aux1 = "Yes";
+  }
+
+  print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
+
 
   return;
 }
