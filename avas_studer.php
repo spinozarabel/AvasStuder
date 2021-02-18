@@ -276,6 +276,65 @@ function studer_main_page_render()
   }
   print_row_table('1202', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
 
+  // 1246 AUX1 activate on Battery VOltage
+  $studer_api->paramId              = 1246;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_activate_battery_voltage    = $studer_api->get_parameter_value();
+  if ($aux1_operating_mode == 1.0)
+  {
+    $aux1_activate_battery_voltage = "Yes";
+  }
+
+  // 1288 AUX1 activate on Battery VOltage: Battery voltage dynamic compensation?
+  $studer_api->paramId              = 1288;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_activate_battery_voltagecomp    = $studer_api->get_parameter_value();
+  if ($aux1_activate_battery_voltagecomp == 1.0)
+  {
+    $aux1_activate_battery_voltagecomp = "Yes";
+  }
+  $val = $aux1_activate_battery_voltage . " " . $aux1_activate_battery_voltagecomp;
+  print_row_table('1246-1288', $val, 'Auxillary contact activated on battery voltage - Battery dynamic compensation?', 'Yes/No', 'Yes');
+
+  // 1247-1254 Aux1 activate battery level conditions and associated times
+  $studer_api->paramId              = 1247; //battery voltage 1
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_1           = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1248; //Time for BV 1
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_1_time      = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1250; //battery voltage 2
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_2           = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1251; //Time for BV 2
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_2_time      = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1253; //battery voltage 3
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_3           = round($studer_api->get_parameter_value(), 2);
+
+  $studer_api->paramId              = 1254; //Time for BV 3
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $aux1_battery_voltage_3_time      = round($studer_api->get_parameter_value(), 2);
+
+  $val = $aux1_battery_voltage_1 . '@' . $aux1_battery_voltage_1_time . ', ' . $aux1_battery_voltage_2 . '@' . $aux1_battery_voltage_2_time;
+  $val .= ', ' . $aux1_battery_voltage_3 . '@' . $aux1_battery_voltage_3_time;
+
+  $param_desc                       = "AUX1 activate on battery voltages and times";
+
+  print_row_table('1247-1254', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
 
 
   return;
