@@ -177,7 +177,7 @@ function studer_main_page_render()
 
   $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
 
-  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, '46.5 Vdc @ 1min');
+  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
 
 
 
