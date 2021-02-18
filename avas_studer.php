@@ -187,7 +187,7 @@ function studer_main_page_render()
 
   $studer_api->paramId              = 1532;
   $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Value';
+  $studer_api->paramPart            = 'Level';
   $battery_uv_compensation_type     = $studer_api->get_parameter_value();
 
   $description                      = "Battery undervoltage Compensation enabled? if so type";
