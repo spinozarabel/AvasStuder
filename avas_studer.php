@@ -166,21 +166,20 @@ function studer_main_page_render()
   $studer_api->paramId              = 1108;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
-  $battery_uv_1108                  = $studer_api->get_parameter_value();
+  $battery_uv_1108                  = round($studer_api->get_parameter_value(), 2);
   $param_desc                       = "Battery Under Voltage Without Load (For LVD)";
 
   // 1190 Battery undervoltage duration before turn off
   $studer_api->paramId              = 1190;
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
-  $battery_uv_duration_1190                      = $studer_api->get_parameter_value();
-  $battery_uv_duration_1190         = "Battery undervoltage duration before turn off";
+  $battery_uv_duration_1190         = $studer_api->get_parameter_value();
 
   $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
 
-  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $param_desc, $description, '46.5 Vdc @ 1min');
+  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, '46.5 Vdc @ 1min');
 
-  
+
 
   return;
 }
