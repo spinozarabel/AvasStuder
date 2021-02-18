@@ -826,15 +826,15 @@ function get_studer_readings()
       $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 49 ):
+    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 48.4 ):
       $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 49 && $battery_voltage_vdc < 50.0 ):
+    case ($battery_voltage_vdc >= 48.5 && $battery_voltage_vdc < 50.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 51.0 ):
+    case ($battery_voltage_vdc >= 50.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-full fa-rotate-270";
     break;
   }
