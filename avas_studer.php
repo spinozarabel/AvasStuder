@@ -210,7 +210,7 @@ function studer_main_page_render()
   // 1126 SMart-Boost Allowed?
   $studer_api->paramId              = 1126;
   $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Level';
+  $studer_api->paramPart            = 'Value';
   $inverter_smartboost              = $studer_api->get_parameter_value();
   if ($inverter_smartboost == 1.0)
   {
@@ -221,7 +221,7 @@ function studer_main_page_render()
   // 1124 Inverter Allowed?
   $studer_api->paramId              = 1124;
   $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Level';
+  $studer_api->paramPart            = 'Value';
   $inverter_allowed                 = $studer_api->get_parameter_value();
   if ($inverter_allowed == 1.0)
   {
@@ -232,7 +232,7 @@ function studer_main_page_render()
   // 1125 Charger Allowed?
   $studer_api->paramId              = 1125;
   $studer_api->device               = 'XT1';
-  $studer_api->paramPart            = 'Level';
+  $studer_api->paramPart            = 'Value';
   $charger_allowed                  = $studer_api->get_parameter_value();
   if ($charger_allowed == 1.0)
   {
