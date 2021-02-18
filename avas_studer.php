@@ -177,8 +177,22 @@ function studer_main_page_render()
 
   $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
 
-  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
+  print_row_table('1108 @ 1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
 
+  // 1191 1532 battery under voltage dynamic compensation and if so type
+  $studer_api->paramId              = 1191;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_uv_compensation          = $studer_api->get_parameter_value();
+
+  $studer_api->paramId              = 1532;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_uv_compensation_type     = $studer_api->get_parameter_value();
+
+  $description                      = "Battery undervoltage Compensation enabled? if so type";
+
+  print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, '', 'Yes, Automatic');
 
 
   return;
