@@ -136,7 +136,52 @@ function add_studer_menu()
 
 function studer_main_page_render()
 {
-  // fill this in later
+  $studer_api = new studer_api();
+
+  // top line displayed on page
+  echo nl2br('Studer VarioTrac Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+
+  ?>
+  <style>
+    table {
+    border-collapse: collapse;
+    }
+    th, td {
+    border: 1px solid orange;
+    padding: 10px;
+    text-align: left;
+    }
+</style>
+  <table style="width:100%">
+    <tr>
+      <th>Parameter ID</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Units</th>
+      <th>Installer val</th>
+    </tr>
+  <?php
+
+  // 1108 Battery Under Voltage Without Load (For LVD)
+  $studer_api->paramId              = 1108;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_uv_1108                  = $studer_api->get_parameter_value();
+  $param_desc                       = "Battery Under Voltage Without Load (For LVD)";
+
+  // 1190 Battery undervoltage duration before turn off
+  $studer_api->paramId              = 1190;
+  $studer_api->device               = 'XT1';
+  $studer_api->paramPart            = 'Value';
+  $battery_uv_duration_1190                      = $studer_api->get_parameter_value();
+  $battery_uv_duration_1190         = "Battery undervoltage duration before turn off";
+
+  $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
+
+  print_row_table('1108@1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $param_desc, $description, '46.5 Vdc @ 1min');
+
+  
+
   return;
 }
 
@@ -550,7 +595,7 @@ function studer_variotrac_page_render()
   print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
 }
 
-function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default)
+function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default = null)
 {
   ?>
   <tr>
@@ -826,11 +871,11 @@ function get_studer_readings()
       $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 48.4 ):
+    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 49.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 48.5 && $battery_voltage_vdc < 50.0 ):
+    case ($battery_voltage_vdc >= 49.0 && $battery_voltage_vdc < 51.0 ):
       $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
     break;
 
