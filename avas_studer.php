@@ -184,6 +184,7 @@ function studer_main_page_render()
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_uv_compensation          = $studer_api->get_parameter_value();
+  ($battery_uv_compensation == 1 ? 'yes' : 'No');
 
   $studer_api->paramId              = 1532;
   $studer_api->device               = 'XT1';
