@@ -274,7 +274,7 @@ function studer_main_page_render()
   {
     $aux1_operating_mode = "Reversed Automatic";
   }
-  print_row_table('1126', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
+  print_row_table('1202', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
 
 
 
