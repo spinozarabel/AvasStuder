@@ -193,7 +193,7 @@ function studer_main_page_render()
 
   $description                      = "Battery undervoltage Compensation enabled? if so type";
 
-  print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, '', 'Yes, Automatic');
+  print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, $description, '', 'Yes, Automatic');
 
 
   return;
