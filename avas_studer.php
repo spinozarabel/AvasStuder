@@ -163,27 +163,33 @@ function studer_main_page_render()
   <?php
 
   // 1108 Battery Under Voltage Without Load (For LVD)
-  $studer_api->paramId              = 1108;
+  $studer_api->paramId              = '1108';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_uv_1108                  = round($studer_api->get_parameter_value(), 2);
   $param_desc                       = "Battery Under Voltage Without Load (For LVD)";
+  // update the user meta for this parameter
+  update_param_meta($studer_api->paramId, $battery_uv_1108);
 
   // 1190 Battery undervoltage duration before turn off
-  $studer_api->paramId              = 1190;
+  $studer_api->paramId              = '1190';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_uv_duration_1190         = $studer_api->get_parameter_value();
-
+  // update the user meta for this parameter
+  update_param_meta($studer_api->paramId, $battery_uv_duration_1190);
   $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
 
   print_row_table('1108 @ 1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
 
   // 1191 1532 battery under voltage dynamic compensation and if so type
-  $studer_api->paramId              = 1191;
+  $studer_api->paramId              = '1191';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_uv_compensation          = $studer_api->get_parameter_value();
+  // update the user meta for this parameter
+  update_param_meta($studer_api->paramId, $battery_uv_compensation);
+  
   if ($battery_uv_compensation == 1.0)
   {
     $battery_uv_compensation = "Yes";
@@ -1100,4 +1106,15 @@ function get_studer_readings()
   $studer_readings_obj->fontawesome_cdn             = $studer_api->fontawesome_cdn;
 
   return $studer_readings_obj;
+}
+
+function update_param_meta($paramId, $value)
+{
+  // get logged in user details
+  $current_user 	= wp_get_current_user();
+  $user_id 		    = $current_user->ID;
+
+  update_user_meta( $user_id, $paramId, $value );
+
+  return;
 }
