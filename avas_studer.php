@@ -187,37 +187,40 @@ function studer_main_page_render()
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_uv_compensation          = $studer_api->get_parameter_value();
-  // update the user meta for this parameter
+  // update the user meta for this parameter 1191
   update_param_meta($studer_api->paramId, $battery_uv_compensation);
-  
+  // display neatening
   if ($battery_uv_compensation == 1.0)
   {
     $battery_uv_compensation = "Yes";
   }
 
-  $studer_api->paramId              = 1532;
+  $studer_api->paramId              = '1532';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Level';
   $battery_uv_compensation_type     = $studer_api->get_parameter_value();
-
+  // update the user meta for this parameter 1532
+  update_param_meta($studer_api->paramId, $battery_uv_compensation_type);
   $description                      = "Battery undervoltage Compensation enabled? if so type";
-
   print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, $description, '', 'Yes, Automatic');
 
   // 1110 Restart voltage after batteries undervoltage
-  $studer_api->paramId              = 1110;
+  $studer_api->paramId              = '1110';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
-  $battery_uv_1108                  = round($studer_api->get_parameter_value(), 2);
+  $battery_uv_1110                  = round($studer_api->get_parameter_value(), 2);
   $param_desc                       = "Restart voltage after batteries undervoltage";
-
-  print_row_table('1110', $battery_uv_1108, 'Restart voltage level (after batteries undervoltage disconnect)', 'Vdc', '47.9');
+  // update the user meta for this parameter 1110
+  update_param_meta($studer_api->paramId, $battery_uv_1110);
+  print_row_table('1110', $battery_uv_1110, 'Restart voltage level (after batteries undervoltage disconnect)', 'Vdc', '47.9');
 
   // 1126 SMart-Boost Allowed?
-  $studer_api->paramId              = 1126;
+  $studer_api->paramId              = '1126';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $inverter_smartboost              = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1126
+  update_param_meta($studer_api->paramId, $inverter_smartboost);
   if ($inverter_smartboost == 1.0)
   {
     $inverter_smartboost = "Yes";
@@ -225,10 +228,12 @@ function studer_main_page_render()
   print_row_table('1126', $inverter_smartboost, 'Inverter Smart-Boost Allowed?', 'Yes/No', 'Yes');
 
   // 1124 Inverter Allowed?
-  $studer_api->paramId              = 1124;
+  $studer_api->paramId              = '1124';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $inverter_allowed                 = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1124
+  update_param_meta($studer_api->paramId, $inverter_allowed);
   if ($inverter_allowed == 1.0)
   {
     $inverter_allowed = "Yes";
@@ -236,10 +241,12 @@ function studer_main_page_render()
   print_row_table('1124', $inverter_allowed, 'Inverter Allowed?', 'Yes/No', 'Yes');
 
   // 1125 Charger Allowed?
-  $studer_api->paramId              = 1125;
+  $studer_api->paramId              = '1125';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $charger_allowed                  = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1125
+  update_param_meta($studer_api->paramId, $charger_allowed);
   if ($charger_allowed == 1.0)
   {
     $charger_allowed = "Yes";
@@ -247,10 +254,12 @@ function studer_main_page_render()
   print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
 
   // 1128 Transfer relay Allowed?
-  $studer_api->paramId              = 1128;
+  $studer_api->paramId              = '1128';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $transfer_relay_allowed           = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1128
+  update_param_meta($studer_api->paramId, $transfer_relay_allowed);
   if ($transfer_relay_allowed == 1.0)
   {
     $transfer_relay_allowed = "Yes";
@@ -258,24 +267,30 @@ function studer_main_page_render()
   print_row_table('1126', $transfer_relay_allowed, 'Transfer Relay Allowed?', 'Yes/No', 'Yes');
 
   // 1140 - 1138 Battery Float Voltage and Charge CUrrent
-  $studer_api->paramId              = 1140;
+  $studer_api->paramId              = '1140';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $battery_float_voltage            = round($studer_api->get_parameter_value(), 2);
+  // update the user meta for this parameter 1140
+  update_param_meta($studer_api->paramId, $battery_float_voltage);
 
-  $studer_api->paramId              = 1138;
+  $studer_api->paramId              = '1138';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $Inverter_battery_charge_current  = round($studer_api->get_parameter_value(), 2);
+  // update the user meta for this parameter 1138
+  update_param_meta($studer_api->paramId, $Inverter_battery_charge_current);
 
   $param_desc                       = "Battery float voltage and Inverter Battery charging current";
   print_row_table('1140-1138', $battery_float_voltage . ' Vdc, ' . $Inverter_battery_charge_current . ' Adc', $param_desc, 'Vdc, Adc', '53 Vdc, 60 Adc');
 
   // 1202 Auxillary contact Operating Mode
-  $studer_api->paramId              = 1202;
+  $studer_api->paramId              = '1202';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_operating_mode              = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1202
+  update_param_meta($studer_api->paramId, $aux1_operating_mode);
   if ($aux1_operating_mode <= 1.0E-10)
   {
     $aux1_operating_mode = "Reversed Automatic";
@@ -283,20 +298,24 @@ function studer_main_page_render()
   print_row_table('1202', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
 
   // 1246 AUX1 activate on Battery VOltage
-  $studer_api->paramId              = 1246;
+  $studer_api->paramId              = '1246';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_activate_battery_voltage    = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1246
+  update_param_meta($studer_api->paramId, $aux1_activate_battery_voltage);
   if ($aux1_operating_mode == 1.0)
   {
     $aux1_activate_battery_voltage = "Yes";
   }
 
   // 1288 AUX1 activate on Battery VOltage: Battery voltage dynamic compensation?
-  $studer_api->paramId              = 1288;
+  $studer_api->paramId              = '1288';
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_activate_battery_voltagecomp    = $studer_api->get_parameter_value();
+  // update the user meta for this parameter 1288
+  update_param_meta($studer_api->paramId, $aux1_activate_battery_voltagecomp);
   if ($aux1_activate_battery_voltagecomp == 1.0)
   {
     $aux1_activate_battery_voltagecomp = "Yes";
@@ -305,25 +324,29 @@ function studer_main_page_render()
   print_row_table('1246-1288', $val, 'Auxillary contact activated on battery voltage - Battery dynamic compensation?', 'Yes/No', 'Yes');
 
   // 1247-1254 Aux1 activate battery level conditions and associated times
-  $studer_api->paramId              = 1247; //battery voltage 1
+  $studer_api->paramId              = '1247'; //battery voltage 1
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_battery_voltage_1           = round($studer_api->get_parameter_value(), 2);
+  update_param_meta($studer_api->paramId, $aux1_battery_voltage_1);
 
-  $studer_api->paramId              = 1248; //Time for BV 1
+  $studer_api->paramId              = '1248'; //Time for BV 1
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_battery_voltage_1_time      = round($studer_api->get_parameter_value(), 2);
+  update_param_meta($studer_api->paramId, $aux1_battery_voltage_1_time);
 
-  $studer_api->paramId              = 1250; //battery voltage 2
+  $studer_api->paramId              = '1250'; //battery voltage 2
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_battery_voltage_2           = round($studer_api->get_parameter_value(), 2);
+  update_param_meta($studer_api->paramId, $aux1_battery_voltage_2);
 
-  $studer_api->paramId              = 1251; //Time for BV 2
+  $studer_api->paramId              = '1251'; //Time for BV 2
   $studer_api->device               = 'XT1';
   $studer_api->paramPart            = 'Value';
   $aux1_battery_voltage_2_time      = round($studer_api->get_parameter_value(), 2);
+  update_param_meta($studer_api->paramId, $aux1_battery_voltage_2_time);
 
   $studer_api->paramId              = 1253; //battery voltage 3
   $studer_api->device               = 'XT1';
@@ -825,8 +848,12 @@ function get_studer_readings()
                         "infoAssembly"  => "Master"
                      ),
                 array(
-                        "userRef"       =>  3137,   // Grid AC input Active power
-                        "infoAssembly"  => "Master"
+                         "userRef"       =>  3137,   // Grid AC input Active power
+                         "infoAssembly"  => "Master"
+                     ),
+                array(
+                         "userRef"       =>  3020,   // State of Transfer Relay
+                         "infoAssembly"  => "Master"
                       ),
                 array(
                         "userRef"       =>  3000,   // Battery Voltage
@@ -882,6 +909,10 @@ function get_studer_readings()
   {
     switch (true)
   	{
+      case ( $user_value->reference == 3020 ) :
+        $transfer_relay_state = $user_value->value;
+      break;
+
       case ( $user_value->reference == 3011 ) :
         $grid_input_vac = round($user_value->value, 0);
       break;
@@ -949,7 +980,7 @@ function get_studer_readings()
     $battery_charge_arrow_class = "fa fa-long-arrow-down";
 
     // also good time to compensate for IR drop
-    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * Ra - abs(battery_charge_adc) * Rb, 2);
+    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs(battery_charge_adc) * $Rb, 2);
   }
   else
   {
@@ -957,7 +988,7 @@ function get_studer_readings()
     $battery_charge_arrow_class = "fa fa-long-arrow-up";
 
     // also good time to compensate for IR drop
-    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * Ra + abs(battery_charge_adc) * Rb, 2);
+    $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs(battery_charge_adc) * $Rb, 2);
   }
 
   switch(true)
@@ -1030,15 +1061,15 @@ function get_studer_readings()
   }
 
   // conditional for Grid input arrow
-  if ($grid_pin_ac_kw > 0.1)
+  if ($transfer_relay_state)
   {
-    // power is greater than 0.2kW so indicate down arrow
-    $grid_input_arrow_class = "fa fa-long-arrow-right";
+    // Transfer Relay is closed so grid input is possible
+    $grid_input_arrow_class = "fa fa-times-circle";
   }
   else
   {
-    // power is too small indicate a blank line vertically down from SOlar panel to Inverter in diagram
-    $grid_input_arrow_class = "fa fa-minus";
+    // Transfer relay is open and grid input is not possible
+    $grid_input_arrow_class = "fa fa-arrow-circle-right";
   }
 
   switch(true)
@@ -1098,9 +1129,11 @@ function get_studer_readings()
   $studer_readings_obj->inverter_pout_arrow_class   = $inverter_pout_arrow_class;
 
   // update the Grid input values
+  $studer_readings_obj->transfer_relay_state        = $transfer_relay_state;
   $studer_readings_obj->grid_pin_ac_kw              = $grid_pin_ac_kw;
   $studer_readings_obj->grid_input_vac              = $grid_input_vac;
   $studer_readings_obj->grid_input_arrow_class      = $grid_input_arrow_class;
+
 
   // update the object with the fontawesome cdn from Studer API object
   $studer_readings_obj->fontawesome_cdn             = $studer_api->fontawesome_cdn;
