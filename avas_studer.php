@@ -1064,12 +1064,12 @@ function get_studer_readings()
   if ($transfer_relay_state)
   {
     // Transfer Relay is closed so grid input is possible
-    $grid_input_arrow_class = "fa fa-times-circle";
+    $grid_input_arrow_class = "fa fa-arrow-circle-right";
   }
   else
   {
     // Transfer relay is open and grid input is not possible
-    $grid_input_arrow_class = "fa fa-arrow-circle-right";
+    $grid_input_arrow_class = "fa fa-times-circle";
   }
 
   switch(true)
