@@ -400,6 +400,21 @@ function studer_main_page_render()
 
   print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
 
+  // check to see if all conditions for off-grid mode satisfied
+  if (
+      ($activated_by_aux1)              &&
+      ($prohibits_transfer_relay)       &&
+      ($remote_entry_active == 0)       &&
+      ($aux1_activate_battery_voltage)  &&
+      ($aux1_operating_mode <= 1.0E-10)
+     )
+  {
+    $conditions_offgridmode        = true;
+  }
+  else {
+    $conditions_offgridmode        = false;
+  }
+  print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'True/False', 'True');
 
   return;
 }
@@ -856,6 +871,10 @@ function get_studer_readings()
                          "infoAssembly"  => "Master"
                       ),
                 array(
+                         "userRef"       =>  3031,   // State of AUX1 relay
+                         "infoAssembly"  => "Master"
+                      ),
+                array(
                         "userRef"       =>  3000,   // Battery Voltage
                         "infoAssembly"  => "Master"
                       ),
@@ -909,6 +928,10 @@ function get_studer_readings()
   {
     switch (true)
   	{
+      case ( $user_value->reference == 3031 ) :
+        $aux1_relay_state = $user_value->value;
+      break;
+
       case ( $user_value->reference == 3020 ) :
         $transfer_relay_state = $user_value->value;
       break;
@@ -1133,6 +1156,7 @@ function get_studer_readings()
   $studer_readings_obj->grid_pin_ac_kw              = $grid_pin_ac_kw;
   $studer_readings_obj->grid_input_vac              = $grid_input_vac;
   $studer_readings_obj->grid_input_arrow_class      = $grid_input_arrow_class;
+  $studer_readings_obj->aux1_relay_state            = $aux1_relay_state;
 
 
   // update the object with the fontawesome cdn from Studer API object
