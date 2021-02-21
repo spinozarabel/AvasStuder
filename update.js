@@ -2,30 +2,28 @@ jQuery(document).ready(function($) {
 
   // set an intervel. The callback gets executed every interval
   var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
-                    // console.log('my_ajax_obj: ', my_ajax_obj);
+      // console.log('my_ajax_obj: ', my_ajax_obj);
 
   var timeout1_ID = setTimeout(stopSetInterval1, 120000); // this is 120 seconds or 2 minutes for 12 updates
 
   function stopSetInterval1() {
+                                // clear the interval trigger explicitly
                                 clearInterval(setInterval1_ID);
                                 // stop spinning of update wheel
                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                };
 
   $('#refresh-button').on('click', function() {
-                                               // set an intervel. The callback gets executed every interval
-                                               // var setInterval2_ID = setInterval(triggerAjax, 10000); // 10,000 is 10 seconds
-                                                                 // console.log('my_ajax_obj: ', my_ajax_obj);
-
                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
                                                // set up a counter
                                                var update_count = 0;
-                                               while (update_count <=9)    
+                                               // loop and update and increment till count reached
+                                               while (update_count <=9)
                                                {
                                                  triggerAjax();
                                                  // increment counter
-                                                 update_count += 1;
+                                                 update_count ++;
                                                }
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
