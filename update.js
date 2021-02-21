@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                };
 
-  $('#refresh-button').on('click', function() {
+  $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
                                                // set up a counter
