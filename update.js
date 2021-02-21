@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
   var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
       // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  var timeout1_ID = setTimeout(stopSetInterval1, 120000); // this is 120 seconds or 2 minutes for 12 updates
+  var timeout1_ID = setTimeout(stopSetInterval1, 30000); // this is 120 seconds or 2 minutes for 12 updates
 
   function stopSetInterval1() {
                                 // clear the interval trigger explicitly
@@ -17,14 +17,14 @@ jQuery(document).ready(function($) {
                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
                                                // set up a counter
-                                               var update_count = 0;
+                                               //var update_count = 0;
                                                // loop and update and increment till count reached
-                                               while (update_count <=9)
-                                               {
+                                               //while (update_count <=9)
+                                               //{
                                                  triggerAjax();
                                                  // increment counter
-                                                 update_count ++;
-                                               }
+                                                 //update_count ++;
+                                               //}
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                              });
