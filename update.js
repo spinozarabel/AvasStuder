@@ -18,7 +18,7 @@ jQuery(document).ready(function($) {
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
                                                // set up a counter
                                                var update_count = 0;
-                                               loop and update and increment till count reached
+                                               // loop and update and increment till count reached
                                                while (update_count <=9)
                                                {
                                                  triggerAjax();
