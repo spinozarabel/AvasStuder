@@ -1,10 +1,10 @@
 jQuery(document).ready(function($) {
 
   // set an intervel. The callback gets executed every interval
-  var setInterval1_ID = setInterval(triggerAjax, 5000); // 10,000 is 10 seconds
+  var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
                     // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  var timeout1_ID = setTimeout(stopSetInterval1, 60000); // this is 120 seconds or 2 minutes for 12 updates
+  var timeout1_ID = setTimeout(stopSetInterval1, 120000); // this is 120 seconds or 2 minutes for 12 updates
 
   function stopSetInterval1() {
                                 clearInterval(setInterval1_ID);
@@ -12,17 +12,18 @@ jQuery(document).ready(function($) {
                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                };
 
- $('#refresh-button').on('click', function() {
+  $('#refresh-button').on('click', function() {
                                                // set an intervel. The callback gets executed every interval
-                                               var setInterval2_ID = setInterval(triggerAjax, 5000); // 10,000 is 10 seconds
+                                               var setInterval2_ID = setInterval(triggerAjax, 10000); // 10,000 is 10 seconds
                                                                  // console.log('my_ajax_obj: ', my_ajax_obj);
-
+                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
-
-                                               var timeout2_ID = setTimeout(stopSetInterval2, 60000); // this is 120 seconds or 2 minutes for 12 updates
+                                              // set timeout for duration of updates
+                                               var timeout2_ID = setTimeout(stopSetInterval2, 120000); // this is 120 seconds or 2 minutes for 12 updates
 
                                              });
    function stopSetInterval2() {
+                                 // clear the set that was set using the explicit ID
                                  clearInterval(setInterval2_ID);
                                  // stop spinning of update wheel
                                  $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
