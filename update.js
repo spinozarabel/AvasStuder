@@ -14,12 +14,23 @@ jQuery(document).ready(function($) {
 
   $('#refresh-button').on('click', function() {
                                                // set an intervel. The callback gets executed every interval
-                                               var setInterval2_ID = setInterval(triggerAjax, 10000); // 10,000 is 10 seconds
+                                               // var setInterval2_ID = setInterval(triggerAjax, 10000); // 10,000 is 10 seconds
                                                                  // console.log('my_ajax_obj: ', my_ajax_obj);
-                                                // set spinner in motion to indicate start of updates
+
+                                               // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
+                                               // set up a counter
+                                               var update_count = 0;
+                                               while (update_count <=9)    
+                                               {
+                                                 triggerAjax();
+                                                 // increment counter
+                                                 update_count += 1;
+                                               }
+                                               // finished updates so set spinner to stationary
+                                               $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                               // set timeout for duration of updates
-                                               var timeout2_ID = setTimeout(stopSetInterval2, 120000); // this is 120 seconds or 2 minutes for 12 updates
+                                              // var timeout2_ID = setTimeout(stopSetInterval2, 120000); // this is 120 seconds or 2 minutes for 12 updates
 
                                              });
    function stopSetInterval2() {
