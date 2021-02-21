@@ -599,7 +599,7 @@ function studer_readings_page_render()
             data-toggle="tooltip"
             data-container="body"
             title="Refresh"
-            onclick="refreshAll();"
+
             >
         <i class="fa fa-1x fa-spinner fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
     </button>
@@ -607,7 +607,7 @@ function studer_readings_page_render()
             data-toggle="tooltip"
             data-container="body"
             title="Connected"
-            onclick="refreshAll();"
+
             >
         <span class="fa studer-action-toolbox fa-circle text-green"></span>
     </button>
