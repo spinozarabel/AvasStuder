@@ -16,15 +16,15 @@ jQuery(document).ready(function($) {
   $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
-                                               // set up a counter
-                                               //var update_count = 0;
-                                               // loop and update and increment till count reached
-                                               //while (update_count <=9)
-                                               //{
+                                               set up a counter
+                                               var update_count = 0;
+                                               loop and update and increment till count reached
+                                               while (update_count <=9)
+                                               {
                                                  triggerAjax();
                                                  // increment counter
-                                                 //update_count ++;
-                                               //}
+                                                 update_count ++;
+                                               }
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                              });
