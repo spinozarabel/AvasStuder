@@ -27,16 +27,8 @@ jQuery(document).ready(function($) {
                                                }
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
-                                              // set timeout for duration of updates
-                                              // var timeout2_ID = setTimeout(stopSetInterval2, 120000); // this is 120 seconds or 2 minutes for 12 updates
-
                                              });
-   function stopSetInterval2() {
-                                 // clear the set that was set using the explicit ID
-                                 clearInterval(setInterval2_ID);
-                                 // stop spinning of update wheel
-                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
-                                };
+
 
   function triggerAjax() {
 
