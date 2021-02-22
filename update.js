@@ -24,6 +24,8 @@ jQuery(document).ready(function($) {
                                                  triggerAjax();
                                                  // increment counter
                                                  update_count ++;
+                                                 // print to console for debug
+                                                 console.log('update_count', update_count);
                                                }
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
