@@ -434,6 +434,7 @@ function studer_main_page_render()
     $conditions_offgridmode        = "No";
   }
   $output .= print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'Yes/No', 'Yes');
+  $output .= '</table>';
 
   return $output;
 }
