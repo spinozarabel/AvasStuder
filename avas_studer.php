@@ -53,11 +53,11 @@ function avas_display_studer_settings()
 {
   if (!is_user_logged_in())
 	{
-		$output =  'You need to be a registered user to access this page. Please register or login';
-		return $output;
+		return  'You need to be a registered user to access this page. Please register or login';
+
 	}
   //
-	$output = '';
+	return studer_main_page_render();
 
 }
 
@@ -199,7 +199,7 @@ function studer_main_page_render()
   update_param_meta($studer_api->paramId, $battery_uv_duration_1190);
   $description                      = "Battery undervoltage @ duration, before turn off: Related to LVD";
 
-  print_row_table('1108 @ 1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
+  $output .= print_row_table('1108 @ 1190', $battery_uv_1108 . ' Vdc @' . $battery_uv_duration_1190 . ' mins', $description, 'Vdc @ 1min', '46.5 @ 1');
 
   // 1191 1532 battery under voltage dynamic compensation and if so type
   $studer_api->paramId              = '1191';
@@ -221,7 +221,7 @@ function studer_main_page_render()
   // update the user meta for this parameter 1532
   update_param_meta($studer_api->paramId, $battery_uv_compensation_type);
   $description                      = "Battery undervoltage Compensation enabled? if so type";
-  print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, $description, '', 'Yes, Automatic');
+  $output .= print_row_table('1191 @ 1532', $battery_uv_compensation . ', ' . $battery_uv_compensation_type, $description, '', 'Yes, Automatic');
 
   // 1110 Restart voltage after batteries undervoltage
   $studer_api->paramId              = '1110';
@@ -231,7 +231,7 @@ function studer_main_page_render()
   $param_desc                       = "Restart voltage after batteries undervoltage";
   // update the user meta for this parameter 1110
   update_param_meta($studer_api->paramId, $battery_uv_1110);
-  print_row_table('1110', $battery_uv_1110, 'Restart voltage level (after batteries undervoltage disconnect)', 'Vdc', '47.9');
+  $output .= print_row_table('1110', $battery_uv_1110, 'Restart voltage level (after batteries undervoltage disconnect)', 'Vdc', '47.9');
 
   // 1126 SMart-Boost Allowed?
   $studer_api->paramId              = '1126';
@@ -244,7 +244,7 @@ function studer_main_page_render()
   {
     $inverter_smartboost = "Yes";
   }
-  print_row_table('1126', $inverter_smartboost, 'Inverter Smart-Boost Allowed?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1126', $inverter_smartboost, 'Inverter Smart-Boost Allowed?', 'Yes/No', 'Yes');
 
   // 1124 Inverter Allowed?
   $studer_api->paramId              = '1124';
@@ -257,7 +257,7 @@ function studer_main_page_render()
   {
     $inverter_allowed = "Yes";
   }
-  print_row_table('1124', $inverter_allowed, 'Inverter Allowed?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1124', $inverter_allowed, 'Inverter Allowed?', 'Yes/No', 'Yes');
 
   // 1125 Charger Allowed?
   $studer_api->paramId              = '1125';
@@ -270,7 +270,7 @@ function studer_main_page_render()
   {
     $charger_allowed = "Yes";
   }
-  print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1125', $charger_allowed, 'Charger Allowed?', 'Yes/No', 'Yes');
 
   // 1128 Transfer relay Allowed?
   $studer_api->paramId              = '1128';
@@ -283,7 +283,7 @@ function studer_main_page_render()
   {
     $transfer_relay_allowed = "Yes";
   }
-  print_row_table('1126', $transfer_relay_allowed, 'Transfer Relay Allowed?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1126', $transfer_relay_allowed, 'Transfer Relay Allowed?', 'Yes/No', 'Yes');
 
   // 1140 - 1138 Battery Float Voltage and Charge CUrrent
   $studer_api->paramId              = '1140';
@@ -301,7 +301,7 @@ function studer_main_page_render()
   update_param_meta($studer_api->paramId, $Inverter_battery_charge_current);
 
   $param_desc                       = "Battery float voltage and Inverter Battery charging current";
-  print_row_table('1140-1138', $battery_float_voltage . ' Vdc, ' . $Inverter_battery_charge_current . ' Adc', $param_desc, 'Vdc, Adc', '53 Vdc, 60 Adc');
+  $output .= print_row_table('1140-1138', $battery_float_voltage . ' Vdc, ' . $Inverter_battery_charge_current . ' Adc', $param_desc, 'Vdc, Adc', '53 Vdc, 60 Adc');
 
   // 1202 Auxillary contact Operating Mode
   $studer_api->paramId              = '1202';
@@ -314,7 +314,7 @@ function studer_main_page_render()
   {
     $aux1_operating_mode = "Reversed Automatic";
   }
-  print_row_table('1202', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
+  $output .= print_row_table('1202', $aux1_operating_mode, 'Auxillary contact Operating Mode', 'Automatic/Reverse', 'Reverse Automatic');
 
   // 1246 AUX1 activate on Battery VOltage
   $studer_api->paramId              = '1246';
@@ -340,7 +340,7 @@ function studer_main_page_render()
     $aux1_activate_battery_voltagecomp = "Yes";
   }
   $val = $aux1_activate_battery_voltage . " " . $aux1_activate_battery_voltagecomp;
-  print_row_table('1246-1288', $val, 'Auxillary contact activated on battery voltage - Battery dynamic compensation?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1246-1288', $val, 'Auxillary contact activated on battery voltage - Battery dynamic compensation?', 'Yes/No', 'Yes');
 
   // 1247-1254 Aux1 activate battery level conditions and associated times
   $studer_api->paramId              = '1247'; //battery voltage 1
@@ -382,7 +382,7 @@ function studer_main_page_render()
 
   $param_desc                       = "AUX1 activate on battery voltages and times";
 
-  print_row_table('1247-1254', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
+  $output .= print_row_table('1247-1254', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
 
   // 1545 Remote Entry Active (Open or CLosed?)
   $studer_api->paramId              = 1545;
@@ -393,7 +393,7 @@ function studer_main_page_render()
   {
     $remote_entry_active = "Closed";
   }
-  print_row_table('1545', $remote_entry_active, 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
+  $output .= print_row_table('1545', $remote_entry_active, 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
 
 
   // 1538 Prohibits Transfer Relay?
@@ -405,7 +405,7 @@ function studer_main_page_render()
   {
     $prohibits_transfer_relay = "Yes";
   }
-  print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
 
   // 1578 Activated by AUX1 state?
   $studer_api->paramId              = 1578;
@@ -417,7 +417,7 @@ function studer_main_page_render()
     $activated_by_aux1 = "Yes";
   }
 
-  print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
+  $output .= print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
 
   // check to see if all conditions for off-grid mode satisfied
   if (
@@ -433,9 +433,9 @@ function studer_main_page_render()
   else {
     $conditions_offgridmode        = "No";
   }
-  print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'Yes/No', 'Yes');
+  $output .= print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'Yes/No', 'Yes');
 
-  return;
+  return $output;
 }
 
 function studer_readings_page_render()
@@ -851,7 +851,7 @@ function print_row_table($paramId, $param_value, $param_desc, $param_units, $fac
 {
   $returnstring =
   '<tr>' .
-   '<td>' . $paramId .          '</td>' . 
+   '<td>' . $paramId .          '</td>' .
    '<td>' . $param_desc .       '</td>' .
    '<td>' . $param_value .      '</td>' .
    '<td>' . $param_units .      '</td>' .
