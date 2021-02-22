@@ -159,7 +159,7 @@ function studer_main_page_render()
   $studer_api = new studer_api();
 
   // top line displayed on page
-  $output .= 'Studer VarioTrac Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>";
+  $output .= 'Studer Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>";
 
   $output .=
   '<style>
@@ -434,6 +434,49 @@ function studer_main_page_render()
     $conditions_offgridmode        = "No";
   }
   $output .= print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'Yes/No', 'Yes');
+
+  // begin VarioTrack readings
+  // Synchronized to Xtender?
+  $studer_api->paramId              = 10037;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "VaroTrac Synchronisation of battery cycle with Xtender";
+  $param_units                      = "1=Yes, 0=No";
+  $factory_default                  = '1=Yes';
+  $output .= print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Battery Float Voltage
+  $studer_api->paramId              = 10005;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "VaroTracc Battery Float Voltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 54.4;
+  $output .= print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Battery underVoltage
+  $studer_api->paramId              = 10334;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "VarioTrack Battery Under Voltage";
+  $param_units                      = "Vdc";
+  $factory_default                  = 40;
+  $output .= print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // Battery Charge Current
+  $studer_api->paramId              = 10002;
+  $studer_api->device               = 'VT_Group';
+  $studer_api->paramPart            = 'Value';
+  $param_value                      = $studer_api->get_parameter_value();
+  $param_desc                       = "VarioTrack Battery Charge Current";
+  $param_units                      = "Adc";
+  $factory_default                  = 80;
+  $output .= print_row_table($studer_api->paramId, $param_value, $param_desc, $param_units, $factory_default);
+
+  // close the table tag after final entry above
   $output .= '</table>';
 
   return $output;
