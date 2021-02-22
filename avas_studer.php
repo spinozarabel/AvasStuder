@@ -409,12 +409,12 @@ function studer_main_page_render()
       ($aux1_operating_mode <= 1.0E-10)
      )
   {
-    $conditions_offgridmode        = true;
+    $conditions_offgridmode        = 'Yes';
   }
   else {
-    $conditions_offgridmode        = false;
+    $conditions_offgridmode        = "No";
   }
-  print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'True/False', 'True');
+  print_row_table('', $conditions_offgridmode, 'All conditions for Off-Grid mode Satisfied?', 'Yes/No', 'Yes');
 
   return;
 }
@@ -656,8 +656,7 @@ function studer_readings_page_render()
                             <td height="33" class="legend" id="power-grid-genset">
                               <?php echo htmlspecialchars($data->grid_pin_ac_kw); ?> kW<br>
                               <font color="#D0D0D0">
-                              <?php echo htmlspecialchars($data->grid_input_vac); ?> Vac<br>
-                              <?php echo htmlspecialchars($data->grid_input_aac); ?> Aac
+                              <?php echo htmlspecialchars($data->grid_input_vac); ?> Vac
                             </td>
                         </tr>
                         <tr>

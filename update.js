@@ -6,13 +6,6 @@ jQuery(document).ready(function($) {
 
   var timeout1_ID = setTimeout(stopSetInterval1, 30000); // this is 120 seconds or 2 minutes for 12 updates
 
-  function stopSetInterval1() {
-                                // clear the interval trigger explicitly
-                                clearInterval(setInterval1_ID);
-                                // stop spinning of update wheel
-                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
-                               };
-
   $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner fa-spin');
@@ -24,14 +17,18 @@ jQuery(document).ready(function($) {
                                                  triggerAjax();
                                                  // increment counter
                                                  update_count ++;
-                                                 // print to console for debug
-                                                 console.log('update_count', update_count);
                                                }
                                                // finished updates so set spinner to stationary
                                                $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
                                              });
 
 
+   function stopSetInterval1() {
+                                 // clear the interval trigger explicitly
+                                 clearInterval(setInterval1_ID);
+                                 // stop spinning of update wheel
+                                 $('#refresh-button').removeClass().addClass('fa fa-1x fa-spinner');
+                                };
   function triggerAjax() {
 
                             $.post(my_ajax_obj.ajax_url,
