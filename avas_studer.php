@@ -31,15 +31,35 @@ if ( is_admin() )
   $avas_studer_settings = new avas_studer_settings();
 }
 
+// register shortcode for pages. This is for showing the page with studer settings
+add_shortcode( 'avas-display-studer-settings', 'avas_display_studer_settings' );
+
+// register shortcode for pages. This is for showing the page with studer readings
+add_shortcode( 'avas-display-studer-readings', 'avas_display_studer_readings' );
 
 // add action to load the javascripts
 //add_action( 'wp_enqueue_scripts',    'add_my_scripts' );
 
 // add action for the ajax handler on server side.
-// Once city is selected by JS the selected city is sent to handler
 // the 1st argument is in update.js, action: "get_studer_readings"
 // the 2nd argument is the local callback function as the ajax handler
 add_action('wp_ajax_get_studer_readings', 'ajax_studer_readings_handler');
+
+/**
+*   register and enque jquery scripts with nonce for ajax calls. Load only for desired page
+*   called by add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
+*/
+function avas_display_studer_settings()
+{
+  if (!is_user_logged_in())
+	{
+		$output =  'You need to be a registered user to access this page. Please register or login';
+		return $output;
+	}
+  //
+	$output = '';
+
+}
 
 /**
 *   register and enque jquery scripts with nonce for ajax calls. Load only for desired page
@@ -139,10 +159,10 @@ function studer_main_page_render()
   $studer_api = new studer_api();
 
   // top line displayed on page
-  echo nl2br('Studer VarioTrac Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n");
+  $output .= 'Studer VarioTrac Parameters for my installation ID: ' . "<b>" . $studer_api->installation_id . "</b>" . ' of User: ' . "<b>" . $studer_api->name . "</b>\n";
 
-  ?>
-  <style>
+  $output .=
+  '<style>
     table {
     border-collapse: collapse;
     }
@@ -159,8 +179,7 @@ function studer_main_page_render()
       <th>Value</th>
       <th>Units</th>
       <th>Installer val</th>
-    </tr>
-  <?php
+    </tr>';
 
   // 1108 Battery Under Voltage Without Load (For LVD)
   $studer_api->paramId              = '1108';
@@ -830,16 +849,15 @@ function studer_variotrac_page_render()
 
 function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default = null)
 {
-  ?>
-  <tr>
-    <td><?php echo htmlspecialchars($paramId);          ?></td>
-    <td><?php echo htmlspecialchars($param_desc);       ?></td>
-    <td><?php echo htmlspecialchars($param_value);      ?></td>
-    <td><?php echo htmlspecialchars($param_units);      ?></td>
-    <td><?php echo htmlspecialchars($factory_default);  ?></td>
-  </tr>
-  <?php
-  return;
+  $returnstring =
+  '<tr>' .
+   '<td>' . $paramId .          '</td>' . 
+   '<td>' . $param_desc .       '</td>' .
+   '<td>' . $param_value .      '</td>' .
+   '<td>' . $param_units .      '</td>' .
+   '<td>' . $factory_default .  '</td>' .
+  '</tr>';
+  return $returnstring;
 }
 
 /**
