@@ -657,7 +657,7 @@ function studer_readings_page_render()
     $output .=
     '<div class="col-12">
       <div class="row">
-        <div class="box box-primary">
+        <div class="box w-100 box-primary">
           <div class="box-body">
               <ul id="lightSlider">
                   <li>
