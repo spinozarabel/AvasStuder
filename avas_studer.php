@@ -698,7 +698,7 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="' . $data->solar_arrow_class) . '" id="power-arrow-solar"></i>
+                                <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                             <td
                                 class="legend" id="power-solar">' .
