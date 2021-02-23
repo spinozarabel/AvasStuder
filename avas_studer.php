@@ -501,7 +501,7 @@ function studer_readings_page_render()
         /* xs (moins de 768px) */
         .lSAction>a {
             top: 100%;
-            background-image: url('');
+            background-image: url("");
         }
 
         .center-thumbs .lslide {
