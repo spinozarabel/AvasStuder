@@ -495,7 +495,7 @@ function studer_readings_page_render()
   $script = '"' . $data->fontawesome_cdn . '"';
 
   $output =
-    '<script src="' . $script . '"></script>
+    '<script src="' . $data->fontawesome_cdn . '"></script>
 
     <style>
         /* xs (moins de 768px) */
