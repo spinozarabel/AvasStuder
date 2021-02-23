@@ -703,8 +703,8 @@ function studer_readings_page_render()
                             <td
                                 class="legend" id="power-solar">' .
                                 $data->psolar_kw . ' kW<br>
-                                <font color="#D0D0D0">'
-                                $data->solar_pv_adc. ' Adc
+                                <font color="#D0D0D0">' .
+                                $data->solar_pv_adc . ' Adc
                             </td>
                         </tr>
                     </table>
