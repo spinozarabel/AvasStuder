@@ -495,9 +495,7 @@ function studer_readings_page_render()
   $script = '"' . $data->fontawesome_cdn . '"';
 
   $output =
-
-    '<!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
-    <script src="' . $script . '"></script>
+    '<script src="' . $script . '"></script>
 
     <style>
         /* xs (moins de 768px) */
