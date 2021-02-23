@@ -655,7 +655,7 @@ function studer_readings_page_render()
     </style>';
 
     $output .=
-    '<div class="col-12 col-md-6">
+    '<div class="col-12">
       <div class="row">
         <div class="box box-primary">
           <div class="box-body">
