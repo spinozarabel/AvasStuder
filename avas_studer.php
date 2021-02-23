@@ -35,7 +35,7 @@ if ( is_admin() )
 add_shortcode( 'avas-display-studer-settings', 'avas_display_studer_settings' );
 
 // register shortcode for pages. This is for showing the page with studer readings
-add_shortcode( 'avas-display-studer-readings', 'avas_display_studer_readings' );
+add_shortcode( 'avas-display-studer-readings', 'studer_readings_page_render' );
 
 // add action to load the javascripts
 //add_action( 'wp_enqueue_scripts',    'add_my_scripts' );
@@ -484,15 +484,20 @@ function studer_main_page_render()
 
 function studer_readings_page_render()
 {
+  if (!is_user_logged_in())
+	{
+		return  'You need to be a registered user to access this page. Please register or login';
+
+	}
 
   $data = get_studer_readings();
 
   $script = '"' . $data->fontawesome_cdn . '"';
 
-  ?>
+  $output =
 
-    <!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
-    <script src=<?php echo $script; ?>></script>
+    '<!-- HTML begins again. Reference my fontawesome CDN sent to my email -->
+    <script src="' . $script . '"></script>
 
     <style>
         /* xs (moins de 768px) */
@@ -693,13 +698,13 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="<?php echo htmlspecialchars($data->solar_arrow_class); ?>" id="power-arrow-solar"></i>
+                                <i class="' . $data->solar_arrow_class) . '" id="power-arrow-solar"></i>
                             </td>
                             <td
-                                class="legend" id="power-solar">
-                                <?php echo htmlspecialchars($data->psolar_kw); ?> kW<br>
-                                <font color="#D0D0D0">
-                                <?php echo htmlspecialchars($data->solar_pv_adc); ?> Adc
+                                class="legend" id="power-solar">' .
+                                $data->psolar_kw . ' kW<br>
+                                <font color="#D0D0D0">'
+                                $data->solar_pv_adc. ' Adc
                             </td>
                         </tr>
                     </table>
@@ -716,15 +721,15 @@ function studer_readings_page_render()
                 <td>
                     <table class="arrow-table-vertical" height="100">
                         <tr>
-                            <td height="33" class="legend" id="power-grid-genset">
-                              <?php echo htmlspecialchars($data->grid_pin_ac_kw); ?> kW<br>
-                              <font color="#D0D0D0">
-                              <?php echo htmlspecialchars($data->grid_input_vac); ?> Vac
+                            <td height="33" class="legend" id="power-grid-genset">' .
+                              $data->grid_pin_ac_kw . ' kW<br>
+                              <font color="#D0D0D0">' .
+                              $data->grid_input_vac . ' Vac
                             </td>
                         </tr>
                         <tr>
                             <td height="33">
-                                <i class="<?php echo htmlspecialchars($data->grid_input_arrow_class); ?>" id="power-arrow-grid-genset"></i>
+                                <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
                         </tr>
                         <tr>
@@ -739,13 +744,13 @@ function studer_readings_page_render()
                 <td>
                     <table class="arrow-table-vertical" height="100">
                         <tr>
-                            <td height="33" class="legend" id="power-load">
-                              <?php echo htmlspecialchars($data->pout_inverter_ac_kw); ?> kW
+                            <td height="33" class="legend" id="power-load">' .
+                              $data->pout_inverter_ac_kw . ' kW
                             </td>
                         </tr>
                         <tr>
                             <td height="33">
-                                <i class="<?php echo htmlspecialchars($data->inverter_pout_arrow_class); ?>" id="power-arrow-load"></i>
+                                <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
                             </td>
                         </tr>
                         <tr>
@@ -766,14 +771,14 @@ function studer_readings_page_render()
                         <tr>
                             <td></td>
                             <td>
-                                <i class="<?php echo htmlspecialchars($data->battery_charge_arrow_class); ?>" id="power-arrow-battery"></i>
+                                <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                             </td>
                             <td
-                                class="legend" id="power-battery">
-                                <?php echo htmlspecialchars(abs($data->pbattery_kw)); ?> kW<br>
-                                <font color="#D0D0D0">
-                                <?php echo htmlspecialchars($data->battery_voltage_vdc); ?> Vdc<br>
-                                <?php echo htmlspecialchars(abs($data->battery_charge_adc)); ?> Adc
+                                class="legend" id="power-battery">' .
+                                abs($data->pbattery_kw) . ' kW<br>
+                                <font color="#D0D0D0">' .
+                                $data->battery_voltage_vdc . ' Vdc<br>' .
+                                abs($data->battery_charge_adc) . ' Adc
                             </td>
                         </tr>
                     </table>
@@ -783,43 +788,13 @@ function studer_readings_page_render()
             </tr>
             <tr>
                 <td colspan="5" style="text-align: center">
-					             <i class="<?php echo htmlspecialchars($data->battery_icon_class); ?>" id="power_battery-icon"></i>
+					             <i class="' . $data->battery_icon_class) . '" id="power_battery-icon"></i>
                 </td>
             </tr>
         </table>
     </div>
-    </div>
-
-  <?php
-
-
-  /*
-
-  ?>
-    <table style="width:100%">
-      <tr>
-        <th>Parameter ID</th>
-        <th>Description</th>
-        <th>Value</th>
-        <th>Units</th>
-        <th>Comments</th>
-      </tr>
-  <?php
-
-
-  print_row_table(3000, $battery_voltage_vdc, 'Battery Voltage', 'Vdc', '');
-  print_row_table(3005, $inverter_current_adc, 'Inverter DC current', 'Adc', '+ from Inverter, - into Inverter');
-  print_row_table(11001, $solar_pv_adc, 'Solar panels DC current at battery interface', 'Adc', '');
-  $string = ($battery_charge_adc > 0 ? 'Battery Charging Current' : 'Battery Discharging Current');
-  print_row_table(11001, $battery_charge_adc, $string, 'Adc', '+ is charge, - is discharge');
-  print_row_table(3137, $grid_pin_ac_kw, 'Grid Acitive power input', 'kW', '');
-  print_row_table(3136, $pout_inverter_ac_kw, 'Inverter AC power output', 'kW', '');
-  print_row_table(11004, $psolar_kw, 'Solar Power', 'kW', 'Solar PV array power generated'); //
-  $string = ($pbattery_kw > 0 ? 'Battery Charging Power' : 'Battery Discharging Power');
-  print_row_table('Calc',    $pbattery_kw, $string, 'kW', '+ means to battery, - means from battery');
-  print_row_table(11002, $solar_pv_vdc, 'Solar PV Voltage', 'Vdc', 'Solar PV array Voltage');
-  print_row_table(11038, $phase_battery_charge, 'Battery charging phase', 'Status', 'One of: Bulk, Floating, Discharge?');
-  */
+    </div>';
+    return $output;
 }
 
 function studer_variotrac_page_render()
