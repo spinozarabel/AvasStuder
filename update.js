@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
   var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
       // console.log('my_ajax_obj: ', my_ajax_obj);
 
-  var timeout1_ID = setTimeout(stopSetInterval1, 30000); // this is 120 seconds or 2 minutes for 12 updates
+  var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
