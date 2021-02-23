@@ -24,12 +24,12 @@ if ( is_admin() )
   // add support for SVG file types
   add_filter('upload_mimes', 'add_file_types_to_uploads');
 
-  // add action to load the javascripts
-  add_action( 'admin_enqueue_scripts', 'add_my_scripts' );
-
   // do the following only once, that too if you are an admin!
   $avas_studer_settings = new avas_studer_settings();
 }
+
+// add action to load the javascripts on non-admin page
+add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
 
 // register shortcode for pages. This is for showing the page with studer settings
 add_shortcode( 'avas-display-studer-settings', 'avas_display_studer_settings' );
