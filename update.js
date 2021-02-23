@@ -8,7 +8,7 @@ jQuery(document).ready(function($) {
 
   $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
-                                               $('#refresh-button').removeClass().addClass("fa fa-1x fa-refresh fa-spin");
+                                               $(this).removeClass().addClass("fa fa-1x fa-refresh fa-spin");
                                                // set up a counter
                                                var update_count = 0;
                                                // loop and update and increment till count reached
@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
                                                  update_count ++;
                                                }
                                                // finished updates so set spinner to stationary
-                                               $('#refresh-button').removeClass().addClass("fa fa-1x fa-refresh");
+                                               $(this).removeClass().addClass("fa fa-1x fa-refresh");
                                              });
 
 
