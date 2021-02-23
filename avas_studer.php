@@ -789,7 +789,7 @@ function studer_readings_page_render()
             </tr>
             <tr>
                 <td colspan="5" style="text-align: center">
-					             <i class="' . $data->battery_icon_class) . '" id="power_battery-icon"></i>
+					             <i class="' . $data->battery_icon_class . '" id="power_battery-icon"></i>
                 </td>
             </tr>
         </table>
