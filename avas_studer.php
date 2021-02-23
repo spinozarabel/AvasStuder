@@ -682,6 +682,119 @@ function studer_readings_page_render()
                           </button>
                         </div>
                       </div>';
+                      $output .= '
+    <div class="row-fluid">
+    <div class="table-responsive synoptic-fixed-height">
+        <table class="synoptic-table">
+            <tr>
+                <td colspan="5" style="text-align: center">
+                    <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <table class="arrow-table-horizontal">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
+                            </td>
+                            <td
+                                class="legend" id="power-solar">' .
+                                $data->psolar_kw . ' kW<br>
+                                <font color="#D0D0D0">' .
+                                $data->solar_pv_adc . ' Adc
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+
+                <td>
+                    <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
+                </td>
+
+                <td>
+                    <table class="arrow-table-vertical" height="100">
+                        <tr>
+                            <td height="33" class="legend" id="power-grid-genset">' .
+                              $data->grid_pin_ac_kw . ' kW<br>
+                              <font color="#D0D0D0">' .
+                              $data->grid_input_vac . ' Vac
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="33">
+                                <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td style="text-align: center;">
+                    <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/studer_innotec_logo_blue.png" class="img-pow-logo" id="power-img-logo"/>
+                </td>
+                <td>
+                    <table class="arrow-table-vertical" height="100">
+                        <tr>
+                            <td height="33" class="legend" id="power-load">' .
+                              $data->pout_inverter_ac_kw . ' kW
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="33">
+                                <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td>
+                    <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    <table class="arrow-table-horizontal">
+                        <tr>
+                            <td></td>
+                            <td>
+                                <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
+                            </td>
+                            <td
+                                class="legend" id="power-battery">' .
+                                abs($data->pbattery_kw) . ' kW<br>
+                                <font color="#D0D0D0">' .
+                                $data->battery_voltage_vdc . ' Vdc<br>' .
+                                abs($data->battery_charge_adc) . ' Adc
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td colspan="5" style="text-align: center">
+					             <i class="' . $data->battery_icon_class) . '" id="power_battery-icon"></i>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </div>';
     return $output;
 }
 
