@@ -20,6 +20,8 @@ jQuery(document).ready(function($) {
                                  clearInterval(setInterval1_ID);
                                  // stop spinning of update wheel
                                  $("#refresh-button").removeClass("fa-spin");
+                                 // also clear the timeout
+                                 clearTimeout(timeout1_ID);
                                 };
 
   function stopSetInterval2() {
@@ -27,6 +29,8 @@ jQuery(document).ready(function($) {
                                 clearInterval(setInterval2_ID);
                                 // stop spinning of update wheel
                                 $("#refresh-button").removeClass("fa-spin");
+                                // also clear the timeout
+                                clearTimeout(timeout2_ID);
                                };
 
   function triggerAjax() {
