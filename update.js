@@ -2,13 +2,12 @@ jQuery(document).ready(function($) {
 
   // set an intervel. The callback gets executed every interval
   var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
-      // console.log('my_ajax_obj: ', my_ajax_obj);
 
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $('#refresh-button').click(function() {
                                                // set spinner in motion to indicate start of updates
-                                               $(this).removeClass().addClass("fa fa-1x fa-refresh fa-spin");
+                                               $(this).addClass("fa-spin");
                                                // set up a counter
                                                var update_count = 0;
                                                // loop and update and increment till count reached
@@ -19,7 +18,7 @@ jQuery(document).ready(function($) {
                                                  update_count ++;
                                                }
                                                // finished updates so set spinner to stationary
-                                               $(this).removeClass().addClass("fa fa-1x fa-refresh");
+                                               $(this).removeClass("fa-spin");
                                              });
 
 
@@ -27,7 +26,7 @@ jQuery(document).ready(function($) {
                                  // clear the interval trigger explicitly
                                  clearInterval(setInterval1_ID);
                                  // stop spinning of update wheel
-                                 $('#refresh-button').removeClass().addClass("fa fa-1x fa-refresh");
+                                 $('#refresh-button').removeClass("fa-spin");
                                 };
   function triggerAjax() {
 
