@@ -19,8 +19,8 @@ jQuery(document).ready(function($) {
                                                  update_count ++;
                                                }
                                                // finished updates so set spinner to stationary
-                                               $(this).removeClass("fa-spin");
-                                               console.log('class of button', $(this).attr("class"));
+                                               // $(this).removeClass("fa-spin");
+                                               // console.log('class of button', $(this).attr("class"));
                                              });
 
 
