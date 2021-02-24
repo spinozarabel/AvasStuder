@@ -6,22 +6,16 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
-                                               // set spinner in motion to indicate start of updates
-                                               $("#refresh-button").addClass("fa-spin");
-                                               console.log('class of button', $(this).attr("class"));
-                                               // set up a counter
-                                               var update_count = 0;
-                                               // loop and update and increment till count reached
-                                               while (update_count <=9)
-                                               {
-                                                 triggerAjax();
-                                                 // increment counter
-                                                 update_count ++;
-                                               }
-                                               // finished updates so set spinner to stationary
-                                               // $(this).removeClass("fa-spin");
-                                               // console.log('class of button', $(this).attr("class"));
-                                             });
+                                                         // set spinner in motion to indicate start of updates
+                                                         $("#refresh-button").addClass("fa-spin");
+
+                                                         // loop and update and increment till count reached
+                                                         for (var update_count = 0; update_count < 10; update_count++)
+                                                         {
+                                                           triggerAjax();
+                                                           if (update_count = 9) $(this).removeClass("fa-spin");
+                                                         }
+                                                       });
 
 
    function stopSetInterval1() {
