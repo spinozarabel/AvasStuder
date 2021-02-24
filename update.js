@@ -5,9 +5,9 @@ jQuery(document).ready(function($) {
 
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
-  $('#refresh-button').click(function() {
+  $(document).on("click","#refresh-button",function() {
                                                // set spinner in motion to indicate start of updates
-                                               $(this).addClass("fa-spin");
+                                               $("#refresh-button").addClass("fa-spin");
                                                // set up a counter
                                                var update_count = 0;
                                                // loop and update and increment till count reached
@@ -26,7 +26,7 @@ jQuery(document).ready(function($) {
                                  // clear the interval trigger explicitly
                                  clearInterval(setInterval1_ID);
                                  // stop spinning of update wheel
-                                 $('#refresh-button').removeClass("fa-spin");
+                                 $("#refresh-button").removeClass("fa-spin");
                                 };
   function triggerAjax() {
 
