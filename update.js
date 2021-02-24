@@ -8,6 +8,7 @@ jQuery(document).ready(function($) {
   $(document).on("click","#refresh-button",function() {
                                                // set spinner in motion to indicate start of updates
                                                $("#refresh-button").addClass("fa-spin");
+                                               console.log('class of button', $(this).attr("class"));
                                                // set up a counter
                                                var update_count = 0;
                                                // loop and update and increment till count reached
@@ -19,6 +20,7 @@ jQuery(document).ready(function($) {
                                                }
                                                // finished updates so set spinner to stationary
                                                $(this).removeClass("fa-spin");
+                                               console.log('class of button', $(this).attr("class"));
                                              });
 
 
