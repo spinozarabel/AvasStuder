@@ -6,16 +6,13 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
-                                                         // set spinner in motion to indicate start of updates
-                                                         $("#refresh-button").addClass("fa-spin");
+                                                           // set spinner in motion to indicate start of updates
+                                                           $("#refresh-button").addClass("fa-spin");
+                                                           var setInterval2_ID  = setInterval(triggerAjax, 10000); // 10 sec updates
+                                                           var timeout2_ID      = setTimeout(stopSetInterval2, 100000); // this is 100 seconds for 10 updates
 
-                                                         // loop and update and increment till count reached
-                                                         for (var update_count = 0; update_count < 10; update_count++)
-                                                         {
-                                                           triggerAjax();
-                                                           if (update_count = 9) $(this).removeClass("fa-spin");
-                                                         }
-                                                       });
+                                                       }
+                );
 
 
    function stopSetInterval1() {
@@ -24,6 +21,14 @@ jQuery(document).ready(function($) {
                                  // stop spinning of update wheel
                                  $("#refresh-button").removeClass("fa-spin");
                                 };
+
+  function stopSetInterval2() {
+                                // clear the interval trigger explicitly
+                                clearInterval(setInterval2_ID);
+                                // stop spinning of update wheel
+                                $("#refresh-button").removeClass("fa-spin");
+                               };
+
   function triggerAjax() {
 
                             $.post(my_ajax_obj.ajax_url,
