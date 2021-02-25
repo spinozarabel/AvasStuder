@@ -699,8 +699,11 @@ function studer_readings_page_render()
                             </tr>
                         </table>
                     </td>
-                    <td></td>
-                    <td></td>
+                    <td
+                          class="legend" id="power-solar">' . $data->solar_pv_adc . ' A
+                    </td>
+                    <td>
+                    </td>
                 </tr>
                 <tr>
 
