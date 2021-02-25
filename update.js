@@ -6,6 +6,7 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
+                                                          $("#refresh-button").addClass("fa-spin");
                                                            //
                                                            var count = 0;
                                                            while (count <= 9)
@@ -30,7 +31,7 @@ jQuery(document).ready(function($) {
 
 
   function triggerAjax() {
-                            $("#refresh-button").addClass("fa-spin");
+
 
                             $.post(my_ajax_obj.ajax_url,
                             {                                 //POST request
