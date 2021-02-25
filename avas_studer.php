@@ -694,7 +694,7 @@ function studer_readings_page_render()
                                     class="legend" id="power-solar">' .
                                     $data->psolar_kw . ' kW<br>
                                     <font color="#D0D0D0">' .
-                                    $data->solar_pv_adc . ' Adc
+                                    $data->solar_pv_adc . ' A
                                 </td>
                             </tr>
                         </table>
@@ -714,7 +714,7 @@ function studer_readings_page_render()
                                 <td height="33" class="legend" id="power-grid-genset">' .
                                   $data->grid_pin_ac_kw . ' kW<br>
                                   <font color="#D0D0D0">' .
-                                  $data->grid_input_vac . ' Vac
+                                  $data->grid_input_vac . ' V
                                 </td>
                             </tr>
                             <tr>
@@ -767,8 +767,8 @@ function studer_readings_page_render()
                                     class="legend" id="power-battery">' .
                                     abs($data->pbattery_kw) . ' kW<br>
                                     <font color="#D0D0D0">' .
-                                    $data->battery_voltage_vdc . ' Vdc<br>' .
-                                    abs($data->battery_charge_adc) . ' Adc
+                                    $data->battery_voltage_vdc . ' V<br>' .
+                                    abs($data->battery_charge_adc) . ' A
                                 </td>
                             </tr>
                         </table>
