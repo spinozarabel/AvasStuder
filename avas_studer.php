@@ -699,18 +699,13 @@ function studer_readings_page_render()
                             </tr>
                         </table>
                     </td>
-                    <td
-                          class="legend" id="power-solar">' . $data->solar_pv_adc . ' A
-                    </td>
-                    <td>
-                    </td>
+                    <td></td>
+                    <td></td>
                 </tr>
                 <tr>
-
                     <td>
                         <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
                     </td>
-
                     <td>
                         <table class="arrow-table-vertical" height="100">
                             <tr>
