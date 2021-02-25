@@ -73,8 +73,6 @@ jQuery(document).ready(function($) {
                                                 // change the arrow class for Inverter Pout to Home using Ajax update
                                                 $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
 
-                                                $("#refresh-button").removeClass("fa-spin");
-
                                               });
                         };
     function round(value, exp) {
