@@ -539,7 +539,7 @@ function studer_readings_page_render()
 
         .synoptic-table {
             margin: auto;
-            width: 80% !important;
+            width: 90% !important;
             height: auto;
             border-collapse: collapse;
             overflow-x: auto;
@@ -618,7 +618,7 @@ function studer_readings_page_render()
         @media (min-width: 768px) {
             .synoptic-table {
                 margin: auto;
-                width: 80% !important;
+                width: 90% !important;
                 height: 100%;
                 border-collapse: collapse;
                 overflow-x: auto;
