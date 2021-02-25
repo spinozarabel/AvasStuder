@@ -1118,7 +1118,7 @@ function get_studer_readings()
   else
   {
     // Transfer relay is open and grid input is not possible
-    $grid_input_arrow_class = "fa fa-times-circle fa-3x";
+    $grid_input_arrow_class = "fa fa-times-circle fa-1x";
   }
 
   switch(true)
