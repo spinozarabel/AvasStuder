@@ -2,19 +2,22 @@ jQuery(document).ready(function($) {
 
   // set an intervel. The callback gets executed every interval
   var setInterval1_ID = setInterval(triggerAjax, 10000); // 10 sec updates
-  console.log('setInterval1_ID value just after setinterval command', setInterval1_ID);
 
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
-  console.log('timeout1_ID value just after settimeout command', timeout1_ID);
 
   $(document).on("click","#refresh-button",function() {
                                                            // set spinner in motion to indicate start of updates
                                                            $("#refresh-button").addClass("fa-spin");
-                                                           var setInterval2_ID  = setInterval(triggerAjax, 10000); // 10 sec updates
-                                                           console.log('setInterval2_ID value just after setinterval command after refresh button click', setInterval2_ID);
-                                                           var timeout2_ID      = setTimeout(stopSetInterval2, 100000); // this is 100 seconds for 10 updates
-                                                           console.log('timeout1_ID value just after settimeout command after refresh button click', timeout2_ID);
-
+                                                           var count = 0;
+                                                           while (count <= 9)
+                                                           {
+                                                             count = count +1;
+                                                             triggerAjax();
+                                                             if (count == 9)
+                                                             {
+                                                               $("#refresh-button").removeClass("fa-spin");
+                                                             }
+                                                           }
                                                        }
                 );
 
@@ -22,12 +25,11 @@ jQuery(document).ready(function($) {
    function stopSetInterval1() {
                                  // clear the interval trigger explicitly
                                  clearInterval(setInterval1_ID);
-                                 console.log('setInterval1_ID value just after main clearinterval command', setInterval1_ID);
+
                                  // stop spinning of update wheel
                                  $("#refresh-button").removeClass("fa-spin");
                                  // also clear the timeout
                                  clearTimeout(timeout1_ID);
-                                 console.log('timeout1_ID value just after main cleartimeout command', timeout1_ID);
                                 };
 
   function stopSetInterval2() {
