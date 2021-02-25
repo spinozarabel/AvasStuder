@@ -6,17 +6,13 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
-                                                           // set spinner in motion to indicate start of updates
-                                                           $("#refresh-button").addClass("fa-spin");
+                                                           //
                                                            var count = 0;
                                                            while (count <= 9)
                                                            {
-                                                             count = count +1;
+                                                             count = count + 1;
                                                              triggerAjax();
-                                                             if (count == 9)
-                                                             {
-                                                               $("#refresh-button").removeClass("fa-spin");
-                                                             }
+
                                                            }
                                                        }
                 );
@@ -32,18 +28,9 @@ jQuery(document).ready(function($) {
                                  clearTimeout(timeout1_ID);
                                 };
 
-  function stopSetInterval2() {
-                                // clear the interval trigger explicitly
-                                clearInterval(setInterval2_ID);
-                                console.log('setInterval2_ID value just after 2nd clearinterval command in refresh', setInterval2_ID);
-                                // stop spinning of update wheel
-                                $("#refresh-button").removeClass("fa-spin");
-                                // also clear the timeout
-                                clearTimeout(timeout2_ID);
-                                console.log('timeout2_ID value just after 2nd cleartimeout command in refresh', timeout2_ID);
-                               };
 
   function triggerAjax() {
+                            $("#refresh-button").addClass("fa-spin");
 
                             $.post(my_ajax_obj.ajax_url,
                             {                                 //POST request
@@ -84,6 +71,8 @@ jQuery(document).ready(function($) {
                                                                                           + data.grid_input_aac + 'A');
                                                 // change the arrow class for Inverter Pout to Home using Ajax update
                                                 $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
+
+                                                $("#refresh-button").removeClass("fa-spin");
 
                                               });
                         };
