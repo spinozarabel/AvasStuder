@@ -718,7 +718,7 @@ function studer_readings_page_render()
                 </tr>
                 <!-- 2nd row with values and arrows -->
                 <tr>
-                    <td height="33" class="legend" id="power-grid-genset">' .
+                    <td height="33" class="legend" id="power-grid-genset" style="text-align: right;">' .
                       $data->grid_pin_ac_kw . ' kW<br>
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
@@ -726,18 +726,18 @@ function studer_readings_page_render()
                     <td>
                       <table>
                         <tr>
-                            <td height="33">
+                            <td style="text-align: left;">
                                 <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
 
-                            <td>
+                            <td style="text-align: right;">
                                 <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                         </tr>
                       </table>
                     </td>
                     <td
-                        class="legend" id="power-solar">' .
+                        class="legend" id="power-solar" style="text-align: left;">' .
                         $data->psolar_kw . ' kW<br>
                         <font color="#D0D0D0">' .
                         $data->solar_pv_adc . ' A
@@ -756,7 +756,7 @@ function studer_readings_page_render()
 
                 <!-- 4th row with only values and arrows similar to 2nd row -->
                 <tr>
-                    <td
+                    <td style="text-align: right;"
                         class="legend" id="power-battery">' .
                         abs($data->pbattery_kw) . ' kW<br>
                         <font color="#D0D0D0">' .
@@ -766,7 +766,7 @@ function studer_readings_page_render()
                     <td>
                             <table>
                                 <tr>
-                                    <td>
+                                    <td style="text-align: left;">
                                         <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                                     </td>
                                     <td style="text-align: right;">
@@ -775,7 +775,7 @@ function studer_readings_page_render()
                                 </tr>
                             </table>
                     </td>
-                    <td height="33" class="legend" id="power-load">' .
+                    <td height="33" class="legend" id="power-load" style="text-align: left;">' .
                         $data->pout_inverter_ac_kw . ' kW
                     </td>
                   </tr>
