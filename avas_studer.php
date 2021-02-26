@@ -691,7 +691,7 @@ function studer_readings_page_render()
       <div class="row">
         <div class="box w-100 box-primary">
           <div class="box-body">
-                      <!--
+
                         <div class="box-tools pull-right">
                           <button type="button" class="btn btn-box-tool refresh-button"  data-placement="right"
                                   data-toggle="tooltip"
@@ -702,7 +702,7 @@ function studer_readings_page_render()
                               <i class="fa fa-1x fa-refresh fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
                           </button>
                         </div>
-                        -->
+
           </div>';
           $output .= '
           <div class="row-fluid">
@@ -719,7 +719,7 @@ function studer_readings_page_render()
                 </tr>
                 <!-- 2nd row with values and arrows -->
                 <tr>
-                    <td height="33" class="legend" id="power-grid-genset" style="text-align: right;">' .
+                    <td class="legend" id="power-grid-genset" style="text-align: right;">' .
                       $data->grid_pin_ac_kw . ' kW<br>
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
@@ -776,7 +776,7 @@ function studer_readings_page_render()
                                 </tr>
                             </table>
                     </td>
-                    <td height="33" class="legend" id="power-load" style="text-align: left;">' .
+                    <td class="legend" id="power-load" style="text-align: left;">' .
                         $data->pout_inverter_ac_kw . ' kW
                     </td>
                   </tr>
