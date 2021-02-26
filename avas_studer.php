@@ -712,7 +712,7 @@ function studer_readings_page_render()
                         <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
                     </td>
                     <td></td>
-                    <td style="text-align: center">
+                    <td style="text-align: left">
                         <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
                     </td>
                 </tr>
