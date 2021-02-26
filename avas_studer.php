@@ -766,7 +766,7 @@ function studer_readings_page_render()
                     <td>
                             <table>
                                 <tr>
-                                    <td>
+                                    <td height="33">
                                         <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                                     </td>
                                     <td height="33">
@@ -783,10 +783,10 @@ function studer_readings_page_render()
                   <!-- 5th row with only images of battery and home on extreme columns -->
 
                   <tr>
-                      <td style="text-align: center">
+                      <td style="text-align: left">
                              <i class="' . $data->battery_icon_class . '" id="power_battery-icon"></i>
                       </td>
-                      <td></td?
+                      <td></td>
                       <td>
                           <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
                       </td>
