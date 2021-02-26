@@ -1030,13 +1030,13 @@ function get_studer_readings()
 
 
   // inverter's output always goes to load never the other way around :-)
-  $inverter_pout_arrow_class = "fa fa-long-arrow-right";
+  $inverter_pout_arrow_class = "fa fa-long-arrow-right fa-rotate-45";
 
   // conditional class names for battery charge down or up arrow
   if ($battery_charge_adc > 0.0)
   {
-    // current is positive so battery is charging so arrow is down
-    $battery_charge_arrow_class = "fa fa-long-arrow-down";
+    // current is positive so battery is charging so arrow is down and to left
+    $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs(battery_charge_adc) * $Rb, 2);
@@ -1044,7 +1044,7 @@ function get_studer_readings()
   else
   {
     // current is -ve so battery is discharging so arrow is up
-    $battery_charge_arrow_class = "fa fa-long-arrow-up";
+    $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs(battery_charge_adc) * $Rb, 2);
