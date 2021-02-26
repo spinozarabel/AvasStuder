@@ -691,7 +691,7 @@ function studer_readings_page_render()
       <div class="row">
         <div class="box w-100 box-primary">
           <div class="box-body">
-
+                      <!--
                         <div class="box-tools pull-right">
                           <button type="button" class="btn btn-box-tool refresh-button"  data-placement="right"
                                   data-toggle="tooltip"
@@ -702,6 +702,7 @@ function studer_readings_page_render()
                               <i class="fa fa-1x fa-refresh fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
                           </button>
                         </div>
+                        -->
           </div>';
           $output .= '
           <div class="row-fluid">
