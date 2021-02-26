@@ -764,7 +764,6 @@ function studer_readings_page_render()
                         abs($data->battery_charge_adc) . ' A
                     </td>
                     <td>
-                        <tr>
                             <table>
                                 <tr>
                                     <td>
@@ -775,7 +774,6 @@ function studer_readings_page_render()
                                     </td>
                                 </tr>
                             </table>
-                        </tr>
                     </td>
                     <td height="33" class="legend" id="power-load">' .
                         $data->pout_inverter_ac_kw . ' kW
@@ -792,7 +790,7 @@ function studer_readings_page_render()
                       <td>
                           <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
                       </td>
-                  </tr>              
+                  </tr>
         </table>
     </div>
     </div>';
