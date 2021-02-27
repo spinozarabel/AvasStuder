@@ -772,6 +772,8 @@ function studer_readings_page_render()
                                     <td style="text-align: left;">
                                         <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                                     </td>
+                                </tr>
+                                <tr>
                                     <td style="text-align: right;">
                                         <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
                                     </td>
