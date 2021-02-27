@@ -724,7 +724,7 @@ function studer_readings_page_render()
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
                     </td>
-                    <td>
+                    <td class="col-2">
                       <table>
                         <tr>
                             <td style="text-align: left;">
