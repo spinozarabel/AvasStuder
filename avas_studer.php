@@ -655,7 +655,7 @@ function studer_readings_page_render()
                 border-collapse: collapse;
                 overflow-x: auto;
                 border-spacing: 0;
-                font-size: 14px;
+                font-size: 18px;
             }
 
             .synoptic-table td {
