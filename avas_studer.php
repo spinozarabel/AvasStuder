@@ -655,7 +655,7 @@ function studer_readings_page_render()
                 border-collapse: collapse;
                 overflow-x: auto;
                 border-spacing: 0;
-                font-size: 18px;
+                font-size: 22px;
             }
 
             .synoptic-table td {
@@ -724,7 +724,7 @@ function studer_readings_page_render()
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
                     </td>
-                    <td class="col-2">
+                    <td>
                       <table>
                         <tr>
                             <td style="text-align: left;">
