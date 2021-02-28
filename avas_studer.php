@@ -1057,20 +1057,16 @@ function get_studer_readings()
 
   switch(true)
   {
-    case (abs($battery_charge_adc) < 20 ) :
+    case (abs($battery_charge_adc) < 27 ) :
       $battery_charge_arrow_class .= " fa-1x";
     break;
 
-    case (abs($battery_charge_adc) < 40 ) :
+    case (abs($battery_charge_adc) < 54 ) :
       $battery_charge_arrow_class .= " fa-2x";
     break;
 
-    case (abs($battery_charge_adc) < 60 ) :
+    case (abs($battery_charge_adc) >=54 ) :
       $battery_charge_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($battery_charge_adc) < 80 ) :
-      $battery_charge_arrow_class .= " fa-4x";
     break;
   }
 
@@ -1096,12 +1092,8 @@ function get_studer_readings()
       $solar_arrow_class .= " fa-2x";
     break;
 
-    case (abs($psolar_kw) < 3.5 ) :
+    case (abs($psolar_kw) >= 2.0 ) :
       $solar_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($psolar_kw) < 4.0 ) :
-      $solar_arrow_class .= " fa-4x";
     break;
   }
 
@@ -1115,12 +1107,8 @@ function get_studer_readings()
       $inverter_pout_arrow_class .= " fa-2x";
     break;
 
-    case (abs($pout_inverter_ac_kw) < 3.5 ) :
+    case (abs($pout_inverter_ac_kw) >=2.0 ) :
       $inverter_pout_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($pout_inverter_ac_kw) < 4 ) :
-      $inverter_pout_arrow_class .= " fa-4x";
     break;
   }
 
