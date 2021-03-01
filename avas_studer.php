@@ -727,13 +727,13 @@ function studer_readings_page_render()
                     <td>
                       <table>
                         <tr>
-                            <td style="text-align: left;">
+                            <td style="text-align: center;">
                                 <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
                         </tr>
                         <tr>
 
-                            <td style="text-align: right;">
+                            <td style="text-align: center;">
                                 <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                         </tr>
