@@ -708,6 +708,7 @@ function studer_readings_page_render()
           <div class="row-fluid">
             <div class="table-responsive synoptic-fixed-height">
               <table class="synoptic-table">
+                <!-- 1st row with grid and pv panel images in 1st and 3rd columns with 2nd colum blank -->
                 <tr>
                     <td>
                         <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
@@ -717,9 +718,9 @@ function studer_readings_page_render()
                         <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
                     </td>
                 </tr>
-                <!-- 2nd row with values and arrows -->
+                <!-- 2nd row with values and arrows for grid and pv-->
                 <tr>
-                    <td class="legend" id="power-grid-genset" style="text-align: right;">' .
+                    <td class="legend" id="power-grid-genset" style="text-align: left;">' .
                       $data->grid_pin_ac_kw . ' kW<br>
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
@@ -727,20 +728,20 @@ function studer_readings_page_render()
                     <td>
                       <table>
                         <tr>
-                            <td style="text-align: left;">
+                            <td style="text-align: right;">
                                 <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
                         </tr>
                         <tr>
 
-                            <td style="text-align: right;">
+                            <td style="text-align: left;">
                                 <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                         </tr>
                       </table>
                     </td>
                     <td
-                        class="legend" id="power-solar" style="text-align: left;">' .
+                        class="legend" id="power-solar" style="text-align: right;">' .
                         $data->psolar_kw . ' kW<br>
                         <font color="#D0D0D0">' .
                         $data->solar_pv_adc . ' A
@@ -759,7 +760,7 @@ function studer_readings_page_render()
 
                 <!-- 4th row with only values and arrows similar to 2nd row -->
                 <tr>
-                    <td style="text-align: right;"
+                    <td style="text-align: left;"
                         class="legend" id="power-battery">' .
                         abs($data->pbattery_kw) . ' kW<br>
                         <font color="#D0D0D0">' .
@@ -769,12 +770,12 @@ function studer_readings_page_render()
                     <td>
                             <table>
                                 <tr>
-                                    <td style="text-align: left;">
+                                    <td style="text-align: right;">
                                         <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="text-align: right;">
+                                    <td style="text-align: left;">
                                         <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
                                     </td>
                                 </tr>
@@ -1130,16 +1131,12 @@ function get_studer_readings()
       $grid_input_arrow_class .= " fa-1x";
     break;
 
-    case (abs($grid_pin_ac_kw) < 2.0 ) :
+    case (abs($grid_pin_ac_kw) < 2.5 ) :
       $grid_input_arrow_class .= " fa-2x";
     break;
 
-    case (abs($grid_pin_ac_kw) < 3.5 ) :
+    case (abs($grid_pin_ac_kw) >= 2.5 ) :
       $grid_input_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($grid_pin_ac_kw) < 4 ) :
-      $grid_input_arrow_class .= " fa-4x";
     break;
   }
 
