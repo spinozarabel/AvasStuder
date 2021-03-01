@@ -720,12 +720,12 @@ function studer_readings_page_render()
                 </tr>
                 <!-- 2nd row with values and arrows -->
                 <tr>
-                    <td class="legend" id="power-grid-genset" style="text-align: right;">' .
+                    <td class="col-4 legend" id="power-grid-genset" style="text-align: right;">' .
                       $data->grid_pin_ac_kw . ' kW<br>
                       <font color="#D0D0D0">' .
                       $data->grid_input_vac . ' V
                     </td>
-                    <td>
+                    <td class="col-4">
                       <table>
                         <tr>
                             <td style="text-align: left;">
@@ -738,7 +738,7 @@ function studer_readings_page_render()
                       </table>
                     </td>
                     <td
-                        class="legend" id="power-solar" style="text-align: left;">' .
+                        class="col-4 legend" id="power-solar" style="text-align: left;">' .
                         $data->psolar_kw . ' kW<br>
                         <font color="#D0D0D0">' .
                         $data->solar_pv_adc . ' A
@@ -748,23 +748,23 @@ function studer_readings_page_render()
                 <!-- 3rd row with only studer logo in the middle column all else blank -->
 
                 <tr>
-                    <td></td>
-                    <td style="text-align: center;">
+                    <td class="col-4"></td>
+                    <td class="col-4" style="text-align: center;">
                         <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/studer_innotec_logo_blue.png" class="img-pow-logo" id="power-img-logo"/>
                     </td>
-                    <td></td>
+                    <td class="col-4"></td>
                 </tr>
 
                 <!-- 4th row with only values and arrows similar to 2nd row -->
                 <tr>
-                    <td style="text-align: right;"
+                    <td class="col-4" style="text-align: right;"
                         class="legend" id="power-battery">' .
                         abs($data->pbattery_kw) . ' kW<br>
                         <font color="#D0D0D0">' .
                         $data->battery_voltage_vdc . ' V<br>' .
                         abs($data->battery_charge_adc) . ' A
                     </td>
-                    <td>
+                    <td class="col-4">
                             <table>
                                 <tr>
                                     <td style="text-align: left;">
@@ -776,7 +776,7 @@ function studer_readings_page_render()
                                 </tr>
                             </table>
                     </td>
-                    <td class="legend" id="power-load" style="text-align: left;">' .
+                    <td class="col-4 legend" id="power-load" style="text-align: left;">' .
                         $data->pout_inverter_ac_kw . ' kW
                     </td>
                   </tr>
@@ -784,11 +784,11 @@ function studer_readings_page_render()
                   <!-- 5th row with only images of battery and home on extreme columns -->
 
                   <tr>
-                      <td style="text-align: left">
+                      <td class="col-4" style="text-align: left">
                              <i class="' . $data->battery_icon_class . '" id="power_battery-icon"></i>
                       </td>
-                      <td></td>
-                      <td>
+                      <td class="col-4"></td>
+                      <td class="col-4">
                           <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
                       </td>
                   </tr>
