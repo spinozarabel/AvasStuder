@@ -640,6 +640,7 @@ function studer_readings_page_render()
 
         .img-pow-logo {
             max-width: 65px;
+            border: 1px;
         }
 
         .img-pow-load {
@@ -676,7 +677,7 @@ function studer_readings_page_render()
             }
 
             .img-pow-logo {
-                max-width: 80px;
+                max-width: 65px;
             }
 
             .img-pow-load {
