@@ -710,11 +710,11 @@ function studer_readings_page_render()
             <div class="table-responsive synoptic-fixed-height">
               <table class="synoptic-table">
                 <tr>
-                    <td>
+                    <td class="col-4">
                         <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
                     </td>
-                    <td></td>
-                    <td style="text-align: left">
+                    <td class="col-4"></td>
+                    <td class="col-4" style="text-align: left">
                         <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
                     </td>
                 </tr>
