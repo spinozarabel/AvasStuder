@@ -757,8 +757,8 @@ function studer_readings_page_render()
 
                 <!-- 4th row with only values and arrows similar to 2nd row -->
                 <tr>
-                    <td class="col-4" style="text-align: right;"
-                        class="legend" id="power-battery">' .
+                    <td style="text-align: right;"
+                        class="col-4 legend" id="power-battery">' .
                         abs($data->pbattery_kw) . ' kW<br>
                         <font color="#D0D0D0">' .
                         $data->battery_voltage_vdc . ' V<br>' .
