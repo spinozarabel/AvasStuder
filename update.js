@@ -13,7 +13,7 @@ jQuery(document).ready(function($) {
                                                            {
                                                              count = count + 1;
                                                              triggerAjax();
-                                                           }
+                                                           };
                                                            $("#refresh-button").removeClass("fa-spin");
                                                        }
                 );
