@@ -499,6 +499,38 @@ function studer_readings_page_render()
   $output .=
 
     '<style>
+        .fa-rotate-45 {
+            -webkit-transform: rotate(45deg);
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+
+        .fa-rotate-135 {
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -ms-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+          }
+
+        .fa-rotate-225 {
+            -webkit-transform: rotate(225deg);
+            -moz-transform: rotate(225deg);
+            -ms-transform: rotate(225deg);
+            -o-transform: rotate(225deg);
+            transform: rotate(225deg);
+          }
+
+        .fa-rotate-315 {
+            -webkit-transform: rotate(315deg);
+            -moz-transform: rotate(315deg);
+            -ms-transform: rotate(315deg);
+            -o-transform: rotate(315deg);
+            transform: rotate(315deg);
+        }
+
         /* xs (moins de 768px) */
         .lSAction>a {
             top: 100%;
@@ -607,7 +639,8 @@ function studer_readings_page_render()
         }
 
         .img-pow-logo {
-            max-width: 65px;
+            max-width: 80px;
+            border: 1px;
         }
 
         .img-pow-load {
@@ -623,7 +656,7 @@ function studer_readings_page_render()
                 border-collapse: collapse;
                 overflow-x: auto;
                 border-spacing: 0;
-                font-size: 14px;
+                font-size: 22px;
             }
 
             .synoptic-table td {
@@ -644,7 +677,7 @@ function studer_readings_page_render()
             }
 
             .img-pow-logo {
-                max-width: 100px;
+                max-width: 59px;
             }
 
             .img-pow-load {
@@ -660,125 +693,103 @@ function studer_readings_page_render()
         <div class="box w-100 box-primary">
           <div class="box-body">
 
-                        <div class="box-tools pull-right">
+              <div class="box-tools pull-right">
                           <button type="button" class="btn btn-box-tool refresh-button"  data-placement="right"
                                   data-toggle="tooltip"
                                   data-container="body"
-                                  title="Refresh"
-
-                                  >
+                                  title="Refresh">
                               <i class="fa fa-1x fa-refresh fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
                           </button>
-                        </div>
+              </div>
+
           </div>';
           $output .= '
           <div class="row-fluid">
             <div class="table-responsive synoptic-fixed-height">
               <table class="synoptic-table">
                 <tr>
-                    <td colspan="5" style="text-align: center">
-                        <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <table class="arrow-table-horizontal">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
-                                </td>
-                                <td
-                                    class="legend" id="power-solar">' .
-                                    $data->psolar_kw . ' kW<br>
-                                    <font color="#D0D0D0">' .
-                                    $data->solar_pv_adc . ' A
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td>
                         <img id="pow-genset-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/grid_genset.svg" class="img-pow-genset"/>
                     </td>
-                    <td>
-                        <table class="arrow-table-vertical" height="100">
-                            <tr>
-                                <td height="33" class="legend" id="power-grid-genset">' .
-                                  $data->grid_pin_ac_kw . ' kW<br>
-                                  <font color="#D0D0D0">' .
-                                  $data->grid_input_vac . ' V
-                                </td>
-                            </tr>
-                            <tr>
-                                <td height="33">
-                                    <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
+                    <td></td>
+                    <td style="text-align: left">
+                        <img id="pow-pv-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/simple_pv.svg" class="img-pow-pv"/>
                     </td>
+                </tr>
+                <!-- 2nd row with values and arrows -->
+                <tr>
+                    <td class="legend" id="power-grid-genset" style="text-align: right;">' .
+                      $data->grid_pin_ac_kw . ' kW<br>
+                      <font color="#D0D0D0">' .
+                      $data->grid_input_vac . ' V
+                    </td>
+                    <td>
+                      <table>
+                        <tr>
+                            <td style="text-align: left;">
+                                <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
+                            </td>
+                            <td style="text-align: right;">
+                                <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
+                            </td>
+                        </tr>
+                      </table>
+                    </td>
+                    <td
+                        class="legend" id="power-solar" style="text-align: left;">' .
+                        $data->psolar_kw . ' kW<br>
+                        <font color="#D0D0D0">' .
+                        $data->solar_pv_adc . ' A
+                    </td>
+                </tr>
+
+                <!-- 3rd row with only studer logo in the middle column all else blank -->
+
+                <tr>
+                    <td></td>
                     <td style="text-align: center;">
                         <img src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/studer_innotec_logo_blue.png" class="img-pow-logo" id="power-img-logo"/>
                     </td>
-                    <td>
-                        <table class="arrow-table-vertical" height="100">
-                            <tr>
-                                <td height="33" class="legend" id="power-load">' .
-                                  $data->pout_inverter_ac_kw . ' kW
-                                </td>
-                            </tr>
-                            <tr>
-                                <td height="33">
-                                    <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                    <td>
-                        <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
-                    </td>
+                    <td></td>
                 </tr>
+
+                <!-- 4th row with only values and arrows similar to 2nd row -->
                 <tr>
-                    <td></td>
-                    <td></td>
+                    <td style="text-align: right;"
+                        class="legend" id="power-battery">' .
+                        abs($data->pbattery_kw) . ' kW<br>
+                        <font color="#D0D0D0">' .
+                        $data->battery_voltage_vdc . ' V<br>' .
+                        abs($data->battery_charge_adc) . ' A
+                    </td>
                     <td>
-                        <table class="arrow-table-horizontal">
-                            <tr>
-                                <td></td>
-                                <td>
-                                    <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
-                                </td>
-                                <td
-                                    class="legend" id="power-battery">' .
-                                    abs($data->pbattery_kw) . ' kW<br>
-                                    <font color="#D0D0D0">' .
-                                    $data->battery_voltage_vdc . ' V<br>' .
-                                    abs($data->battery_charge_adc) . ' A
-                                </td>
-                            </tr>
-                        </table>
+                            <table>
+                                <tr>
+                                    <td style="text-align: left;">
+                                        <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
+                                    </td>
+                                    <td style="text-align: right;">
+                                        <i class="' . $data->inverter_pout_arrow_class . '" id="power-arrow-load"></i>
+                                    </td>
+                                </tr>
+                            </table>
                     </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="5" style="text-align: center">
-    					             <i class="' . $data->battery_icon_class . '" id="power_battery-icon"></i>
+                    <td class="legend" id="power-load" style="text-align: left;">' .
+                        $data->pout_inverter_ac_kw . ' kW
                     </td>
-                </tr>
+                  </tr>
+
+                  <!-- 5th row with only images of battery and home on extreme columns -->
+
+                  <tr>
+                      <td style="text-align: left">
+                             <i class="' . $data->battery_icon_class . '" id="power_battery-icon"></i>
+                      </td>
+                      <td></td>
+                      <td>
+                          <img id="pow-load-img" src="https://sritoni.org/6076/wp-content/uploads/sites/14/2021/02/house.svg" class="img-pow-load"/>
+                      </td>
+                  </tr>
         </table>
     </div>
     </div>';
@@ -1018,13 +1029,13 @@ function get_studer_readings()
 
 
   // inverter's output always goes to load never the other way around :-)
-  $inverter_pout_arrow_class = "fa fa-long-arrow-right";
+  $inverter_pout_arrow_class = "fa fa-long-arrow-right fa-rotate-45";
 
   // conditional class names for battery charge down or up arrow
   if ($battery_charge_adc > 0.0)
   {
-    // current is positive so battery is charging so arrow is down
-    $battery_charge_arrow_class = "fa fa-long-arrow-down";
+    // current is positive so battery is charging so arrow is down and to left
+    $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs(battery_charge_adc) * $Rb, 2);
@@ -1032,7 +1043,7 @@ function get_studer_readings()
   else
   {
     // current is -ve so battery is discharging so arrow is up
-    $battery_charge_arrow_class = "fa fa-long-arrow-up";
+    $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs(battery_charge_adc) * $Rb, 2);
@@ -1040,20 +1051,16 @@ function get_studer_readings()
 
   switch(true)
   {
-    case (abs($battery_charge_adc) < 20 ) :
+    case (abs($battery_charge_adc) < 27 ) :
       $battery_charge_arrow_class .= " fa-1x";
     break;
 
-    case (abs($battery_charge_adc) < 40 ) :
+    case (abs($battery_charge_adc) < 54 ) :
       $battery_charge_arrow_class .= " fa-2x";
     break;
 
-    case (abs($battery_charge_adc) < 60 ) :
+    case (abs($battery_charge_adc) >=54 ) :
       $battery_charge_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($battery_charge_adc) < 80 ) :
-      $battery_charge_arrow_class .= " fa-4x";
     break;
   }
 
@@ -1061,7 +1068,7 @@ function get_studer_readings()
   if ($psolar_kw > 0.1)
   {
     // power is greater than 0.2kW so indicate down arrow
-    $solar_arrow_class = "fa fa-long-arrow-down";
+    $solar_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
   }
   else
   {
@@ -1079,12 +1086,8 @@ function get_studer_readings()
       $solar_arrow_class .= " fa-2x";
     break;
 
-    case (abs($psolar_kw) < 3.5 ) :
+    case (abs($psolar_kw) >= 2.0 ) :
       $solar_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($psolar_kw) < 4.0 ) :
-      $solar_arrow_class .= " fa-4x";
     break;
   }
 
@@ -1098,12 +1101,8 @@ function get_studer_readings()
       $inverter_pout_arrow_class .= " fa-2x";
     break;
 
-    case (abs($pout_inverter_ac_kw) < 3.5 ) :
+    case (abs($pout_inverter_ac_kw) >=2.0 ) :
       $inverter_pout_arrow_class .= " fa-3x";
-    break;
-
-    case (abs($pout_inverter_ac_kw) < 4 ) :
-      $inverter_pout_arrow_class .= " fa-4x";
     break;
   }
 
@@ -1111,7 +1110,7 @@ function get_studer_readings()
   if ($transfer_relay_state)
   {
     // Transfer Relay is closed so grid input is possible
-    $grid_input_arrow_class = "fa fa-arrow-circle-right";
+    $grid_input_arrow_class = "fa fa-long-arrow-right fa-rotate-45";
   }
   else
   {

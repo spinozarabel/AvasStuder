@@ -1,3 +1,4 @@
+var count = 0; // <== make the variable global
 jQuery(document).ready(function($) {
 
   // set an intervel. The callback gets executed every interval
@@ -7,13 +8,14 @@ jQuery(document).ready(function($) {
 
   $(document).on("click","#refresh-button",function() {
                                                           $("#refresh-button").addClass("fa-spin");
-                                                           //
-                                                           var count = 0;
-                                                           while (count <= 9)
-                                                           {
-                                                             count = count + 1;
-                                                             triggerAjax();
+                                                          //
+                                                           count = 0;
+                                                           var thisCount = 0;
 
+                                                           while (thisCount  <= 9)
+                                                           {
+                                                             thisCount++;
+                                                             triggerAjax();
                                                            }
                                                        }
                 );
@@ -72,6 +74,13 @@ jQuery(document).ready(function($) {
                                                                                           + data.grid_input_aac + 'A');
                                                 // change the arrow class for Inverter Pout to Home using Ajax update
                                                 $('#power-arrow-grid-genset').removeClass().addClass(data.grid_input_arrow_class);
+
+                                                //
+                                                count++; // <== update count
+                                                if(count == 9)
+                                                {
+                                                    $("#refresh-button").removeClass("fa-spin"); // <== remove it here
+                                                }
 
                                               });
                         };
