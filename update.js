@@ -13,13 +13,8 @@ jQuery(document).ready(function($) {
                                                            {
                                                              count = count + 1;
                                                              triggerAjax();
-                                                             if (count == 9)
-                                                             {
-                                                               $("#refresh-button").removeClass("fa-spin");
-                                                             }
-
                                                            }
-
+                                                           $("#refresh-button").removeClass("fa-spin");
                                                        }
                 );
 
