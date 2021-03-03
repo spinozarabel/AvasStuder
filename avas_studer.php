@@ -697,8 +697,7 @@ function studer_readings_page_render()
                           <button type="button" class="btn btn-box-tool refresh-button"  data-placement="right"
                                   data-toggle="tooltip"
                                   data-container="body"
-                                  title="Refresh"
-                                  outline="none">
+                                  title="Refresh">
                               <i class="fa fa-1x fa-refresh fa-spin" id="refresh-button" style="height: 15px; width: 15px;"></i>
                           </button>
               </div>
