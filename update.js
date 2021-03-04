@@ -54,8 +54,9 @@ jQuery(document).ready(function($) {
                                                 //Change Inverter output power value using Ajax delivered object data
                                                 $('#power-load').html( data.pout_inverter_ac_kw + ' kW');
 
-                                                // change the arrow class for Inverter Pout to Home using Ajax update
+                                                // change the arrow class for Inverter Pout to Home arrow using Ajax update
                                                 $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
+
 
 
                                                 // Solar Power related values Ajax update
@@ -68,6 +69,8 @@ jQuery(document).ready(function($) {
 
                                                 // Change the Battery values based on Ajax update
                                                 $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);
+                                                // update the battery animation class based on Ajax values
+                                                $("#battery-arrow-load-animation").removeClass().addClass(data.battery_charge_animation_class);
                                                 //Change Inverter output power value using Ajax delivered object data
                                                 $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#D0D0D0">'
                                                                                           + data.battery_voltage_vdc + 'V<br>'
