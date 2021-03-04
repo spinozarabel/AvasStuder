@@ -27,6 +27,10 @@ jQuery(document).ready(function($) {
 
                                  // stop spinning of update wheel
                                  $("#refresh-button").removeClass("fa-spin");
+                                 // remove animation on pv-solar-arrow
+                                 $("#power-arrow-solar-animation").removeClass("arrowSliding_ne_sw");
+                                 // remove animation on inverter to home arrow
+                                 $("#power-arrow-load-animation").removeClass("arrowSliding_nw_se");
                                  // also clear the timeout
                                  clearTimeout(timeout1_ID);
                                 };
@@ -79,7 +83,12 @@ jQuery(document).ready(function($) {
                                                 count++; // <== update count
                                                 if(count == 9)
                                                 {
-                                                    $("#refresh-button").removeClass("fa-spin"); // <== remove it here
+                                                    // remove spinner on update button
+                                                    $("#refresh-button").removeClass("fa-spin");
+                                                    // remove animation on pv-solar-arrow
+                                                    $("#power-arrow-solar-animation").removeClass("arrowSliding_ne_sw");
+                                                    // remove animation on inverter to home arrow
+                                                    $("#power-arrow-load-animation").removeClass("arrowSliding_nw_se");
                                                 }
 
                                               });
