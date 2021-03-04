@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
                                                 // update the arrow based on ajax
                                                 $('#power-arrow-solar').removeClass().addClass(data.solar_arrow_class);
                                                 // add solar arrow animation
-                                                $("#power-arrow-solar-animation").removeClass().addClass("arrowSliding_ne_sw");
+                                                $("#power-arrow-solar-animation").removeClass().addClass(data.solar_arrow_animation_class);
 
                                                 // Change the Battery values based on Ajax update
                                                 $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);

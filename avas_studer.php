@@ -777,7 +777,7 @@ function studer_readings_page_render()
                             <td style="text-align: left;">
                                 <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
-                            <td class="arrowSliding_ne_sw" id="power-arrow-solar-animation" style="text-align: right;">
+                            <td class="' . $data->solar_arrow_animation_class . '" id="power-arrow-solar-animation" style="text-align: right;">
                                 <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                         </tr>
@@ -1120,11 +1120,13 @@ function get_studer_readings()
   {
     // power is greater than 0.2kW so indicate down arrow
     $solar_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
+    $solar_arrow_animation_class = "arrowSliding_nw_se";
   }
   else
   {
-    // power is too small indicate a blank line vertically down from SOlar panel to Inverter in diagram
+    // power is too small indicate a blank line vertically down from Solar panel to Inverter in diagram
     $solar_arrow_class = "fa fa-minus fa-rotate-90";
+    $solar_arrow_animation_class = "";
   }
 
   switch(true)
@@ -1221,6 +1223,7 @@ function get_studer_readings()
   $studer_readings_obj->solar_pv_adc                = $solar_pv_adc;
   $studer_readings_obj->solar_pv_vdc                = $solar_pv_vdc;
   $studer_readings_obj->solar_arrow_class           = $solar_arrow_class;
+  $studer_readings_obj->solar_arrow_animation_class = $solar_arrow_animation_class;
 
   //update the object with Inverter Load details
   $studer_readings_obj->pout_inverter_ac_kw         = $pout_inverter_ac_kw;
