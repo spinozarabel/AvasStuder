@@ -499,6 +499,54 @@ function studer_readings_page_render()
   $output .=
 
     '<style>
+        .rediconcolor {color:red;}
+
+    		.greeniconcolor {color:green;}
+
+        .arrowSliding_nw_se {
+    		  position: relative;
+    		  -webkit-animation: slide_nw_se 2s linear infinite;
+    			        animation: slide_nw_se 2s linear infinite;
+    		}
+
+    		.arrowSliding_ne_sw {
+    		  position: relative;
+    		  -webkit-animation: slide_ne_sw 2s linear infinite;
+    			        animation: slide_ne_sw 2s linear infinite;
+    		}
+
+        .arrowSliding_sw_ne {
+    		  position: relative;
+    		  -webkit-animation: slide_ne_sw 2s linear infinite reverse;
+    			        animation: slide_ne_sw 2s linear infinite reverse;
+    		}
+
+        @-webkit-keyframes slide_ne_sw {
+    			  0% { opacity:0; transform: translate(20%, -20%); }
+    		   20% { opacity:1; transform: translate(10%, -10%); }
+    		   80% { opacity:1; transform: translate(-10%, 10%); }
+    		  100% { opacity:0; transform: translate(-20%, 20%); }
+  		  }
+    		@keyframes slide_ne_sw {
+            0% { opacity:0; transform: translate(20%, -20%); }
+           20% { opacity:1; transform: translate(10%, -10%); }
+           80% { opacity:1; transform: translate(-10%, 10%); }
+          100% { opacity:0; transform: translate(-20%, 20%); }
+    		}
+
+        @-webkit-keyframes slide_nw_se {
+    			  0% { opacity:0; transform: translate(-20%, -20%); }
+    		   20% { opacity:1; transform: translate(-10%, -10%); }
+    		   80% { opacity:1; transform: translate(10%, 10%);   }
+    		  100% { opacity:0; transform: translate(20%, 20%);   }
+  		  }
+    		@keyframes slide_nw_se {
+            0% { opacity:0; transform: translate(-20%, -20%); }
+           20% { opacity:1; transform: translate(-10%, -10%); }
+           80% { opacity:1; transform: translate(10%, 10%);   }
+          100% { opacity:0; transform: translate(20%, 20%);   }
+    		}
+
         .fa-rotate-45 {
             -webkit-transform: rotate(45deg);
             -moz-transform: rotate(45deg);
@@ -729,7 +777,7 @@ function studer_readings_page_render()
                             <td style="text-align: left;">
                                 <i class="' . $data->grid_input_arrow_class . '" id="power-arrow-grid-genset"></i>
                             </td>
-                            <td style="text-align: right;">
+                            <td class="arrowSliding_ne_sw" id="power-arrow-solar-animation" style="text-align: right;">
                                 <i class="' . $data->solar_arrow_class . '" id="power-arrow-solar"></i>
                             </td>
                         </tr>
