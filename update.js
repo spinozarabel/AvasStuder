@@ -31,6 +31,8 @@ jQuery(document).ready(function($) {
                                  $("#power-arrow-solar-animation").removeClass();
                                  // remove animation on inverter to home arrow
                                  $("#power-arrow-load-animation").removeClass();
+                                 // remove animation on battery arrow
+                                 $("#battery-arrow-load-animation").removeClass();
                                  // also clear the timeout
                                  clearTimeout(timeout1_ID);
                                 };
@@ -89,6 +91,8 @@ jQuery(document).ready(function($) {
                                                     $("#power-arrow-solar-animation").removeClass();
                                                     // remove animation on inverter to home arrow
                                                     $("#power-arrow-load-animation").removeClass();
+                                                    // remove animation on battery arrow
+                                                    $("#battery-arrow-load-animation").removeClass();
                                                 }
 
                                               });

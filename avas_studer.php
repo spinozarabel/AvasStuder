@@ -813,7 +813,7 @@ function studer_readings_page_render()
                     <td>
                             <table>
                                 <tr>
-                                    <td style="text-align: left;">
+                                    <td class="' . $data->battery_charge_animation_class . '" id="battery-arrow-load-animation" style="text-align: left;">
                                         <i class="' . $data->battery_charge_arrow_class . '" id="power-arrow-battery"></i>
                                     </td>
                                     <td class="arrowSliding_nw_se" id="power-arrow-load-animation" style="text-align: right;">
@@ -1082,16 +1082,19 @@ function get_studer_readings()
   // conditional class names for battery charge down or up arrow
   if ($battery_charge_adc > 0.0)
   {
-    // current is positive so battery is charging so arrow is down and to left
-    $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
+    // current is positive so battery is charging so arrow is down and to left. Also arrow shall be green to indicate charging
+    $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45 greeniconcolor";
+    // battery animation class is from ne-sw
+    $battery_charge_animation_class = "arrowSliding_ne_sw";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs(battery_charge_adc) * $Rb, 2);
   }
   else
   {
-    // current is -ve so battery is discharging so arrow is up
-    $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45";
+    // current is -ve so battery is discharging so arrow is up and icon color shall be red
+    $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45 rediconcolor";
+    $battery_charge_animation_class = "arrowSliding_sw_ne";
 
     // also good time to compensate for IR drop
     $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs(battery_charge_adc) * $Rb, 2);
@@ -1211,6 +1214,7 @@ function get_studer_readings()
   $studer_readings_obj->battery_voltage_vdc         = $battery_voltage_vdc;
   $studer_readings_obj->battery_charge_arrow_class  = $battery_charge_arrow_class;
   $studer_readings_obj->battery_icon_class          = $battery_icon_class;
+  $studer_readings_obj->battery_charge_animation_class = $battery_charge_animation_class;
 
   // update the object with SOlar data read
   $studer_readings_obj->psolar_kw                   = $psolar_kw;
