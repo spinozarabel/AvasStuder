@@ -56,6 +56,8 @@ jQuery(document).ready(function($) {
 
                                                 // change the arrow class for Inverter Pout to Home arrow using Ajax update
                                                 $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
+                                                // Add the home load arrow animation
+                                                $("#power-arrow-load-animation").removeClass().addClass("arrowSliding_nw_se");
 
 
 
@@ -66,6 +68,8 @@ jQuery(document).ready(function($) {
                                                 // todo need to add the SOlar-PB current at battery interface
                                                 // update the arrow based on ajax
                                                 $('#power-arrow-solar').removeClass().addClass(data.solar_arrow_class);
+                                                // add solar arrow animation
+                                                $("#power-arrow-solar-animation").removeClass().addClass("arrowSliding_ne_sw");
 
                                                 // Change the Battery values based on Ajax update
                                                 $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);
