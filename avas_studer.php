@@ -1120,7 +1120,7 @@ function get_studer_readings()
   {
     // power is greater than 0.2kW so indicate down arrow
     $solar_arrow_class = "fa fa-long-arrow-down fa-rotate-45";
-    $solar_arrow_animation_class = "arrowSliding_nw_se";
+    $solar_arrow_animation_class = "arrowSliding_ne_sw";
   }
   else
   {
