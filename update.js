@@ -90,7 +90,7 @@ jQuery(document).ready(function($) {
 
                                                 //
                                                 count++; // <== update count
-                                                if(count == 9)
+                                                if(count >= 9)
                                                 {
                                                     // remove spinner on update button
                                                     $("#refresh-button").removeClass("fa-spin");
