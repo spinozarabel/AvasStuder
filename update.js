@@ -7,16 +7,11 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
+                                                          count = 0; // initialize the counter
                                                           $("#refresh-button").addClass("fa-spin");
-                                                          //
-                                                           count = 0;
-                                                           var thisCount = 0;
-
-                                                           while (thisCount  <= 9)
-                                                           {
-                                                             thisCount++;
-                                                             triggerAjax();
-                                                           }
+                                                          // make Ajax call every 10s for 60s
+                                                          triggerAjax();
+                                                          // after all calls, remove all animations
                                                        }
                 );
 
@@ -100,6 +95,12 @@ jQuery(document).ready(function($) {
                                                     $("#power-arrow-load-animation").removeClass();
                                                     // remove animation on battery arrow
                                                     $("#battery-arrow-load-animation").removeClass();
+                                                    // remove the timer since we are finished with the Ajax burst
+                                                    clearInterval(setInterval2_ID);
+                                                    // all execution should stop here till further prompt from user
+                                                }
+                                                else {
+                                                    var setInterval2_ID = setInterval(triggerAjax, 10000); // 10 sec updates
                                                 }
 
                                               });
