@@ -48,6 +48,25 @@ add_shortcode( 'avas-display-studer-readings', 'studer_readings_page_render' );
 // the 2nd argument is the local callback function as the ajax handler
 add_action('wp_ajax_get_studer_readings', 'ajax_studer_readings_handler');
 
+// check if user meta for Studer API access is empty
+// if so redirect user to Studer Account form page
+$current_user_ID  = wp_get_current_user()->ID;
+// get user meta for uhash and phash
+$phash		= get_user_meta($current_user_ID, 'phash', true);
+$uhash		= get_user_meta($current_user_ID, 'uhash', true);
+
+if (empty($uhash) || empty($phash))
+{
+  $url_studeraccountform = "https://sritoni.org/6076/my-studer-account/";
+  nocache_headers();
+  // We don't know for sure whether this is a URL for this site,
+  // so we use wp_safe_redirect() to avoid an open redirect.
+  wp_safe_redirect( $url_studeraccountform );
+  exit;
+}
+
+
+
 /**
  * This will fire at the very end of a (successful) form entry.
  *
