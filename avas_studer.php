@@ -29,7 +29,7 @@ if ( is_admin() )
 }
 
 // upon form submit run the call back function update_usermeta_from_form
-dd_action("wpforms_process_complete", 'update_usermeta_from_form');
+add_action( 'wpforms_process_complete', 'update_usermeta_from_form', 10, 4 );
 
 // add action to load the javascripts on non-admin page
 add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
