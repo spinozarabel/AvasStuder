@@ -65,10 +65,11 @@ function update_usermeta_from_form($fields, $entry, $form_data, $entry_id)
       return;
   }
   // Get the full entry object
-  $entry = wpforms()->entry->get( $entry_id );
+  // $entry = wpforms()->entry->get( $entry_id );
   // Fields are in JSON, so we decode to an array
   $entry_fields = json_decode( $entry->fields, true );
-  error_log(print_r($entry_fields,true));
+  error_log(print_r($entry, true));
+  error_log(print_r($entry_fields, true));
 }
 
 /**
