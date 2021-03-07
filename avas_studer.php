@@ -64,11 +64,28 @@ function update_usermeta_from_form($fields, $entry, $form_data, $entry_id)
   if ( absint( $form_data['id'] ) !== 93 ) {
       return;
   }
-  // Get the full entry object
-  // $entry = wpforms()->entry->get( $entry_id );
-  // Fields are in JSON, so we decode to an array
+  // get the user login in order to update user meta
+  // get logged in user details
+  $current_user 	= wp_get_current_user();
+  $user_id 		    = $current_user->ID;
 
-  error_log(print_r($fields, true));
+  foreach ($fields as $ind => $item)
+  {
+    switch (true)
+    {
+      case($item["name"] == "Email"):
+        $uhash		= hash('sha256', $item["value"]);
+        update_user_meta( $user_id, 'uhash', $uhash );
+      break;
+
+      case($item["name"] == "Studer account password"):
+        $phash		= md5($item["value"]);
+        update_user_meta( $user_id, 'phash', $phash );
+      break;
+    }
+  }
+
+
 }
 
 /**

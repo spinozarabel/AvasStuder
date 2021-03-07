@@ -23,8 +23,11 @@ class studer_api
     {
       $this->verbose  = self::VERBOSE;
 
-			$phash		=            md5($this->getoption("studer_settings", "studer_password"));
-			$uhash		= hash('sha256', $this->getoption("studer_settings", "studer_email"));
+      $current_user_ID 	= wp_get_current_user()->ID;
+
+
+			$phash		= get_user_meta($current_user_ID, 'phash', true);
+			$uhash		= get_user_meta($current_user_ID, 'uhash', true);
 
 
 		  $baseurl =                $this->getoption("studer_settings", "studer_api_baseurl");
