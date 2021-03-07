@@ -95,12 +95,11 @@ jQuery(document).ready(function($) {
                                                     $("#power-arrow-load-animation").removeClass();
                                                     // remove animation on battery arrow
                                                     $("#battery-arrow-load-animation").removeClass();
-                                                    // remove the timer since we are finished with the Ajax burst
-                                                    clearInterval(setInterval2_ID);
+
                                                     // all execution should stop here till further prompt from user
                                                 }
                                                 else {
-                                                    var setInterval2_ID = setInterval(triggerAjax, 10000); // 10 sec updates
+                                                    var timeout_ID = setTimeout(triggerAjax, 10000); // this is 10s delay
                                                 }
 
                                               });

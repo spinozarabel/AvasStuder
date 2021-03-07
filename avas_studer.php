@@ -28,6 +28,9 @@ if ( is_admin() )
   $avas_studer_settings = new avas_studer_settings();
 }
 
+// upon form submit run the call back function update_usermeta_from_form
+dd_action("wpforms_process_complete", 'update_usermeta_from_form');
+
 // add action to load the javascripts on non-admin page
 add_action( 'wp_enqueue_scripts', 'add_my_scripts' );
 
@@ -44,6 +47,23 @@ add_shortcode( 'avas-display-studer-readings', 'studer_readings_page_render' );
 // the 1st argument is in update.js, action: "get_studer_readings"
 // the 2nd argument is the local callback function as the ajax handler
 add_action('wp_ajax_get_studer_readings', 'ajax_studer_readings_handler');
+
+/**
+*   This is a callback function after a wpforms submission activated by an add_action at top
+*   The form data contains studer username and password to acces data from Studer account using API
+*   The username is store in usermeta called uhash
+*   The password field is hashed and saved in usermeta phash
+*/
+function update_usermeta_from_form($params)
+{
+  foreach($params as $idx=>$item)
+  {
+        $field_name = $item['name'];
+        $fiel_value = $item['value'];
+        error_log("form item field name: $field_name, form item value: $fiel_value");        
+  }
+    return true;
+}
 
 /**
 *   register and enque jquery scripts with nonce for ajax calls. Load only for desired page
