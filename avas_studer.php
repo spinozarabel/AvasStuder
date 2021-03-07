@@ -49,20 +49,26 @@ add_shortcode( 'avas-display-studer-readings', 'studer_readings_page_render' );
 add_action('wp_ajax_get_studer_readings', 'ajax_studer_readings_handler');
 
 /**
-*   This is a callback function after a wpforms submission activated by an add_action at top
-*   The form data contains studer username and password to acces data from Studer account using API
-*   The username is store in usermeta called uhash
-*   The password field is hashed and saved in usermeta phash
-*/
-function update_usermeta_from_form($params)
+ * This will fire at the very end of a (successful) form entry.
+ *
+ * @link  https://wpforms.com/developers/wpforms_process_complete/
+ *
+ * @param array  $fields    Sanitized entry field values/properties.
+ * @param array  $entry     Original $_POST global.
+ * @param array  $form_data Form data and settings.
+ * @param int    $entry_id  Entry ID. Will return 0 if entry storage is disabled or using WPForms Lite.
+ */
+function update_usermeta_from_form($fields, $entry, $form_data, $entry_id)
 {
-  foreach($params as $idx=>$item)
-  {
-        $field_name = $item['name'];
-        $fiel_value = $item['value'];
-        error_log("form item field name: $field_name, form item value: $fiel_value");        
+  // restricted to only form #93
+  if ( absint( $form_data['id'] ) !== 93 ) {
+      return;
   }
-    return true;
+  // Get the full entry object
+  $entry = wpforms()->entry->get( $entry_id );
+  // Fields are in JSON, so we decode to an array
+  $entry_fields = json_decode( $entry->fields, true );
+  error_log(print_r($entry_fields,true));
 }
 
 /**
