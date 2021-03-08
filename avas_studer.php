@@ -98,10 +98,22 @@ function update_usermeta_from_form($fields, $entry, $form_data, $entry_id)
 */
 function avas_display_studer_settings()
 {
+  // check that user is logged in and has valid studer api credentials
+  login_and_studer_check();
+
+	return studer_main_page_render();
+
+}
+/**
+*  check that user is logged in and has valid studer api credentials
+*  if user is not logged in just return to display message and empty page
+*  if user has not set her studer API access credentials then redirect to form page
+*/
+function login_and_studer_check()
+{
   if (!is_user_logged_in())
 	{
 		return  'You need to be a registered user to access this page. Please register or login';
-
 	}
   // check if user meta for Studer API access is empty
   // if so redirect user to Studer Account form page
@@ -116,12 +128,10 @@ function avas_display_studer_settings()
     nocache_headers();
     // We don't know for sure whether this is a URL for this site,
     // so we use wp_safe_redirect() to avoid an open redirect.
+    // redirect user to form page to fill studer api credentials
     wp_safe_redirect( $url_studeraccountform );
     exit;
   }
-  //
-	return studer_main_page_render();
-
 }
 
 /**
@@ -219,27 +229,8 @@ function add_studer_menu()
 
 function studer_main_page_render()
 {
-  if (!is_user_logged_in())
-	{
-		return  'You need to be a registered user to access this page. Please register or login';
-	}
 
-  // check if user meta for Studer API access is empty
-  // if so redirect user to Studer Account form page
-  $current_user_ID  = wp_get_current_user()->ID;
-  // get user meta for uhash and phash
-  $phash		= get_user_meta($current_user_ID, 'phash', true);
-  $uhash		= get_user_meta($current_user_ID, 'uhash', true);
-
-  if (empty($uhash) || empty($phash))
-  {
-    $url_studeraccountform = "https://sritoni.org/6076/my-studer-account/";
-    nocache_headers();
-    // We don't know for sure whether this is a URL for this site,
-    // so we use wp_safe_redirect() to avoid an open redirect.
-    wp_safe_redirect( $url_studeraccountform );
-    exit;
-  }
+  // proceed with generating page HTML string variable to be returned
 
   $studer_api = new studer_api();
 
@@ -569,11 +560,8 @@ function studer_main_page_render()
 
 function studer_readings_page_render()
 {
-  if (!is_user_logged_in())
-	{
-		return  'You need to be a registered user to access this page. Please register or login';
-
-	}
+  // check for valid logged in user with studer api credentials already set
+  login_and_studer_check();
 
   $data = get_studer_readings();
 
@@ -931,6 +919,8 @@ function studer_readings_page_render()
 
 function studer_variotrac_page_render()
 {
+  login_and_studer_check();
+  
   $studer_api = new studer_api();
 
   // top line displayed on page
