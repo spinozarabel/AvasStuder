@@ -86,7 +86,25 @@ function update_usermeta_from_form($fields, $entry, $form_data, $entry_id)
         $phash		= md5($item["value"]);
         update_user_meta( $user_id, 'phash', $phash );
       break;
+
+      case($item["name"] == "battery_vdc_25p"):
+        $battery_vdc_state["25p"]		= $item["value"];
+      break;
+
+      case($item["name"] == "battery_vdc_50p"):
+        $battery_vdc_state["50p"]		= $item["value"];
+      break;
+
+      case($item["name"] == "battery_vdc_75p"):
+        $battery_vdc_state["75p"]		= $item["value"];
+      break;
+
+      case($item["name"] == "battery_vdc_100p"):
+        $battery_vdc_state["100p"]		= $item["value"];
+      break;
     }
+    // update user meta with JSON encoded
+    update_user_meta( $user_id, 'json_battery_voltage_state', json_encode($battery_vdc_state) );
   }
 
 
@@ -920,7 +938,7 @@ function studer_readings_page_render()
 function studer_variotrac_page_render()
 {
   login_and_studer_check();
-  
+
   $studer_api = new studer_api();
 
   // top line displayed on page
@@ -1265,22 +1283,27 @@ function get_studer_readings()
     break;
   }
 
+$current_user           = wp_get_current_user();
+$current_user_ID        = $current_user->ID;
+$battery_vdc_state_json = get_user_meta($current_user_ID, "json_battery_voltage_state", true);
+$battery_vdc_state      = json_decode($battery_vdc_state_json, true);
+
 // select battery icon based on charge level
   switch(true)
   {
-    case ($battery_voltage_vdc < 48.0 ):
+    case ($battery_voltage_vdc < $battery_vdc_state["25p"] ):
       $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 48 && $battery_voltage_vdc < 49.0 ):
+    case ($battery_voltage_vdc >= $battery_vdc_state["25p"] && $battery_voltage_vdc < $$battery_vdc_state["50p"] ):
       $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 49.0 && $battery_voltage_vdc < 51.0 ):
+    case ($battery_voltage_vdc >= $$battery_vdc_state["50p"] && $battery_voltage_vdc < $battery_vdc_state["75p"] ):
       $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
     break;
 
-    case ($battery_voltage_vdc >= 50.0 ):
+    case ($battery_voltage_vdc >= $battery_vdc_state["75p"] ):
       $battery_icon_class = "fa fa-3x fa-battery-full fa-rotate-270";
     break;
   }
