@@ -1336,7 +1336,7 @@ function get_studer_readings()
    $battery_charge_animation_class = "arrowSliding_ne_sw";
 
    // also good time to compensate for IR drop
-   $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs(battery_charge_adc) * $Rb, 2);
+   $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra - abs($battery_charge_adc) * $Rb, 2);
  }
  else
  {
@@ -1345,7 +1345,7 @@ function get_studer_readings()
    $battery_charge_animation_class = "arrowSliding_sw_ne";
 
    // also good time to compensate for IR drop
-   $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs(battery_charge_adc) * $Rb, 2);
+   $battery_voltage_vdc = round($battery_voltage_vdc + abs($inverter_current_adc) * $Ra + abs($battery_charge_adc) * $Rb, 2);
  }
 
  switch(true)
