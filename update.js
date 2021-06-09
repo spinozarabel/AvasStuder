@@ -58,7 +58,7 @@ jQuery(document).ready(function($) {
 
                                                 // Solar Power related values Ajax update
                                                 //Change Solar output power value using Ajax delivered object data
-                                                $('#power-solar').html(round(data.psolar_kw, 2) + ' kW<br>'  + '<font color="#D0D0D0">'
+                                                $('#power-solar').html(round(data.psolar_kw, 2) + ' kW<br>'  + '<font color="#990000">'
                                                                                           + data.solar_pv_adc + 'A');
                                                 // todo need to add the SOlar-PB current at battery interface
                                                 // update the arrow based on ajax
@@ -71,7 +71,7 @@ jQuery(document).ready(function($) {
                                                 // update the battery animation class based on Ajax values
                                                 $("#battery-arrow-load-animation").removeClass().addClass(data.battery_charge_animation_class);
                                                 //Change Inverter output power value using Ajax delivered object data
-                                                $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#D0D0D0">'
+                                                $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#990000">'
                                                                                           + data.battery_voltage_vdc + 'V<br>'
                                                                                           + data.battery_charge_adc + 'A');
 
