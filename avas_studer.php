@@ -1331,7 +1331,7 @@ function get_studer_readings()
  if ($battery_charge_adc > 0.0)
  {
    // current is positive so battery is charging so arrow is down and to left. Also arrow shall be green to indicate charging
-   $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45 greeniconcolor";
+   $battery_charge_arrow_class = "fa fa-long-arrow-down fa-rotate-45 rediconcolor";
    // battery animation class is from ne-sw
    $battery_charge_animation_class = "arrowSliding_ne_sw";
 
@@ -1341,7 +1341,7 @@ function get_studer_readings()
  else
  {
    // current is -ve so battery is discharging so arrow is up and icon color shall be red
-   $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45 rediconcolor";
+   $battery_charge_arrow_class = "fa fa-long-arrow-up fa-rotate-45 greeniconcolor";
    $battery_charge_animation_class = "arrowSliding_sw_ne";
 
    // also good time to compensate for IR drop
