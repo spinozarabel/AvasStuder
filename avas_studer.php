@@ -1325,7 +1325,7 @@ function get_studer_readings()
 
 
  // inverter's output always goes to load never the other way around :-)
- $inverter_pout_arrow_class = "fa fa-long-arrow-right fa-rotate-45";
+ $inverter_pout_arrow_class = "fa fa-long-arrow-right fa-rotate-45 rediconcolor";
 
  // conditional class names for battery charge down or up arrow
  if ($battery_charge_adc > 0.0)
