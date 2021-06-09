@@ -513,7 +513,7 @@ function get_studer_settings_user_meta()
 }
 
 /**
-** @param boolval $from_user_meta: When true (default) data is extracted from user meta, when false from studer API
+** @param boolval:$from_user_meta: When true (default) data is extracted from user meta, when false from studer API
 **
 */
 function studer_main_page_render($from_user_meta = true)
@@ -1032,7 +1032,7 @@ function studer_readings_page_render()
                    <td
                        class="legend" id="power-solar" style="text-align: left;">' .
                        $data->psolar_kw . ' kW<br>
-                       <font color="#D0D0D0">' .
+                       <font color="#00FF00">' .
                        $data->solar_pv_adc . ' A
                    </td>
                </tr>
@@ -1052,7 +1052,7 @@ function studer_readings_page_render()
                    <td style="text-align: right;"
                        class="legend" id="power-battery">' .
                        abs($data->pbattery_kw) . ' kW<br>
-                       <font color="#D0D0D0">' .
+                       <font color="#990000">' .
                        $data->battery_voltage_vdc . ' V<br>' .
                        abs($data->battery_charge_adc) . ' A
                    </td>
