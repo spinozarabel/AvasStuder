@@ -100,21 +100,6 @@ class avas_studer_settings
         print 'Enter your settings below:';
     }
 
-    /**
-    * Get the settings option array and print cashfree_key value
-    */
-   public function studer_api_installation_id_callback()
-   {
-
-     $settings = (array) get_option( 'studer_settings' );
-     $field = "studer_api_installation_id";
-     $value = esc_attr( $settings[$field] );
-
-     echo "<input type='text' name='studer_settings[$field]' id='studer_settings[$field]'
-               value='$value'  size='50' class='code' />Studer Installation ID";
-
-   }
-
 
    /**
    * Get the settings option array and print cashfree_key value
