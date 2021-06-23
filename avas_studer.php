@@ -650,7 +650,7 @@ function studer_main_page_render($from_user_meta = true)
  }
  else
  {
-   val = 'No' . $studer_settings_arr["1250"]["value"] . '@' . $studer_settings_arr["1251"]["value"]. ' mins';
+   $val = 'No' . $studer_settings_arr["1250"]["value"] . '@' . $studer_settings_arr["1251"]["value"]. ' mins';
    $param_desc = "AUX1 activation for Battery Voltage Level2";
    $output .= print_row_table('1249-1251', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
  }
