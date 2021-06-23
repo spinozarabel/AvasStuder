@@ -642,45 +642,62 @@ function studer_main_page_render($from_user_meta = true)
 
 
  // 1249 1250 1251 AUX1 activate on Battery VOltage Level2? Value, and duration
- if ($studer_settings_arr["1249"]["value"] == 1.0)
- {
+ //if ($studer_settings_arr["1249"]["value"] == 1.0)
+ //{
    $val = 'Yes' . $studer_settings_arr["1250"]["value"] . '@' . $studer_settings_arr["1251"]["value"]. ' mins';
    $param_desc = "AUX1 activation for Battery Voltage Level2";
    $output .= print_row_table('1249-1251', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
- }
+ //}
 
 
  // 1252 1253 1254 AUX1 activate on Battery VOltage Level3? Value, and duration
- if ($studer_settings_arr["1252"]["value"] == 1.0)
- {
+ //if ($studer_settings_arr["1252"]["value"] == 1.0)
+ //{
    $val = 'Yes' . $studer_settings_arr["1253"]["value"] . '@' . $studer_settings_arr["1254"]["value"]. ' mins';
    $param_desc = "AUX1 activation for Battery Voltage Level3";
    $output .= print_row_table('1252-1254', $val, $param_desc, 'Vdc @ mins', 'Make sure these voltages are higher than for LVD');
- }
+ //}
 
 
  // 1545
  if ($studer_settings_arr["1545"]["value"] == 1.0)
  {
    $remote_entry_active = "Closed";
+   $output .= print_row_table('1545', $studer_settings_arr["1545"]["value"], 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
  }
- $output .= print_row_table('1545', $studer_settings_arr["1545"]["value"], 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
+ else
+ {
+   $remote_entry_active = "Open";
+   $output .= print_row_table('1545', $studer_settings_arr["1545"]["value"], 'Remote Entry Active (Open or CLosed??', 'Open/CLosed', 'Closed');
+ }
+
 
 
  // 1538 Prohibits Transfer Relay?
  if ($studer_settings_arr["1538"]["value"] == 1.0)
  {
    $prohibits_transfer_relay = "Yes";
+   $output .= print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
  }
- $output .= print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
+ else
+ {
+   $prohibits_transfer_relay = "No";
+   $output .= print_row_table('1538', $prohibits_transfer_relay, 'Prohibits Transfer Relay?', 'Yes/No', 'Yes');
+ }
 
 
  // 1578 Activated by AUX1 state?
  if ($studer_settings_arr["1578"]["value"] == 1.0)
  {
    $activated_by_aux1 = "Yes";
+   $output .= print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
  }
- $output .= print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
+ else
+ {
+   $activated_by_aux1 = "No";
+   $output .= print_row_table('1578', $activated_by_aux1, 'Activated by AUX1 state?', 'Yes/No', 'Yes');
+ }
+
 
  // check to see if all conditions for off-grid mode satisfied
  if (
