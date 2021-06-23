@@ -85,6 +85,8 @@ class avas_studer_settings
 		add_settings_field( 'studer_password',    'Studer user password', array( $this, 'studer_password_callback' ),     'studer_settings', 'studer_section' );
     add_settings_field( 'studer_api_baseurl', 'Studer API base url',  array( $this, 'studer_api_baseurl_callback' ),  'studer_settings', 'studer_section' );
 
+    add_settings_field( 'force_Read_Config_from_Studer', 'Check box to force update from Studer', array( $this, 'force_Read_Config_from_Studer_callback' ), 'studer_settings', 'studer_section' );
+
     // add_settings_section( $id, $title, $callback, $page );
 		add_settings_section( 'library_section', 'Library CDN Settings', array( $this, 'print_section_info' ), 'studer_settings' );
 
@@ -98,6 +100,21 @@ class avas_studer_settings
     public function print_section_info()
     {
         print 'Enter your settings below:';
+    }
+
+    /**
+     * Get the settings option array and print is_payment_site value
+     */
+    public function force_Read_Config_from_Studer_callback()
+    {
+        $settings = (array) get_option( 'studer_settings' );
+        $field = "force_Read_Config_from_Studer";
+        $checked = $settings[$field] ?? 0;
+
+        ?>
+            <input name="studer_settings[force_Read_Config_from_Studer]" id="studer_settings[force_Read_Config_from_Studer]" type="checkbox"
+                value="1" class="code"<?php checked( $checked, 1, true ); ?>/>
+        <?php
     }
 
 

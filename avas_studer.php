@@ -523,8 +523,9 @@ function studer_main_page_render($from_user_meta = true)
 
  $studer_api = new studer_api();
 
-// if passed param is true then get object formed using user_meta, else get object from Studer API
- $studer_settings_arr = $from_user_meta ? get_studer_settings_user_meta() : get_studer_settings_using_api();
+// if option is true then get object formed using user_meta, else get object from Studer API
+ $studer_settings_arr = get_option( 'studer_settings')["force_Read_Config_from_Studer"] ?
+                        get_studer_settings_using_api() : get_studer_settings_user_meta();
 
  // top line displayed on page
  $output .= 'Studer Parameters for my installation ID: ' . "<b>"
