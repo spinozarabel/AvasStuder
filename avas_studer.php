@@ -1195,29 +1195,29 @@ function studer_variotrac_page_render()
 
 function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default = null)
 {
-  /*
+
   if (stripos($param_value, "yes") !== false)
   {
     // the 2 strings are equal. So it means a Yes! so colour it Green
-    $param_value = 'class="greenincolor">' . $param_value;
+    $param_value = '<font color="green">' . $param_value;
   }
   elseif (stripos($param_value, "no") !== false)
   {
-    $param_value = 'class="rediconcolor">' . $param_value;
+    $param_value = '<font color="red">' . $param_value;
   }
   else
   {
     // no class applied so just use closing tag for td
     $param_value = '>' . $param_value;
   }
-  */
+
  $returnstring =
  '<tr>' .
-  '<td>' . $paramId .          '</td>' .
-  '<td>' . $param_desc .       '</td>' .
-  '<td>' . $param_value .      '</td>' .
-  '<td>' . $param_units .      '</td>' .
-  '<td>' . $factory_default .  '</td>' .
+    '<td>' . $paramId .          '</td>' .
+    '<td>' . $param_desc .       '</td>' .
+    '<td>' . $param_value .      '</td>' .
+    '<td>' . $param_units .      '</td>' .
+    '<td>' . $factory_default .  '</td>' .
  '</tr>';
  return $returnstring;
 }
