@@ -1207,8 +1207,7 @@ function print_row_table($paramId, $param_value, $param_desc, $param_units, $fac
   }
   else
   {
-    // no class applied so just use closing tag for td
-    $param_value = '>' . $param_value;
+    // no class applied so do nothing
   }
 
  $returnstring =
