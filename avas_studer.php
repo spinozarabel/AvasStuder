@@ -1195,12 +1195,12 @@ function studer_variotrac_page_render()
 
 function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default = null)
 {
-  if (!strcasecmp($param_value, 'Yes'))
+  if (stripos($param_value, "yes") !== false)
   {
     // the 2 strings are equal. So it means a Yes! so colour it Green
     $param_value = 'class="greenincolor">' . $param_value;
   }
-  elseif (!strcasecmp($param_value, 'No'))
+  elseif (stripos($param_value, "no") !== false)
   {
     $param_value = 'class="rediconcolor">' . $param_value;
   }
