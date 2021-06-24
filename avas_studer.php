@@ -542,6 +542,8 @@ function studer_main_page_render($from_user_meta = true)
    padding: 10px;
    text-align: left;
    }
+   .rediconcolor {color:red;}
+   .greeniconcolor {color:green;}
 </style>
  <table style="width:100%">
    <tr>
@@ -1193,11 +1195,25 @@ function studer_variotrac_page_render()
 
 function print_row_table($paramId, $param_value, $param_desc, $param_units, $factory_default = null)
 {
+  if (!strcasecmp($param_value, 'Yes'))
+  {
+    // the 2 strings are equal. So it means a Yes! so colour it Green
+    $param_value = 'class="greenincolor">' . $param_value;
+  }
+  elseif (!strcasecmp($param_value, 'No'))
+  {
+    $param_value = 'class="rediconcolor">' . $param_value;
+  }
+  else
+  {
+    // no class applied so just use closing tag for td
+    $param_value = '>' . $param_value;
+  }
  $returnstring =
  '<tr>' .
   '<td>' . $paramId .          '</td>' .
   '<td>' . $param_desc .       '</td>' .
-  '<td>' . $param_value .      '</td>' .
+  '<td'  . $param_value .      '</td>' .
   '<td>' . $param_units .      '</td>' .
   '<td>' . $factory_default .  '</td>' .
  '</tr>';
