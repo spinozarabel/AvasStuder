@@ -7,16 +7,11 @@ jQuery(document).ready(function($) {
   var timeout1_ID = setTimeout(stopSetInterval1, 100000); // this is 100 seconds for 10 updates
 
   $(document).on("click","#refresh-button",function() {
+                                                          count = 0; // initialize the counter
                                                           $("#refresh-button").addClass("fa-spin");
-                                                          //
-                                                           count = 0;
-                                                           var thisCount = 0;
-
-                                                           while (thisCount  <= 9)
-                                                           {
-                                                             thisCount++;
-                                                             triggerAjax();
-                                                           }
+                                                          // make Ajax call every 10s for 60s
+                                                          triggerAjax();
+                                                          // after all calls, remove all animations
                                                        }
                 );
 
@@ -27,6 +22,12 @@ jQuery(document).ready(function($) {
 
                                  // stop spinning of update wheel
                                  $("#refresh-button").removeClass("fa-spin");
+                                 // remove animation on pv-solar-arrow
+                                 $("#power-arrow-solar-animation").removeClass();
+                                 // remove animation on inverter to home arrow
+                                 $("#power-arrow-load-animation").removeClass();
+                                 // remove animation on battery arrow
+                                 $("#battery-arrow-load-animation").removeClass();
                                  // also clear the timeout
                                  clearTimeout(timeout1_ID);
                                 };
@@ -48,22 +49,29 @@ jQuery(document).ready(function($) {
                                                 //Change Inverter output power value using Ajax delivered object data
                                                 $('#power-load').html( data.pout_inverter_ac_kw + ' kW');
 
-                                                // change the arrow class for Inverter Pout to Home using Ajax update
+                                                // change the arrow class for Inverter Pout to Home arrow using Ajax update
                                                 $('#power-arrow-load').removeClass().addClass(data.inverter_pout_arrow_class);
+                                                // Add the home load arrow animation
+                                                $("#power-arrow-load-animation").removeClass().addClass("arrowSliding_nw_se");
+
 
 
                                                 // Solar Power related values Ajax update
                                                 //Change Solar output power value using Ajax delivered object data
-                                                $('#power-solar').html(round(data.psolar_kw, 2) + ' kW<br>'  + '<font color="#D0D0D0">'
+                                                $('#power-solar').html(round(data.psolar_kw, 2) + ' kW<br>'  + '<font color="#990000">'
                                                                                           + data.solar_pv_adc + 'A');
                                                 // todo need to add the SOlar-PB current at battery interface
                                                 // update the arrow based on ajax
                                                 $('#power-arrow-solar').removeClass().addClass(data.solar_arrow_class);
+                                                // add solar arrow animation
+                                                $("#power-arrow-solar-animation").removeClass().addClass(data.solar_arrow_animation_class);
 
                                                 // Change the Battery values based on Ajax update
                                                 $('#power-arrow-battery').removeClass().addClass(data.battery_charge_arrow_class);
+                                                // update the battery animation class based on Ajax values
+                                                $("#battery-arrow-load-animation").removeClass().addClass(data.battery_charge_animation_class);
                                                 //Change Inverter output power value using Ajax delivered object data
-                                                $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#D0D0D0">'
+                                                $('#power-battery').html(data.pbattery_kw + ' kW<br>'  + '<font color="#990000">'
                                                                                           + data.battery_voltage_vdc + 'V<br>'
                                                                                           + data.battery_charge_adc + 'A');
 
@@ -77,9 +85,21 @@ jQuery(document).ready(function($) {
 
                                                 //
                                                 count++; // <== update count
-                                                if(count == 9)
+                                                if(count >= 9)
                                                 {
-                                                    $("#refresh-button").removeClass("fa-spin"); // <== remove it here
+                                                    // remove spinner on update button
+                                                    $("#refresh-button").removeClass("fa-spin");
+                                                    // remove animation on pv-solar-arrow
+                                                    $("#power-arrow-solar-animation").removeClass();
+                                                    // remove animation on inverter to home arrow
+                                                    $("#power-arrow-load-animation").removeClass();
+                                                    // remove animation on battery arrow
+                                                    $("#battery-arrow-load-animation").removeClass();
+
+                                                    // all execution should stop here till further prompt from user
+                                                }
+                                                else {
+                                                    var timeout_ID = setTimeout(triggerAjax, 10000); // this is 10s delay
                                                 }
 
                                               });
