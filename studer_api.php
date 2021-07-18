@@ -17,7 +17,7 @@ if (!defined( "ABSPATH" ) && !defined( "MOODLE_INTERNAL" ) )
 // class definition begins
 class studer_api
 {
-    const VERBOSE     = true;
+    const VERBOSE     = false;
 
     public function __construct()
     {
