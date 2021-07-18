@@ -189,6 +189,8 @@ class studer_api
       curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2);
 
       $returnData = curl_exec($ch);
+      $this->verbose ? error_log("curl reposne" . print_r($returnData,true)) : false;
+      
       curl_close($ch);
       if ($returnData != "") {
         return json_decode($returnData, false);     // returns object not array
