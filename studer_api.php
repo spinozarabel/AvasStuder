@@ -190,7 +190,7 @@ class studer_api
 
       $returnData = curl_exec($ch);
       $this->verbose ? error_log("curl reposne" . print_r($returnData,true)) : false;
-      
+
       curl_close($ch);
       if ($returnData != "") {
         return json_decode($returnData, false);     // returns object not array
@@ -220,7 +220,7 @@ class studer_api
        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1); // verifies the authenticity of the peer's certificate
        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 2); // verify the certificate's name against host
        $returnData = curl_exec($ch);
-       // error_log( "This is the curl response " . print_r($returnData, true) );
+       $this->verbose ? error_log("curl reposne" . print_r($returnData,true)) : false;
        curl_close($ch);
        if ($returnData != "")
        {
