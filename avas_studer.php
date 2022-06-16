@@ -1268,6 +1268,7 @@ function get_studer_readings()
                        "userRef"       =>  3005,   // Battery Voltage
                        "infoAssembly"  => "Master"
                      ),
+                     
                array(
                        "userRef"       =>  11001,   // Battery charge current from VT1
                        "infoAssembly"  => "1"
@@ -1288,6 +1289,7 @@ function get_studer_readings()
                        "userRef"       =>  11004,   // Psolkw from VT2
                        "infoAssembly"  => "2"
                      ),
+                     
                array(
                        "userRef"       =>  3010,   // Phase of battery charge
                        "infoAssembly"  => "Master"
