@@ -1227,7 +1227,7 @@ function print_row_table($paramId, $param_value, $param_desc, $param_units, $fac
 function get_studer_readings()
 {
  $Ra = 0.0;       // value of resistance from DC junction to Inverter
- $Rb = 0.0;       // value of resistance from DC junction to Battery terminals
+ $Rb = 0.030;       // value of resistance from DC junction to Battery terminals
 
  $studer_api = new studer_api();
 
