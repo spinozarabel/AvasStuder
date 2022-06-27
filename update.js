@@ -54,7 +54,7 @@ jQuery(document).ready(function($) {
                                                 // Add the home load arrow animation
                                                 $("#power-arrow-load-animation").removeClass().addClass("arrowSliding_nw_se");
 
-
+                                                $('#ppower_battery-icon').removeClass().addClass(data.battery_icon_class);
 
                                                 // Solar Power related values Ajax update
                                                 //Change Solar output power value using Ajax delivered object data
