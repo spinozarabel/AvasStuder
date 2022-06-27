@@ -1495,19 +1495,20 @@ $battery_vdc_state      = json_decode($battery_vdc_state_json, true);
 // select battery icon based on charge level
  switch(true)
  {
-   case ($battery_voltage_vdc < $battery_vdc_state["25p"] ):
+  case ($battery_voltage_vdc >= $config['battery_vdc_state']["25p"] &&
+        $battery_voltage_vdc <  $config['battery_vdc_state']["50p"] ):
      $battery_icon_class = "fa fa-3x fa-battery-quarter fa-rotate-270";
    break;
 
-   case ($battery_voltage_vdc >= $battery_vdc_state["25p"] && $battery_voltage_vdc < $$battery_vdc_state["50p"] ):
+   case ($battery_voltage_vdc >= $battery_vdc_state["50p"] && $battery_voltage_vdc < $$battery_vdc_state["75p"] ):
      $battery_icon_class = "fa fa-3x fa-battery-half fa-rotate-270";
    break;
 
-   case ($battery_voltage_vdc >= $$battery_vdc_state["50p"] && $battery_voltage_vdc < $battery_vdc_state["75p"] ):
+   case ($battery_voltage_vdc >= $$battery_vdc_state["75p"] && $battery_voltage_vdc < $battery_vdc_state["100p"] ):
      $battery_icon_class = "fa fa-3x fa-battery-three-quarters fa-rotate-270";
    break;
 
-   case ($battery_voltage_vdc >= $battery_vdc_state["75p"] ):
+   case ($battery_voltage_vdc >= $battery_vdc_state["100p"] ):
      $battery_icon_class = "fa fa-3x fa-battery-full fa-rotate-270";
    break;
  }
